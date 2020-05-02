@@ -1,10 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, graphql } from "gatsby";
+import styled from "@emotion/styled";
+import { css } from "@emotion/core";
 
 import Layout from "../components/Layout";
 import Features from "../components/Features";
 import BlogRoll from "../components/BlogRoll";
+
+const Description = styled.div`
+    background: crimson;
+    margin: 18px;
+    padding: 12px;
+`;
 
 export const IndexPageTemplate = ({
     image,
@@ -88,7 +96,7 @@ export const IndexPageTemplate = ({
                                         <h3 className="has-text-weight-semibold is-size-2">
                                             {heading}
                                         </h3>
-                                        <p>{description}</p>
+                                        <Description>{description}</Description>
                                     </div>
                                 </div>
                                 <Features gridItems={intro.blurbs} />

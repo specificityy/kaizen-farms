@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { graphql } from "gatsby";
-import Layout from "../components/Layout";
-import PreviewCompatibleImage from "../components/PreviewCompatibleImage";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
+import Layout from '../components/Layout';
+import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
 
 export const AboutPageTemplate = ({ title, caption, image }) => {
     return (
@@ -11,13 +11,9 @@ export const AboutPageTemplate = ({ title, caption, image }) => {
                 <div className="columns">
                     <div className="column is-10 is-offset-1">
                         <div className="section">
-                            <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                                {title}
-                            </h2>
+                            <h2 className="title is-size-3 has-text-weight-bold is-bold-light">{title}</h2>
 
-                            <h2 className="title is-size-4 has-text-weight-bold is-bold-light">
-                                {caption}
-                            </h2>
+                            <h2 className="title is-size-4 has-text-weight-bold is-bold-light">{caption}</h2>
 
                             <PreviewCompatibleImage imageInfo={image} />
                         </div>
@@ -31,7 +27,7 @@ export const AboutPageTemplate = ({ title, caption, image }) => {
 AboutPageTemplate.propTypes = {
     title: PropTypes.string.isRequired,
     caption: PropTypes.string.isRequired,
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 const AboutPage = ({ data }) => {
@@ -49,7 +45,7 @@ const AboutPage = ({ data }) => {
 };
 
 AboutPage.propTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
 };
 
 export default AboutPage;
@@ -63,7 +59,7 @@ export const aboutPageQuery = graphql`
                 caption
                 image {
                     childImageSharp {
-                        fluid(maxWidth: 2048, quality: 100) {
+                        fluid(maxWidth: 3922, quality: 100) {
                             ...GatsbyImageSharpFluid
                         }
                     }

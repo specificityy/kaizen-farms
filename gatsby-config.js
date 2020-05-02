@@ -8,6 +8,7 @@ module.exports = {
         'gatsby-plugin-react-helmet',
         'gatsby-plugin-sass',
         'gatsby-plugin-emotion',
+        'gatsby-plugin-antd',
         {
             // keep as first gatsby-source-filesystem plugin for gatsby image support
             resolve: 'gatsby-source-filesystem',
@@ -48,7 +49,7 @@ module.exports = {
                             // It's important to specify the maxWidth (in pixels) of
                             // the content container as this plugin uses this as the
                             // base for generating different widths of each image.
-                            maxWidth: 2048,
+                            maxWidth: 4000,
                         },
                     },
                     {

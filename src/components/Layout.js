@@ -1,15 +1,22 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
-import './all.sass';
-import useSiteMetadata from './SiteMetadata';
 import { withPrefix } from 'gatsby';
+/** @jsx jsx */
+import { Global, css, jsx } from '@emotion/core';
+import { Layout } from 'antd';
+
+import './all.sass';
+import { cssReset } from './cssReset';
+import useSiteMetadata from './SiteMetadata';
+import FooterComponent from '../components/Footer';
+import Navbar from '../components/Navbar';
+
+const { Footer, Content } = Layout;
 
 const TemplateWrapper = ({ children }) => {
     const { title, description } = useSiteMetadata();
     return (
-        <div>
+        <>
             <Helmet>
                 <html lang="en" />
                 <title>{title}</title>
@@ -27,10 +34,38 @@ const TemplateWrapper = ({ children }) => {
                 <meta property="og:url" content="/" />
                 <meta property="og:image" content={`${withPrefix('/')}img/og-image.jpg`} />
             </Helmet>
-            <Navbar />
-            <div>{children}</div>
-            <Footer />
-        </div>
+            <GlobalStyles />
+
+            <Layout>
+                <Navbar />
+                <Content>{children}</Content>
+                <Footer>
+                    <FooterComponent />
+                </Footer>
+            </Layout>
+        </>
+    );
+};
+
+const GlobalStyles = () => {
+    return (
+        <Global
+            styles={css`
+                @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@100;300;400;700;900&family=Open+Sans:wght@300;400;700&display=swap');
+                ${cssReset}
+                * {
+                    font-family: 'Open Sans', sans-serif;
+                }
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
+                    font-family: 'Cairo', sans-serif;
+                }
+            `}
+        />
     );
 };
 

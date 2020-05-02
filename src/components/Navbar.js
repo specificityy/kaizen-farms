@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import github from '../img/github-icon.svg';
+import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+import { Menu, Space, Layout } from 'antd';
+
 import logo from '../img/kaizen-farms-logo.jpg';
 
 const Navbar = class extends React.Component {
@@ -31,69 +34,54 @@ const Navbar = class extends React.Component {
             }
         );
     };
-
     render() {
         return (
-            <nav className="navbar is-transparent" role="navigation" aria-label="main-navigation">
-                <div className="container">
-                    <div className="navbar-brand">
-                        <Link to="/" className="navbar-item" title="Logo">
-                            <div
-                                alt="Kaizen Farms"
-                                style={{
-                                    width: '150px',
-                                    height: '120px',
-                                    background: `url(${logo})`,
-                                    transform: 'scale(1.2) translateY(-20px)',
-                                }}
-                            />
-                        </Link>
-                        {/* Hamburger menu */}
-                        <div
-                            className={`navbar-burger burger ${this.state.navBarActiveClass}`}
-                            data-target="navMenu"
-                            onClick={() => this.toggleHamburger()}
-                        >
-                            <span />
-                            <span />
-                            <span />
-                        </div>
-                    </div>
-                    <div id="navMenu" className={`navbar-menu ${this.state.navBarActiveClass}`}>
-                        <div className="navbar-start has-text-centered">
-                            <Link className="navbar-item" to="/about">
-                                About
-                            </Link>
-                            <Link className="navbar-item" to="/products">
-                                Products
-                            </Link>
-                            <Link className="navbar-item" to="/blog">
-                                Blog
-                            </Link>
-                            <Link className="navbar-item" to="/contact">
-                                Contact
-                            </Link>
-                            <Link className="navbar-item" to="/contact/examples">
-                                Form Examples
-                            </Link>
-                        </div>
-                        <div className="navbar-end has-text-centered">
-                            <a
-                                className="navbar-item"
-                                href="https://github.com/netlify-templates/gatsby-starter-netlify-cms"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <span className="icon">
-                                    <img src={github} alt="Github" />
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+            <StyledHeader>
+                <StyledLink to="/">
+                    <StyledLogo />
+                </StyledLink>
+                <Menu mode="horizontal" defaultSelectedKeys={['2']}>
+                    <Menu.Item key="/about">
+                        <StyledLink to="/about">About</StyledLink>
+                    </Menu.Item>
+                    <Menu.Item key="/products">
+                        <StyledLink to="/products">Products</StyledLink>
+                    </Menu.Item>
+                    <Menu.Item key="/blog">
+                        <StyledLink to="/blog">Blog</StyledLink>
+                    </Menu.Item>
+                    <Menu.Item key="/contact">
+                        <StyledLink to="/contact">Contact</StyledLink>
+                    </Menu.Item>
+                    <Menu.Item key="/contact/examples">
+                        <StyledLink to="/contact/examples">Form Examples</StyledLink>
+                    </Menu.Item>
+                </Menu>
+            </StyledHeader>
         );
     }
 };
+
+const StyledLogo = styled.div`
+    width: 150px;
+    height: 50px;
+    background: url(${logo}) no-repeat 50% scroll;
+`;
+
+const StyledHeader = styled(Layout.Header)`
+    display: flex;
+    justify-content: space-between;
+    background: rgba(25, 25, 25, 0.4);
+    z-index: 10;
+    ul {
+        background: none;
+        border-bottom: none;
+        font-weight: bold;
+    }
+`;
+
+const StyledLink = styled(Link)`
+    color: #fff !important;
+`;
 
 export default Navbar;

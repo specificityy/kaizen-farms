@@ -4,11 +4,13 @@ import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import { HomePage } from '../components/HomePage';
+import { ProductsPage } from '../components/ProductsPage';
 
 export const AboutPageTemplate = ({ title, caption, image }) => {
     return (
         <>
             <HomePage {...{ title, caption, image }} />
+            <ProductsPage />
         </>
     );
 };

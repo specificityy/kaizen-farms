@@ -15,13 +15,13 @@ collections:
     - name: 'pages'
       label: 'Pages'
       files:
-        - file: 'src/pages/home/index.md'
+          - file: 'src/pages/home/index.md'
             label: 'Home'
             name: 'home'
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'home-page' },
-                    { label: Image, name: image, widget: image },
+                    { abel: Image, name: image, widget: image },
                     { label: 'Title', name: 'title', widget: 'string' },
                     { label: 'Description', name: 'description', widget: markdown },
                 ]

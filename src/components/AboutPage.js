@@ -13,6 +13,14 @@ const useAboutData = () => {
                     frontmatter {
                         title
                         description
+                        mission {
+                            title
+                            description
+                        }
+                        vision {
+                            title
+                            description
+                        }
                         image {
                             childImageSharp {
                                 fluid(maxWidth: 3922, quality: 100) {

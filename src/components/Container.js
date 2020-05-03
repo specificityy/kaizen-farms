@@ -5,15 +5,9 @@ import styled from '@emotion/styled';
 const { Content } = Layout;
 
 export const Container = ({ children, renderInnerWrapper, ...props }) => (
-    <StyledContent name="container" width={1} px={[6, 8]} {...props}>
+    <StyledContent name="container" {...props}>
         <div name="container--content-outer-wrapper">
-            {renderInnerWrapper ? (
-                <div name="container--content-inner-wrapper" mx="auto" width={1} maxWidth="1640px">
-                    {children}
-                </div>
-            ) : (
-                children
-            )}
+            {renderInnerWrapper ? <div name="container--content-inner-wrapper">{children}</div> : children}
         </div>
     </StyledContent>
 );

@@ -7,10 +7,10 @@ import { PreviewCompatibleBackgroundImage } from './PreviewCompatibleBackgroundI
 export const HomePage = ({ title, caption, image }) => {
     return (
         <StyledSection>
-            <StyledText>
+            <StyledTextWrapper>
                 <StyledTitle>{title}</StyledTitle>
                 <StyledCaption>{caption}</StyledCaption>
-            </StyledText>
+            </StyledTextWrapper>
 
             <StyledHero>
                 <StyledBackground imageInfo={image} />
@@ -18,6 +18,33 @@ export const HomePage = ({ title, caption, image }) => {
         </StyledSection>
     );
 };
+
+const StyledSection = styled.section`
+    width: 100%;
+    height: 100vh;
+    filter: opacity(1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`;
+
+const StyledTextWrapper = styled.div`
+    background: rgba(25, 25, 25, 0.4);
+    width: fit-content;
+    padding: 1rem 2rem;
+`;
+
+const StyledTitle = styled.h1`
+    color: #fff;
+    font-size: 6rem;
+    font-weight: 100;
+`;
+
+const StyledCaption = styled.div`
+    color: #fff;
+    font-size: 2rem;
+    width: 350px;
+`;
 
 const HEADER_HEIGHT = '64px';
 const StyledHero = styled.div`
@@ -35,33 +62,6 @@ const StyledBackground = styled(PreviewCompatibleBackgroundImage)`
     background-position: bottom center;
     background-repeat: no-repeat;
     background-size: cover;
-`;
-
-const StyledSection = styled.section`
-    width: 100%;
-    height: 100vh;
-    filter: opacity(1);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-`;
-
-const StyledTitle = styled.h1`
-    color: #fff;
-    font-size: 6rem;
-    font-weight: 100;
-`;
-
-const StyledCaption = styled.div`
-    color: #fff;
-    font-size: 2rem;
-    width: 350px;
-`;
-
-const StyledText = styled.div`
-    background: rgba(25, 25, 25, 0.4);
-    width: fit-content;
-    padding: 1rem 2rem;
 `;
 
 HomePage.propTypes = {

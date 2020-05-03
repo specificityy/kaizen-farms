@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import { withPrefix } from 'gatsby';
 /** @jsx jsx */
 import { Global, css, jsx } from '@emotion/core';
+import styled from '@emotion/styled';
 import { Layout } from 'antd';
 
 import './all.sass';
@@ -38,7 +39,7 @@ const TemplateWrapper = ({ children }) => {
 
             <Layout>
                 <Navbar />
-                <Content>{children}</Content>
+                <StyledContent>{children}</StyledContent>
                 <Footer>
                     <FooterComponent />
                 </Footer>
@@ -46,6 +47,13 @@ const TemplateWrapper = ({ children }) => {
         </>
     );
 };
+
+const StyledContent = styled(Content)`
+    & > * {
+        padding-right: 3rem;
+        padding-left: 3rem;
+    }
+`;
 
 const GlobalStyles = () => {
     return (

@@ -2,7 +2,7 @@
 path: /products
 templateKey: product-page
 title: Our Products
-image: /img/hero-tractor.jpg
+image: /img/hero-fields.jpg
 products:
     - image: /img/mango.jpg
       title: Mango

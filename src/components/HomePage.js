@@ -1,15 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 
 import { PreviewCompatibleBackgroundImage } from './PreviewCompatibleBackgroundImage';
 
-export const HomePage = ({ title, caption, image }) => {
+export const HomePage = () => {
+    const { title, description, image } = useHomepage();
     return (
         <StyledSection>
             <StyledTextWrapper>
                 <StyledTitle>{title}</StyledTitle>
-                <StyledCaption>{caption}</StyledCaption>
+                <StyledCaption>{description}</StyledCaption>
             </StyledTextWrapper>
 
             <StyledHero>
@@ -64,8 +65,24 @@ const StyledBackground = styled(PreviewCompatibleBackgroundImage)`
     background-size: cover;
 `;
 
-HomePage.propTypes = {
-    title: PropTypes.string.isRequired,
-    caption: PropTypes.string.isRequired,
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+const useHomepage = () => {
+    return useStaticQuery(
+        graphql`
+            {
+                markdownRemark(frontmatter: { templateKey: { eq: "home-page" } }) {
+                    frontmatter {
+                        title
+                        description
+                        image {
+                            childImageSharp {
+                                fluid(maxWidth: 3922, quality: 100) {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        `
+    ).markdownRemark.frontmatter;
 };

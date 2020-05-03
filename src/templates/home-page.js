@@ -4,31 +4,30 @@ import { graphql } from 'gatsby';
 
 import { Container } from '../components/Container';
 import Layout from '../components/Layout';
-import { HomePage } from '../components/HomePage';
+import { HomePage as HM } from '../components/HomePage';
 import { ProductsPage } from '../components/ProductsPage';
 
-export const AboutPageTemplate = ({ title, description, image, mission, vision }) => {
-    console.log({ image, vision, mission });
+export const HomePageTemplate = ({ title, description, image }) => {
     return (
         <Container>
-            <div>{title}</div>
-            <div>{description}</div>
+            <HM />
+            <ProductsPage />
         </Container>
     );
 };
 
-AboutPageTemplate.propTypes = {
+HomePageTemplate.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
-const AboutPage = ({ data }) => {
+const HomePage = ({ data }) => {
     const { markdownRemark: post } = data;
 
     return (
         <Layout>
-            <AboutPageTemplate
+            <HomePageTemplate
                 title={post.frontmatter.title}
                 description={post.frontmatter.description}
                 image={post.frontmatter.image}
@@ -37,26 +36,19 @@ const AboutPage = ({ data }) => {
     );
 };
 
-AboutPage.propTypes = {
+HomePage.propTypes = {
     data: PropTypes.object.isRequired,
 };
 
-export default AboutPage;
+export default HomePage;
 
-export const aboutPageQuery = graphql`
-    query AboutPage($id: String!) {
+export const homePageQuery = graphql`
+    query HomePage($id: String!) {
         markdownRemark(id: { eq: $id }) {
+            html
             frontmatter {
                 title
                 description
-                mission {
-                    title
-                    description
-                }
-                vision {
-                    title
-                    description
-                }
                 image {
                     childImageSharp {
                         fluid(maxWidth: 3922, quality: 100) {

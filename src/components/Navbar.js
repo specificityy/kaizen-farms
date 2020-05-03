@@ -37,7 +37,7 @@ const Navbar = class extends React.Component {
     };
     render() {
         return (
-            <StyledContainer>
+            <StyledContainer renderInnerWrapper>
                 <StyledHeader>
                     <StyledLink to="/">
                         <StyledLogo />
@@ -66,7 +66,7 @@ const Navbar = class extends React.Component {
 };
 
 const StyledHeader = styled(Layout.Header)`
-    background: rgba(25, 25, 25, 0.4);
+    background: none;
     display: flex;
     justify-content: space-between;
     z-index: 10;
@@ -78,6 +78,7 @@ const StyledHeader = styled(Layout.Header)`
 `;
 
 const StyledContainer = styled(Container)`
+    background: rgba(25, 25, 25, 0.4);
     z-index: 10;
 `;
 

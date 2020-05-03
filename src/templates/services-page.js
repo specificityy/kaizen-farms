@@ -6,10 +6,11 @@ import { Card, Space } from 'antd';
 
 import { Container } from '../components/Container';
 import { PreviewCompatibleImage } from '../components/PreviewCompatibleImage';
+import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 
 import Layout from '../components/Layout';
 
-export const ProductsPageTemplate = ({ title, image, products }) => {
+export const ServicesPageTemplate = ({ title, image, services }) => {
     return (
         <Container>
             <StyledSection>
@@ -17,10 +18,12 @@ export const ProductsPageTemplate = ({ title, image, products }) => {
                     <StyledTitle>{title}</StyledTitle>
                 </StyledTextWrapper>
 
-                <StyledBackgroundShade />
+                <StyledHero>
+                    <StyledBackground imageInfo={image} />
+                </StyledHero>
 
                 <StyledList>
-                    {products.map(({ title, description, image }) => (
+                    {services.map(({ title, description, image }) => (
                         <Card key={title} style={{ width: 300 }} cover={<PreviewCompatibleImage imageInfo={image} />}>
                             <Card.Meta title={title} description={description} />
                         </Card>
@@ -52,6 +55,23 @@ const StyledTitle = styled.h1`
 `;
 
 const HEADER_HEIGHT = '64px';
+const StyledHero = styled.div`
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -10;
+    top: -${HEADER_HEIGHT};
+    left: 0;
+`;
+
+const StyledBackground = styled(PreviewCompatibleBackgroundImage)`
+    width: 100%;
+    height: 100%;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
+`;
+
 const StyledBackgroundShade = styled.div`
     width: 100%;
     height: 100%;
@@ -83,26 +103,24 @@ const StyledBackgroundShade = styled.div`
 const StyledList = styled(Space)`
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: space-around;
     & > * {
-        flex: 0 0 40%;
         margin-bottom: 3rem;
-        width: 300px;
     }
 `;
 
-const ProductsPage = ({ data }) => {
+const ServicesPage = ({ data }) => {
     const { frontmatter } = data.markdownRemark;
 
     return (
         <Layout>
-            <ProductsPageTemplate title={frontmatter.title} products={frontmatter.products} image={frontmatter.image} />
+            <ServicesPageTemplate title={frontmatter.title} services={frontmatter.services} image={frontmatter.image} />
         </Layout>
     );
 };
 
-export const productsPageQuery = graphql`
-    query ProductsPage($id: String!) {
+export const servicesPageQuery = graphql`
+    query ServicesPage($id: String!) {
         markdownRemark(id: { eq: $id }) {
             frontmatter {
                 title
@@ -113,7 +131,7 @@ export const productsPageQuery = graphql`
                         }
                     }
                 }
-                products {
+                services {
                     title
                     description
                     image {
@@ -129,7 +147,7 @@ export const productsPageQuery = graphql`
     }
 `;
 
-ProductsPage.propTypes = {
+ServicesPage.propTypes = {
     data: PropTypes.shape({
         markdownRemark: PropTypes.shape({
             frontmatter: PropTypes.object,
@@ -137,10 +155,10 @@ ProductsPage.propTypes = {
     }),
 };
 
-ProductsPageTemplate.propTypes = {
+ServicesPageTemplate.propTypes = {
     title: PropTypes.string,
-    products: PropTypes.array,
+    services: PropTypes.array,
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
-export default ProductsPage;
+export default ServicesPage;

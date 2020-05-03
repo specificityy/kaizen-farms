@@ -22,7 +22,7 @@ const StyledContent = styled(Content)`
     width: 100%;
     & > div {
         width: 100%;
-        max-width: 1920px;
+        /* max-width: 1920px; */
         margin-left: auto;
         margin-right: auto;
     }

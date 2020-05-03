@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 
+import { Container } from '../components/Container';
 import Layout from '../components/Layout';
 import { HomePage } from '../components/HomePage';
 import { ProductsPage } from '../components/ProductsPage';
 
 export const AboutPageTemplate = ({ title, caption, image }) => {
     return (
-        <>
+        <Container>
             <HomePage {...{ title, caption, image }} />
             <ProductsPage />
-        </>
+        </Container>
     );
 };
 

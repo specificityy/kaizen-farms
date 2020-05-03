@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 import { Card, Space } from 'antd';
 
+import { Container } from './Container';
 import { PreviewCompatibleBackgroundImage } from './PreviewCompatibleBackgroundImage';
 import { PreviewCompatibleImage } from './PreviewCompatibleImage';
 
@@ -10,23 +11,26 @@ export const ProductsPage = () => {
     const { title, image, products } = useProducts();
     console.log(title, image, products);
     return (
-        <StyledSection>
-            <StyledTextWrapper>
-                <StyledTitle>{title}</StyledTitle>
-            </StyledTextWrapper>
+        <Container>
+            <StyledSection>
+                <StyledTextWrapper>
+                    <StyledTitle>{title}</StyledTitle>
+                </StyledTextWrapper>
 
-            <StyledHero>
+                <StyledBackgroundShade />
+                {/* <StyledHero>
                 <StyledBackground imageInfo={image} />
-            </StyledHero>
+            </StyledHero> */}
 
-            <StyledList>
-                {products.map(({ title, caption, image }) => (
-                    <Card style={{ width: 300 }} cover={<PreviewCompatibleImage imageInfo={image} />}>
-                        <Card.Meta title={title} description={caption} />
-                    </Card>
-                ))}
-            </StyledList>
-        </StyledSection>
+                <StyledList>
+                    {products.map(({ title, caption, image }) => (
+                        <Card style={{ width: 300 }} cover={<PreviewCompatibleImage imageInfo={image} />}>
+                            <Card.Meta title={title} description={caption} />
+                        </Card>
+                    ))}
+                </StyledList>
+            </StyledSection>
+        </Container>
     );
 };
 
@@ -64,9 +68,39 @@ const StyledHero = styled.div`
 const StyledBackground = styled(PreviewCompatibleBackgroundImage)`
     width: 100%;
     height: 100%;
+    top: -${HEADER_HEIGHT};
     background-position: bottom center;
     background-repeat: no-repeat;
     background-size: cover;
+    background: #134e5e; /* fallback for old browsers */
+`;
+
+const StyledBackgroundShade = styled.div`
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: -${HEADER_HEIGHT};
+    z-index: -10;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background: #134e5e; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to right top,
+        #f7f8f8,
+        #d3ece6,
+        #b8dec9,
+        #abcea2,
+        #acbb78
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background-image: linear-gradient(
+        to right top,
+        #f7f8f8,
+        #d3ece6,
+        #b8dec9,
+        #abcea2,
+        #acbb78
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 `;
 
 const StyledList = styled(Space)`

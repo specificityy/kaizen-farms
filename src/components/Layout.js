@@ -39,7 +39,7 @@ const TemplateWrapper = ({ children }) => {
 
             <Layout>
                 <Navbar />
-                <StyledContent>{children}</StyledContent>
+                <Content>{children}</Content>
                 <Footer>
                     <FooterComponent />
                 </Footer>
@@ -47,13 +47,6 @@ const TemplateWrapper = ({ children }) => {
         </>
     );
 };
-
-const StyledContent = styled(Content)`
-    & > * {
-        padding-right: 3rem;
-        padding-left: 3rem;
-    }
-`;
 
 const GlobalStyles = () => {
     return (

@@ -7,10 +7,10 @@ import Layout from '../components/Layout';
 import { HomePage } from '../components/HomePage';
 import { ProductsPage } from '../components/ProductsPage';
 
-export const AboutPageTemplate = ({ title, caption, image }) => {
+export const AboutPageTemplate = ({ title, description, image }) => {
     return (
         <Container>
-            <HomePage {...{ title, caption, image }} />
+            <HomePage {...{ title, description, image }} />
             <ProductsPage />
         </Container>
     );
@@ -18,7 +18,7 @@ export const AboutPageTemplate = ({ title, caption, image }) => {
 
 AboutPageTemplate.propTypes = {
     title: PropTypes.string.isRequired,
-    caption: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
@@ -29,7 +29,7 @@ const AboutPage = ({ data }) => {
         <Layout>
             <AboutPageTemplate
                 title={post.frontmatter.title}
-                caption={post.frontmatter.caption}
+                description={post.frontmatter.description}
                 image={post.frontmatter.image}
             />
         </Layout>
@@ -48,7 +48,7 @@ export const aboutPageQuery = graphql`
             html
             frontmatter {
                 title
-                caption
+                description
                 image {
                     childImageSharp {
                         fluid(maxWidth: 3922, quality: 100) {

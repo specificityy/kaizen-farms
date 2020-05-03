@@ -2,6 +2,6 @@
 templateKey: 'about-page'
 path: /about
 title: Kaizen Farms
-caption: Dominican Producers and Exporters
+description: Dominican Producers and Exporters
 image: /img/hero-palm-trees.jpg
 ---

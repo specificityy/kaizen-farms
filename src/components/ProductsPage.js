@@ -21,7 +21,7 @@ const useProducts = () => {
                         }
                         products {
                             title
-                            Caption
+                            description
                             image {
                                 childImageSharp {
                                     fluid(maxWidth: 540, quality: 80) {

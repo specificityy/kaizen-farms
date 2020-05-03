@@ -114,25 +114,49 @@ collections:
             label: 'About'
             name: 'about'
             fields:
-                - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'about-page' }
-                - { label: Image, name: image, widget: image }
-                - { label: 'Title', name: 'title', widget: 'string' }
-                - { label: 'Caption', name: 'caption', widget: 'string' }
+                [
+                    { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'about-page' },
+                    { label: Image, name: image, widget: image },
+                    { label: 'Title', name: 'title', widget: 'string' },
+                    { label: 'Description', name: 'description', widget: 'string' },
+                    {
+                        label: Mission,
+                        name: mission,
+                        widget: object,
+                        fields:
+                            [
+                                { label: Title, name: title, widget: string },
+                                { label: Description, name: description, widget: markdown },
+                            ],
+                    },
+                    {
+                        label: Vision,
+                        name: vision,
+                        widget: object,
+                        fields:
+                            [
+                                { label: Title, name: title, widget: string },
+                                { label: Description, name: description, widget: markdown },
+                            ],
+                    },
+                ]
           - file: 'src/pages/products/index.md'
             label: 'Products Page'
             name: 'products'
             fields:
-                - { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'products-page' }
-                - { label: Title, name: title, widget: string }
-                - { label: Image, name: image, widget: image }
-                - {
-                      label: Products,
-                      name: products,
-                      widget: list,
-                      fields:
-                          [
-                              { label: title, name: title, widget: string },
-                              { label: Caption, name: Caption, widget: markdown },
-                              { label: Image, name: image, widget: image },
-                          ],
-                  }
+                [
+                    { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'products-page' },
+                    { label: Title, name: title, widget: string },
+                    { label: Image, name: image, widget: image },
+                    {
+                        label: Products,
+                        name: products,
+                        widget: list,
+                        fields:
+                            [
+                                { label: title, name: title, widget: string },
+                                { label: Description, name: description, widget: markdown },
+                                { label: Image, name: image, widget: image },
+                            ],
+                    },
+                ]

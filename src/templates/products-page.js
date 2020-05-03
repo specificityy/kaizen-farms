@@ -21,9 +21,9 @@ export const ProductsPageTemplate = ({ title, image, products }) => {
                 <StyledBackgroundShade />
 
                 <StyledList>
-                    {products.map(({ title, Caption, image }) => (
+                    {products.map(({ title, description, image }) => (
                         <Card key={title} style={{ width: 300 }} cover={<PreviewCompatibleImage imageInfo={image} />}>
-                            <Card.Meta title={title} description={Caption} />
+                            <Card.Meta title={title} description={description} />
                         </Card>
                     ))}
                 </StyledList>
@@ -116,7 +116,7 @@ export const productPageQuery = graphql`
                 }
                 products {
                     title
-                    Caption
+                    description
                     image {
                         childImageSharp {
                             fluid(maxWidth: 540, quality: 80) {

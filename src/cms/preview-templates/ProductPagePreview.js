@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ProductPageTemplate } from '../../templates/product-page';
+import { ProductsPageTemplate } from '../../templates/products-page';
 
 const ProductPagePreview = ({ entry }) => {
     const entryProducts = entry.getIn(['data', 'products']);
     const products = entryProducts ? entryProducts.toJS() : [];
 
-    return <ProductPageTemplate title={entry.getIn(['data', 'title'])} products={products} />;
+    return <ProductsPageTemplate title={entry.getIn(['data', 'title'])} products={products} />;
 };
 
 ProductPagePreview.propTypes = {

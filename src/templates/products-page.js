@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
-import { Card, Space } from 'antd';
+import { Space } from 'antd';
 
 import { Container } from '../components/Container';
 import { PreviewCompatibleImage } from '../components/PreviewCompatibleImage';
@@ -13,17 +13,14 @@ export const ProductsPageTemplate = ({ title, image, products }) => {
     return (
         <Container>
             <StyledSection>
-                <StyledTextWrapper>
-                    <StyledTitle>{title}</StyledTitle>
-                </StyledTextWrapper>
-
-                <StyledBackgroundShade />
+                <StyledTitle>{title}</StyledTitle>
 
                 <StyledList>
                     {products.map(({ title, description, image }) => (
-                        <Card key={title} style={{ width: 300 }} cover={<PreviewCompatibleImage imageInfo={image} />}>
-                            <Card.Meta title={title} description={description} />
-                        </Card>
+                        <StyledProduct key={title}>
+                            <PreviewCompatibleImage imageInfo={image} style={{ width: '400px' }} />
+                            <StyledProductTitle>{title}</StyledProductTitle>
+                        </StyledProduct>
                     ))}
                 </StyledList>
             </StyledSection>
@@ -31,24 +28,14 @@ export const ProductsPageTemplate = ({ title, image, products }) => {
     );
 };
 
-const StyledSection = styled.section`
-    width: 100%;
-    height: 100vh;
-    filter: opacity(1);
-`;
-
-const StyledTextWrapper = styled.div`
-    background: rgba(25, 25, 25, 0.4);
-    width: fit-content;
-    padding: 1rem 2rem;
-    margin: auto;
-    margin-bottom: 3rem;
-`;
+const StyledSection = styled.section``;
 
 const StyledTitle = styled.h1`
-    color: #fff;
+    width: fit-content;
+    margin: auto;
     font-size: 3rem;
     font-weight: 100;
+    margin-bottom: 3rem;
 `;
 
 const HEADER_HEIGHT = '64px';
@@ -83,12 +70,21 @@ const StyledBackgroundShade = styled.div`
 const StyledList = styled(Space)`
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
+    justify-content: space-evenly;
     & > * {
-        flex: 0 0 40%;
+        max-width: 90vw;
         margin-bottom: 3rem;
-        width: 300px;
     }
+`;
+
+const StyledProduct = styled.div`
+    border: none;
+    text-align: center;
+`;
+
+const StyledProductTitle = styled.h3`
+    font-size: 1.5rem;
+    margin-top: 20px;
 `;
 
 const ProductsPage = ({ data }) => {

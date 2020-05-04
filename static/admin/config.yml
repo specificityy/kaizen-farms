@@ -23,7 +23,7 @@ collections:
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'home-page' },
                     { abel: Image, name: image, widget: image },
                     { label: 'Title', name: 'title', widget: 'string' },
-                    { label: 'Description', name: 'description', widget: markdown },
+                    { label: 'Description', name: 'description', widget: text },
                 ]
           - file: 'src/pages/about/index.md'
             label: 'About'
@@ -33,7 +33,7 @@ collections:
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'about-page' },
                     { label: Image, name: image, widget: image },
                     { label: 'Title', name: 'title', widget: 'string' },
-                    { label: 'Description', name: 'description', widget: markdown },
+                    { label: 'Description', name: 'description', widget: text },
                     {
                         label: Mission,
                         name: mission,
@@ -41,7 +41,7 @@ collections:
                         fields:
                             [
                                 { label: Title, name: title, widget: string },
-                                { label: Description, name: description, widget: markdown },
+                                { label: Description, name: description, widget: text },
                             ],
                     },
                     {
@@ -51,7 +51,7 @@ collections:
                         fields:
                             [
                                 { label: Title, name: title, widget: string },
-                                { label: Description, name: description, widget: markdown },
+                                { label: Description, name: description, widget: text },
                             ],
                     },
                 ]
@@ -70,7 +70,7 @@ collections:
                         fields:
                             [
                                 { label: title, name: title, widget: string },
-                                { label: Description, name: description, widget: markdown },
+                                { label: Description, name: description, widget: text },
                                 { label: Image, name: image, widget: image },
                             ],
                     },
@@ -90,7 +90,7 @@ collections:
                         fields:
                             [
                                 { label: title, name: title, widget: string },
-                                { label: Description, name: description, widget: markdown },
+                                { label: Description, name: description, widget: text },
                                 { label: Image, name: image, widget: image },
                             ],
                     },

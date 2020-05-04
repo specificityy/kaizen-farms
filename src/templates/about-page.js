@@ -10,7 +10,6 @@ import Layout from '../components/Layout';
 const { Title, Text } = Typography;
 
 export const AboutPageTemplate = ({ title, description, image, mission, vision }) => {
-    console.log({ image, vision, mission });
     return (
         <Container>
             <Mission {...mission} />

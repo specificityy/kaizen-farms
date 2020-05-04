@@ -12,8 +12,8 @@ const IndexPage = () => {
         <Layout>
             <Container>
                 <HomePage />
-                <AboutPage />
                 <ProductsPage />
+                <AboutPage />
                 <ServicesPage />
             </Container>
         </Layout>

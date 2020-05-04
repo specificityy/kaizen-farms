@@ -17,7 +17,7 @@ export const HomePageTemplate = ({ title, description, image }) => {
                 </StyledTextWrapper>
 
                 <StyledHero>
-                    <StyledBackground imageInfo={image} />
+                    <StyledBackground imageInfo={image} style={{ backgroundPositionY: 'top', 'min-width': '2000px' }} />
                 </StyledHero>
             </StyledSection>
         </Container>
@@ -84,7 +84,7 @@ const StyledHero = styled.div`
 const StyledBackground = styled(PreviewCompatibleBackgroundImage)`
     width: 100%;
     height: 100%;
-    background-position: bottom center;
+    background-position: 50% 60%;
     background-repeat: no-repeat;
     background-size: cover;
 `;

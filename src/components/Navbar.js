@@ -39,24 +39,24 @@ const Navbar = class extends React.Component {
         return (
             <StyledContainer renderInnerWrapper>
                 <StyledHeader>
-                    <StyledLink to="/">
+                    <Link to="/">
                         <StyledLogo />
-                    </StyledLink>
+                    </Link>
                     <Menu mode="horizontal" defaultSelectedKeys={['2']}>
                         <Menu.Item key="/about">
-                            <StyledLink to="/about">About</StyledLink>
+                            <Link to="/about">About</Link>
                         </Menu.Item>
                         <Menu.Item key="/products">
-                            <StyledLink to="/products">Products</StyledLink>
+                            <Link to="/products">Products</Link>
                         </Menu.Item>
                         <Menu.Item key="/blog">
-                            <StyledLink to="/blog">Blog</StyledLink>
+                            <Link to="/blog">Blog</Link>
                         </Menu.Item>
                         <Menu.Item key="/contact">
-                            <StyledLink to="/contact">Contact</StyledLink>
+                            <Link to="/contact">Contact</Link>
                         </Menu.Item>
                         <Menu.Item key="/contact/examples">
-                            <StyledLink to="/contact/examples">Form Examples</StyledLink>
+                            <Link to="/contact/examples">Form Examples</Link>
                         </Menu.Item>
                     </Menu>
                 </StyledHeader>
@@ -78,7 +78,7 @@ const StyledHeader = styled(Layout.Header)`
 `;
 
 const StyledContainer = styled(Container)`
-    background: rgba(25, 25, 25, 0.4);
+    background: none;
     z-index: 10;
 `;
 
@@ -86,10 +86,6 @@ const StyledLogo = styled.div`
     width: 150px;
     height: 50px;
     background: url(${logo}) no-repeat 50% scroll;
-`;
-
-const StyledLink = styled(Link)`
-    color: #fff !important;
 `;
 
 export default Navbar;

@@ -9,34 +9,18 @@ import Layout from '../components/Layout';
 
 const { Title, Text } = Typography;
 
-export const AboutPageTemplate = ({ title, description, image, mission, vision }) => {
+export const AboutPageTemplate = ({ title, description, image }) => {
     return (
         <Container>
-            <Mission {...mission} />
-            <Vision {...vision} />
+            <StyledVision>
+                <Title level={2} type="secondary">
+                    {title}
+                </Title>
+                <StyledDescription>{description}</StyledDescription>
+            </StyledVision>
         </Container>
     );
 };
-
-const Mission = ({ title, description }) => {
-    return (
-        <StyledMission>
-            <Title level={2} type="secondary">
-                {title}
-            </Title>
-            <StyledDescription>{description}</StyledDescription>
-        </StyledMission>
-    );
-};
-
-const Vision = ({ title, description }) => (
-    <StyledVision>
-        <Title level={2} type="secondary">
-            {title}
-        </Title>
-        <StyledDescription>{description}</StyledDescription>
-    </StyledVision>
-);
 
 const HEADER_HEIGHT = 64;
 const StyledMission = styled.div`
@@ -123,8 +107,6 @@ const AboutPage = ({ data }) => {
                 title={post.frontmatter.title}
                 description={post.frontmatter.description}
                 image={post.frontmatter.image}
-                mission={post.frontmatter.mission}
-                vision={post.frontmatter.vision}
             />
         </Layout>
     );
@@ -142,14 +124,6 @@ export const aboutPageQuery = graphql`
             frontmatter {
                 title
                 description
-                mission {
-                    title
-                    description
-                }
-                vision {
-                    title
-                    description
-                }
                 image {
                     childImageSharp {
                         fluid(maxWidth: 3922, quality: 100) {

@@ -25,6 +25,21 @@ collections:
                     { label: 'Title', name: 'title', widget: 'string' },
                     { label: 'Description', name: 'description', widget: text },
                 ]
+          - file: 'src/pages/footer/index.md'
+            label: 'Footer'
+            name: 'footer'
+            fields:
+                [
+                    { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'footer' },
+                    { label: 'Instagram', name: 'instagram', widget: 'string' },
+                    { label: 'Email', name: 'email', widget: 'string' },
+                    {
+                        label: 'Telephones',
+                        name: 'telephones',
+                        widget: list,
+                        fields: [{ label: Number, name: number }],
+                    },
+                ]
           - file: 'src/pages/about/index.md'
             label: 'About'
             name: 'about'
@@ -34,26 +49,6 @@ collections:
                     { label: Image, name: image, widget: image },
                     { label: 'Title', name: 'title', widget: 'string' },
                     { label: 'Description', name: 'description', widget: text },
-                    {
-                        label: Mission,
-                        name: mission,
-                        widget: object,
-                        fields:
-                            [
-                                { label: Title, name: title, widget: string },
-                                { label: Description, name: description, widget: text },
-                            ],
-                    },
-                    {
-                        label: Vision,
-                        name: vision,
-                        widget: object,
-                        fields:
-                            [
-                                { label: Title, name: title, widget: string },
-                                { label: Description, name: description, widget: text },
-                            ],
-                    },
                 ]
           - file: 'src/pages/products/index.md'
             label: 'Products'

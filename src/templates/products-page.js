@@ -18,7 +18,10 @@ export const ProductsPageTemplate = ({ title, image, products }) => {
                 <StyledList>
                     {products.map(({ title, description, image }) => (
                         <StyledProduct key={title}>
-                            <PreviewCompatibleImage imageInfo={image} style={{ width: '400px' }} />
+                            <PreviewCompatibleImage
+                                imageInfo={image}
+                                style={{ width: '300px', filter: 'grayscale(0.4)' }}
+                            />
                             <StyledProductTitle>{title}</StyledProductTitle>
                         </StyledProduct>
                     ))}
@@ -80,6 +83,11 @@ const StyledList = styled(Space)`
 const StyledProduct = styled.div`
     border: none;
     text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 10px 60px 0px;
+    padding: 15px;
+    width: 400px;
+    height: 400px;
+    border-radius: 5px;
 `;
 
 const StyledProductTitle = styled.h3`

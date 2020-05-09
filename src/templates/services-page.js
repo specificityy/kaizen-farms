@@ -24,7 +24,11 @@ export const ServicesPageTemplate = ({ title, image, services }) => {
 
                 <StyledList>
                     {services.map(({ title, description, image }) => (
-                        <Card key={title} style={{ width: 300 }} cover={<PreviewCompatibleImage imageInfo={image} />}>
+                        <Card
+                            key={title}
+                            style={{ width: 300, boxShadow: 'rgba(0, 0, 0, 0.25) 0px 10px 60px 0px' }}
+                            cover={<PreviewCompatibleImage imageInfo={image} />}
+                        >
                             <Card.Meta title={title} description={description} />
                         </Card>
                     ))}

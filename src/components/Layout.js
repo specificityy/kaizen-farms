@@ -9,10 +9,10 @@ import { Layout } from 'antd';
 import './all.sass';
 import { cssReset } from './cssReset';
 import useSiteMetadata from './SiteMetadata';
-import FooterComponent from '../components/Footer';
+import { Footer } from '../components/Footer';
 import Navbar from '../components/Navbar';
 
-const { Footer, Content } = Layout;
+const { Content } = Layout;
 
 const TemplateWrapper = ({ children }) => {
     const { title, description } = useSiteMetadata();
@@ -40,15 +40,13 @@ const TemplateWrapper = ({ children }) => {
             <Layout>
                 <Navbar />
                 <StyledContent>{children}</StyledContent>
-                <Footer>
-                    <FooterComponent />
-                </Footer>
+                <Footer />
             </Layout>
         </>
     );
 };
 
-const StyledContent = styled(Layout.Content)`
+const StyledContent = styled(Content)`
     background: #fff;
 `;
 

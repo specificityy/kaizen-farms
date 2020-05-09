@@ -1,8 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { withPrefix } from 'gatsby';
-/** @jsx jsx */
-import { Global, css, jsx } from '@emotion/core';
+import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Layout } from 'antd';
 

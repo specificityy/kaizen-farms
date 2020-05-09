@@ -17,7 +17,7 @@ export const HomePageTemplate = ({ title, description, image }) => {
                 </StyledTextWrapper>
 
                 <StyledHero>
-                    <StyledBackground imageInfo={image} style={{ backgroundPositionY: 'top', 'min-width': '2000px' }} />
+                    <StyledBackground imageInfo={image} style={{ backgroundPositionY: 'top', minWidth: '2000px' }} />
                 </StyledHero>
             </StyledSection>
         </Container>

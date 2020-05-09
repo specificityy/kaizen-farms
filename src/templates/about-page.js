@@ -11,22 +11,22 @@ const { Title, Text } = Typography;
 
 export const AboutPageTemplate = ({ title, description, image }) => {
     return (
-        <Container>
+        <StyledContainer>
             <StyledVision>
                 <Title level={2} type="secondary">
                     {title}
                 </Title>
                 <StyledDescription>{description}</StyledDescription>
             </StyledVision>
-        </Container>
+        </StyledContainer>
     );
 };
 
 const HEADER_HEIGHT = 64;
-const StyledMission = styled.div`
-    text-align: center;
-    padding-top: ${HEADER_HEIGHT}px;
-    padding-bottom: ${HEADER_HEIGHT * 2}px;
+
+const StyledContainer = styled(Container)`
+    position: relative;
+    top: ${HEADER_HEIGHT}px;
 `;
 
 const StyledVision = styled.section`
@@ -58,33 +58,33 @@ const StyledVision = styled.section`
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 `;
 
-const StyledBackgroundShade = styled.div`
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: -${HEADER_HEIGHT};
-    z-index: -10;
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background: #134e5e; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-        to right top,
-        #f7f8f8,
-        #d3ece6,
-        #b8dec9,
-        #abcea2,
-        #acbb78
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background-image: linear-gradient(
-        to right top,
-        #f7f8f8,
-        #d3ece6,
-        #b8dec9,
-        #abcea2,
-        #acbb78
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-`;
+// const StyledBackgroundShade = styled.div`
+//     width: 100%;
+//     height: 100%;
+//     position: fixed;
+//     top: -${HEADER_HEIGHT};
+//     z-index: -10;
+//     background-position: bottom center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     background: #134e5e; /* fallback for old browsers */
+//     background: -webkit-linear-gradient(
+//         to right top,
+//         #f7f8f8,
+//         #d3ece6,
+//         #b8dec9,
+//         #abcea2,
+//         #acbb78
+//     ); /* Chrome 10-25, Safari 5.1-6 */
+//     background-image: linear-gradient(
+//         to right top,
+//         #f7f8f8,
+//         #d3ece6,
+//         #b8dec9,
+//         #abcea2,
+//         #acbb78
+//     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+// `;
 
 const StyledDescription = styled(Text)`
     max-width: 800px;

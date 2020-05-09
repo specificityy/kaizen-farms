@@ -1,7 +1,7 @@
 ---
 path: /services
 templateKey: services-page
-title: Our Services
+title: We ship anywhere in the world
 image: /img/hero-fields.jpg
 services:
     - image: /img/mango.jpg

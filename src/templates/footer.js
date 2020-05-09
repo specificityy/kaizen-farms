@@ -11,42 +11,49 @@ const { Footer: AntdFooter } = Layout;
 export const FooterTemplate = ({ instagram, email, telephones }) => {
     return (
         <StyledFooter>
-            <StyledContainer>
-                <StyledContent>
-                    <StyledFirstCell>
-                        <div>
-                            <Title>
-                                Kaizen Farms<Red>.</Red>
-                            </Title>
-                            <Tagline>
-                                Dominican Producers <Red>&</Red> Exporters
-                            </Tagline>
-                        </div>
-                    </StyledFirstCell>
-                    <StyledSider>
+            <StyledContent>
+                <StyledFirstCell>
+                    <div>
                         <Title>
-                            Contact us<Red>.</Red>
-                            <Email>
-                                <Red>@</Red> {email}
-                            </Email>
-                            <Telephone>
-                                <Red>T</Red> <span>849-207-7478</span>
-                                <div>829-221-7827</div>
-                                <div>809-698-3192</div>
-                                <div>829-717-4948</div>
-                            </Telephone>
+                            Kaizen Farms<Red>.</Red>
                         </Title>
-                    </StyledSider>
-                    <StyledSecondCell>
-                        <Title>
-                            Find us on<Red>:</Red>
-                            <a title="Instagram" href={instagram}>
-                                <Instagram />
+                        <Tagline>
+                            Dominican Producers <Red>&</Red> Exporters
+                        </Tagline>
+                    </div>
+                </StyledFirstCell>
+                <StyledSider>
+                    <Title>
+                        Contact us<Red>.</Red>
+                        <Email>
+                            <Red>@</Red>&nbsp;&nbsp;&nbsp;
+                            <a href={'mailto:' + email} subject="Customer enquiry">
+                                {email}
                             </a>
-                        </Title>
-                    </StyledSecondCell>
-                </StyledContent>
-            </StyledContainer>
+                        </Email>
+                        <Telephones>
+                            <Red>T</Red>&nbsp;&nbsp;&nbsp;
+                            {telephones.map(({ number }, index) => (
+                                <a
+                                    href={'tel:' + number}
+                                    key={number}
+                                    className={index === 0 ? 'first phone' : 'phone'}
+                                >
+                                    {number}
+                                </a>
+                            ))}
+                        </Telephones>
+                    </Title>
+                </StyledSider>
+                <StyledSecondCell>
+                    <Title>
+                        Find us on<Red>:</Red>
+                        <StyledInstagram title="Instagram" href={instagram}>
+                            <Instagram />
+                        </StyledInstagram>
+                    </Title>
+                </StyledSecondCell>
+            </StyledContent>
         </StyledFooter>
     );
 };
@@ -54,10 +61,6 @@ export const FooterTemplate = ({ instagram, email, telephones }) => {
 const StyledFooter = styled(AntdFooter)`
     height: 100vh;
     background: #1c1c1c;
-`;
-
-const StyledContainer = styled.div`
-    height: 100%;
 `;
 
 const StyledContent = styled.div`
@@ -81,11 +84,18 @@ const StyledFirstCell = styled(StyledCell)`
 
 const StyledSecondCell = styled(StyledCell)`
     background: #232323;
+`;
+
+const StyledInstagram = styled.a`
     & svg {
         display: block;
-        fill: #424242;
+        fill: #3273dc;
         width: 150px;
         margin-top: 20px;
+        transition: fill 0.3s;
+    }
+    &:hover svg {
+        fill: #424242;
     }
 `;
 
@@ -108,16 +118,22 @@ const Tagline = styled.h4`
     color: #424242;
 `;
 
-const Telephone = styled.h4`
+const Telephones = styled.div`
     font-size: 1.5rem;
     color: #424242;
     margin-top: 20px;
-    & > *:nth-child(n + 1) {
-        text-indent: 1rem;
+    & > .phone {
+        display: block;
+    }
+    & > .first.phone {
+        display: inline;
+    }
+    & > .phone:not(.first) {
+        text-indent: 2rem;
     }
 `;
 
-const Email = styled.h4`
+const Email = styled.div`
     font-size: 1.5rem;
     color: #424242;
     margin-top: 20px;

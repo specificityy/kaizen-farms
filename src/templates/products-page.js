@@ -81,15 +81,15 @@ const StyledList = styled.div`
     display: grid;
     grid-template-columns: repeat(${COLS}, auto);
     grid-template-rows: repeat(${ROWS}, auto);
-    column-gap: 5px;
-    row-gap: 5px;
+    column-gap: 30px;
+    row-gap: 30px;
 `;
 
 const StyledProduct = (rowSpan, colStart, rowStart) => {
     return styled.div`
-        border: solid 3px;
         text-align: center;
         position: relative;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 25px 0px;
 
         grid-row: ${rowStart} / span ${rowSpan};
         grid-column-start: ${colStart};

@@ -37,30 +37,33 @@ const Navbar = class extends React.Component {
     };
     render() {
         return (
-            <StyledContainer renderInnerWrapper>
-                <StyledHeader>
-                    <Link to="/">
-                        <StyledLogo />
-                    </Link>
-                    <Menu mode="horizontal" defaultSelectedKeys={['2']}>
-                        <Menu.Item key="/about">
-                            <Link to="/about">About</Link>
-                        </Menu.Item>
-                        <Menu.Item key="/products">
-                            <Link to="/products">Products</Link>
-                        </Menu.Item>
-                        <Menu.Item key="/blog">
-                            <Link to="/blog">Blog</Link>
-                        </Menu.Item>
-                        <Menu.Item key="/contact">
-                            <Link to="/contact">Contact</Link>
-                        </Menu.Item>
-                        <Menu.Item key="/contact/examples">
-                            <Link to="/contact/examples">Form Examples</Link>
-                        </Menu.Item>
-                    </Menu>
-                </StyledHeader>
-            </StyledContainer>
+            <StyledLogoLink to="/">
+                <StyledLogo />
+            </StyledLogoLink>
+            // <StyledContainer renderInnerWrapper>
+            //     <StyledHeader>
+            //         <Link to="/">
+            //             <StyledLogo />
+            //         </Link>
+            //         <Menu mode="horizontal" defaultSelectedKeys={['2']}>
+            //             <Menu.Item key="/about">
+            //                 <Link to="/about">About</Link>
+            //             </Menu.Item>
+            //             <Menu.Item key="/products">
+            //                 <Link to="/products">Products</Link>
+            //             </Menu.Item>
+            //             <Menu.Item key="/blog">
+            //                 <Link to="/blog">Blog</Link>
+            //             </Menu.Item>
+            //             <Menu.Item key="/contact">
+            //                 <Link to="/contact">Contact</Link>
+            //             </Menu.Item>
+            //             <Menu.Item key="/contact/examples">
+            //                 <Link to="/contact/examples">Form Examples</Link>
+            //             </Menu.Item>
+            //         </Menu>
+            //     </StyledHeader>
+            // </StyledContainer>
         );
     }
 };
@@ -74,12 +77,23 @@ const StyledHeader = styled(Layout.Header)`
         background: none;
         border-bottom: none;
         font-weight: bold;
+        a {
+            color: white !important;
+        }
     }
 `;
 
 const StyledContainer = styled(Container)`
-    background: none;
+    background: #1c1c1c;
+    color: white;
     z-index: 10;
+`;
+
+const StyledLogoLink = styled(Link)`
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 50px;
 `;
 
 const StyledLogo = styled.div`

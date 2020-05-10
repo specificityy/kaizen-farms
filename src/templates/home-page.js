@@ -1,25 +1,51 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
+import Measure from 'react-measure';
 
+import Peppers from '../img/peppers.svg';
 import { Container } from '../components/Container';
 import Layout from '../components/Layout';
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
+import { TitleAndContent } from '../components/TitleAndContent';
+import { RevealingText } from '../components/RevealingText';
+import { useScrollPercent } from '../components/useScrollPercent';
 
 export const HomePageTemplate = ({ title, description, image }) => {
-    return (
-        <Container>
-            <StyledSection>
-                <StyledTextWrapper>
-                    <StyledTitle>{title}</StyledTitle>
-                    <StyledCaption>{description}</StyledCaption>
-                </StyledTextWrapper>
+    const [pageHeight, setPageHeight] = useState();
+    const pageRef = useRef(null);
+    const scrollPercent = useScrollPercent(pageRef, pageHeight);
 
-                <StyledHero>
-                    <StyledBackground imageInfo={image} style={{ backgroundPositionY: 'top', minWidth: '2000px' }} />
-                </StyledHero>
-            </StyledSection>
+    return (
+        <Container renderInnerWrapper>
+            <Measure
+                bounds
+                onResize={contentRect => {
+                    setPageHeight(contentRect.bounds.height);
+                }}
+            >
+                {({ measureRef }) => (
+                    <Page ref={measureRef}>
+                        <TitleAndContent
+                            ref={pageRef}
+                            title={({ className }) => (
+                                <LeftSide className={className}>
+                                    <RevealingText component={<Title>{title}</Title>} percent={scrollPercent} />
+                                    <RevealingText
+                                        component={<Tagline>{description}</Tagline>}
+                                        percent={scrollPercent}
+                                    />
+                                </LeftSide>
+                            )}
+                        >
+                            <RightSide>
+                                <Peppers />
+                            </RightSide>
+                        </TitleAndContent>
+                    </Page>
+                )}
+            </Measure>
         </Container>
     );
 };
@@ -44,41 +70,37 @@ const HomePage = ({ data }) => {
     );
 };
 
-const StyledSection = styled.section`
+const Page = styled.section`
     width: 100%;
-    height: 100vh;
-    filter: opacity(1);
+    height: 200vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 `;
 
-const StyledTextWrapper = styled.div`
-    background: rgba(25, 25, 25, 0.4);
-    width: fit-content;
+const LeftSide = styled.div`
     padding: 1rem 2rem;
+    height: fit-content;
 `;
 
-const StyledTitle = styled.h1`
-    color: #fff;
-    font-size: 6rem;
-    font-weight: 100;
+const Title = styled.h1`
+    font-size: 7rem;
+    font-weight: 800;
+    color: white;
 `;
 
-const StyledCaption = styled.div`
-    color: #fff;
+const RightSide = styled.div`
+    width: 100%;
+    svg {
+        position: relative;
+        top: 50%;
+        transform: translateY(-150%);
+    }
+`;
+
+const Tagline = styled.div`
     font-size: 2rem;
     width: 350px;
-`;
-
-const HEADER_HEIGHT = '64px';
-const StyledHero = styled.div`
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: -10;
-    top: -${HEADER_HEIGHT};
-    left: 0;
 `;
 
 const StyledBackground = styled(PreviewCompatibleBackgroundImage)`

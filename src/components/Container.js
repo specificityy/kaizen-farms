@@ -21,9 +21,8 @@ const StyledContent = styled(Content)`
         margin-right: auto;
     }
     & > div > div {
-        width: 100%;
+        width: 90%;
         margin-left: auto;
         margin-right: auto;
-        max-width: 1640px;
     }
 `;

@@ -6,90 +6,45 @@ import { Typography } from 'antd';
 
 import { Container } from '../components/Container';
 import Layout from '../components/Layout';
+import { TitleAndContent } from '../components/TitleAndContent';
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 export const AboutPageTemplate = ({ title, description, image }) => {
     return (
-        <StyledContainer>
-            <StyledVision>
-                <Title level={2} type="secondary">
-                    {title}
-                </Title>
-                <StyledDescription>{description}</StyledDescription>
-            </StyledVision>
-        </StyledContainer>
+        <Container renderInnerWrapper>
+            <TitleAndContent
+                title={({ className }) => (
+                    <LeftSide className={className}>
+                        <Title>{title}</Title>
+                    </LeftSide>
+                )}
+            >
+                <StyledDescription>
+                    <p>{description}</p>
+                </StyledDescription>
+            </TitleAndContent>
+        </Container>
     );
 };
 
-const HEADER_HEIGHT = 64;
-
-const StyledContainer = styled(Container)`
-    position: relative;
-    top: ${HEADER_HEIGHT}px;
+const LeftSide = styled.div`
+    padding: 1rem 2rem;
+    height: fit-content;
+`;
+const Title = styled.h1`
+    color: white;
 `;
 
-const StyledVision = styled.section`
-    width: 100%;
-    filter: opacity(1);
-    text-align: center;
-    padding-top: ${HEADER_HEIGHT * 2}px;
-    padding-bottom: ${HEADER_HEIGHT * 3}px;
-
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background: #134e5e; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-        to right top,
-        #f7f8f8,
-        #d3ece6,
-        #b8dec9,
-        #abcea2,
-        #acbb78
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background-image: linear-gradient(
-        to right top,
-        #f7f8f8,
-        #d3ece6,
-        #b8dec9,
-        #abcea2,
-        #acbb78
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-`;
-
-// const StyledBackgroundShade = styled.div`
-//     width: 100%;
-//     height: 100%;
-//     position: fixed;
-//     top: -${HEADER_HEIGHT};
-//     z-index: -10;
-//     background-position: bottom center;
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     background: #134e5e; /* fallback for old browsers */
-//     background: -webkit-linear-gradient(
-//         to right top,
-//         #f7f8f8,
-//         #d3ece6,
-//         #b8dec9,
-//         #abcea2,
-//         #acbb78
-//     ); /* Chrome 10-25, Safari 5.1-6 */
-//     background-image: linear-gradient(
-//         to right top,
-//         #f7f8f8,
-//         #d3ece6,
-//         #b8dec9,
-//         #abcea2,
-//         #acbb78
-//     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-// `;
-
-const StyledDescription = styled(Text)`
+const StyledDescription = styled.div`
+    color: white;
     max-width: 800px;
     display: inline-block;
     font-size: 1.5rem;
+
+    position: absolute;
+    top: 25%;
+    transform: translateY(-50%);
 `;
 
 AboutPageTemplate.propTypes = {

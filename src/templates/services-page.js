@@ -7,41 +7,36 @@ import { Container } from '../components/Container';
 import worldMap from '../img/world-map.jpg';
 
 import Layout from '../components/Layout';
+import { TitleAndContent } from '../components/TitleAndContent';
 
 export const ServicesPageTemplate = ({ title }) => {
     return (
         <Container renderInnerWrapper>
-            <StyledSection>
-                <StyledTitle>{title}</StyledTitle>
-                <StyledBackgroundWrapper>
-                    <StyledBackground />
-                </StyledBackgroundWrapper>
-            </StyledSection>
+            <TitleAndContent
+                title={({ className }) => (
+                    <LeftSide className={className}>
+                        <Title>{title}</Title>
+                    </LeftSide>
+                )}
+            >
+                <StyledBackground />
+            </TitleAndContent>
         </Container>
     );
 };
 
-const StyledSection = styled.section`
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+const Title = styled.h1`
+    color: white;
 `;
 
-const StyledTitle = styled.h1`
-    font-size: 3rem;
-    font-weight: 100;
-    flex: 0 1 auto;
-    margin-right: 50px;
-`;
-
-const StyledBackgroundWrapper = styled.div`
-    flex: 1 0 80%;
+const LeftSide = styled.div`
+    padding: 1rem 2rem;
+    height: fit-content;
 `;
 
 const StyledBackground = styled.div`
-    height: 800px;
+    height: 100%;
+    width: 100%;
     background: url(${worldMap});
     background-position: center;
     background-repeat: no-repeat;

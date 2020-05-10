@@ -3,9 +3,8 @@ import { Helmet } from 'react-helmet';
 import { withPrefix } from 'gatsby';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Layout } from 'antd';
+import { Layout, BackTop } from 'antd';
 
-import './all.sass';
 import { cssReset } from './cssReset';
 import useSiteMetadata from './SiteMetadata';
 import { Footer } from '../components/Footer';
@@ -40,13 +39,27 @@ const TemplateWrapper = ({ children }) => {
                 <Navbar />
                 <StyledContent>{children}</StyledContent>
                 <Footer />
+                <BackTop>
+                    <StyledUp>UP</StyledUp>
+                </BackTop>
             </Layout>
         </>
     );
 };
 
 const StyledContent = styled(Content)`
-    background: #fff;
+    background: #1c1c1c;
+    color: white;
+`;
+const StyledUp = styled.div`
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    border-radius: 4px;
+    background-color: #1088e9;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
 `;
 
 const GlobalStyles = () => {
@@ -57,6 +70,22 @@ const GlobalStyles = () => {
                 ${cssReset}
                 * {
                     font-family: 'Open Sans', sans-serif;
+
+                    &::-webkit-scrollbar-track {
+                        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+                        background: #1c1c1c;
+                        border-radius: 10px;
+                    }
+
+                    &::-webkit-scrollbar {
+                        width: 10px;
+                        background-color: #f5f5f5;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        border-radius: 10px;
+                        background-color: #424242;
+                    }
                 }
                 h1,
                 h2,

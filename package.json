@@ -26,7 +26,7 @@
         "gatsby-remark-relative-images": "0.3.0",
         "gatsby-source-filesystem": "2.3.0",
         "gatsby-transformer-remark": "2.8.4",
-        "gatsby-transformer-sharp": "2.5.0",
+        "gatsby-transformer-sharp": "2.5.2",
         "intersection-observer": "0.10.0",
         "lodash": "4.17.15",
         "lodash-webpack-plugin": "0.11.5",

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import Measure from 'react-measure';
+import throttle from 'lodash/throttle';
 
 import Peppers from '../img/peppers.svg';
 import { Container } from '../components/Container';
@@ -12,10 +13,26 @@ import { TitleAndContent } from '../components/TitleAndContent';
 import { RevealingText } from '../components/RevealingText';
 import { useScrollPercent } from '../components/useScrollPercent';
 
+let titleHiddenChars = 0;
+let taglineHiddenChars = 0;
+
 export const HomePageTemplate = ({ title, description, image }) => {
-    const [pageHeight, setPageHeight] = useState();
+    const [pageHeight, setPageHeight] = useState(0);
     const pageRef = useRef(null);
-    const scrollPercent = useScrollPercent(pageRef, pageHeight);
+    const { scrollPercent, direction } = useScrollPercent(pageRef, pageHeight);
+
+    useEffect(() => {
+        const update = throttle(() => {
+            if (scrollPercent < 0.4) {
+                titleHiddenChars = 0;
+                taglineHiddenChars = 0;
+            } else {
+                titleHiddenChars = titleHiddenChars + (direction === 'up' ? -1 : 1);
+                taglineHiddenChars = taglineHiddenChars + (direction === 'up' ? -1 : 1);
+            }
+        }, 20);
+        update();
+    }, [scrollPercent]);
 
     return (
         <Container renderInnerWrapper>
@@ -31,10 +48,10 @@ export const HomePageTemplate = ({ title, description, image }) => {
                             ref={pageRef}
                             title={({ className }) => (
                                 <LeftSide className={className}>
-                                    <RevealingText component={<Title>{title}</Title>} percent={scrollPercent} />
+                                    <RevealingText component={<Title>{title}</Title>} hiddenChars={titleHiddenChars} />
                                     <RevealingText
                                         component={<Tagline>{description}</Tagline>}
-                                        percent={scrollPercent}
+                                        hiddenChars={taglineHiddenChars}
                                     />
                                 </LeftSide>
                             )}
@@ -72,7 +89,7 @@ const HomePage = ({ data }) => {
 
 const Page = styled.section`
     width: 100%;
-    height: 200vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -94,7 +111,7 @@ const RightSide = styled.div`
     svg {
         position: relative;
         top: 50%;
-        transform: translateY(-150%);
+        transform: translateY(-50%);
     }
 `;
 
@@ -126,7 +143,7 @@ export const homePageQuery = graphql`
                 description
                 image {
                     childImageSharp {
-                        fluid(maxWidth: 3922, quality: 100) {
+                        fluid(maxWidth: 3000, quality: 100) {
                             ...GatsbyImageSharpFluid
                         }
                     }

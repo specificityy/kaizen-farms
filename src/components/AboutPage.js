@@ -15,7 +15,7 @@ const useAboutData = () => {
                         description
                         image {
                             childImageSharp {
-                                fluid(maxWidth: 3922, quality: 100) {
+                                fluid(maxWidth: 3000, quality: 100) {
                                     ...GatsbyImageSharpFluid
                                 }
                             }

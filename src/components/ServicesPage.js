@@ -14,7 +14,7 @@ const useServices = () => {
                         title
                         image {
                             childImageSharp {
-                                fluid(maxWidth: 4000, quality: 80) {
+                                fluid(maxWidth: 2000, quality: 90) {
                                     ...GatsbyImageSharpFluid
                                 }
                             }
@@ -24,7 +24,7 @@ const useServices = () => {
                             description
                             image {
                                 childImageSharp {
-                                    fluid(maxWidth: 540, quality: 80) {
+                                    fluid(maxWidth: 1500, quality: 90) {
                                         ...GatsbyImageSharpFluid
                                     }
                                 }

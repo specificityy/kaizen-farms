@@ -14,7 +14,7 @@ const useProducts = () => {
                         title
                         image {
                             childImageSharp {
-                                fluid(maxWidth: 4000, quality: 80) {
+                                fluid(maxWidth: 2000, quality: 80) {
                                     ...GatsbyImageSharpFluid
                                 }
                             }
@@ -24,7 +24,7 @@ const useProducts = () => {
                             description
                             image {
                                 childImageSharp {
-                                    fluid(maxWidth: 540, quality: 80) {
+                                    fluid(maxWidth: 1000, quality: 80) {
                                         ...GatsbyImageSharpFluid
                                     }
                                 }

@@ -21,7 +21,7 @@ const leftSideStyle = title => styled(title)`
     position: sticky;
     top: 50%;
     transform: translateY(-50%);
-    margin-bottom: 50vh;
+    margin-bottom: 30vh;
 `;
 
 const RightSide = styled.div`
@@ -39,7 +39,7 @@ const RightSide = styled.div`
 
 const StyledSection = styled.section`
     width: 100%;
-    height: 200vh;
+    height: 100vh;
     display: flex;
     justify-content: space-between;
 `;

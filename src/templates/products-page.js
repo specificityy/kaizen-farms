@@ -24,23 +24,31 @@ export const ProductsPageTemplate = ({ title, image, products }) => {
 
     return (
         <StyledContainer renderInnerWrapper>
-            <TitleAndContent
-                title={({ className }) => (
-                    <LeftSide className={className}>
-                        <Title>{title}</Title>
-                    </LeftSide>
-                )}
-            >
-                <ProdList>{productCols.map(mapProductToStyledComponent)}</ProdList>
-            </TitleAndContent>
+            <Page>
+                <TitleAndContent
+                    title={({ className }) => (
+                        <LeftSide className={className}>
+                            <Title>{title}</Title>
+                        </LeftSide>
+                    )}
+                >
+                    <ProdList>{productCols.map(mapProductToStyledComponent)}</ProdList>
+                </TitleAndContent>
+            </Page>
         </StyledContainer>
     );
 };
 
 const StyledContainer = styled(Container)``;
-
+const Page = styled.section`
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+`;
 const ProdList = styled.div`
-    height: 45%;
+    height: 75%;
     display: grid;
     grid-template-columns: repeat(${COLS}, auto);
     grid-template-rows: repeat(${ROWS}, auto);
@@ -107,7 +115,7 @@ export const productsPageQuery = graphql`
                 title
                 image {
                     childImageSharp {
-                        fluid(maxWidth: 1000, quality: 100) {
+                        fluid(maxWidth: 3000, quality: 100) {
                             ...GatsbyImageSharpFluid
                         }
                     }

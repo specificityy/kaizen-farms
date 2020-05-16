@@ -60,7 +60,7 @@ export const servicesPageQuery = graphql`
                 title
                 image {
                     childImageSharp {
-                        fluid(maxWidth: 540, quality: 80) {
+                        fluid(maxWidth: 1500, quality: 90) {
                             ...GatsbyImageSharpFluid
                         }
                     }
@@ -70,7 +70,7 @@ export const servicesPageQuery = graphql`
                     description
                     image {
                         childImageSharp {
-                            fluid(maxWidth: 540, quality: 80) {
+                            fluid(maxWidth: 1500, quality: 90) {
                                 ...GatsbyImageSharpFluid
                             }
                         }

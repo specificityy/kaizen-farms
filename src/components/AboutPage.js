@@ -3,7 +3,9 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import { AboutPageTemplate } from '../templates/about-page';
 
-export const AboutPage = () => <AboutPageTemplate {...useAboutData()} />;
+export const AboutPage = React.forwardRef((props, ref) => (
+    <AboutPageTemplate {...useAboutData()} {...props} ref={ref} />
+));
 
 const useAboutData = () => {
     return useStaticQuery(
@@ -13,13 +15,6 @@ const useAboutData = () => {
                     frontmatter {
                         title
                         description
-                        image {
-                            childImageSharp {
-                                fluid(maxWidth: 3000, quality: 100) {
-                                    ...GatsbyImageSharpFluid
-                                }
-                            }
-                        }
                     }
                 }
             }

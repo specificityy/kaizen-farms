@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import { HomePageTemplate } from '../templates/home-page';
 
-export const HomePage = () => <HomePageTemplate {...useHomepage()} />;
+export const HomePage = React.forwardRef((props, ref) => <HomePageTemplate {...useHomepage()} {...props} ref={ref} />);
 
 const useHomepage = () => {
     return useStaticQuery(
@@ -13,13 +13,6 @@ const useHomepage = () => {
                     frontmatter {
                         title
                         description
-                        image {
-                            childImageSharp {
-                                fluid(maxWidth: 3000, quality: 100) {
-                                    ...GatsbyImageSharpFluid
-                                }
-                            }
-                        }
                     }
                 }
             }

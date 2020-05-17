@@ -60,6 +60,8 @@ export const FooterTemplate = ({ instagram, email, telephones }) => {
 
 const StyledFooter = styled(AntdFooter)`
     height: 100vh;
+    position: relative;
+    top: 500vh;
     background: #1c1c1c;
 `;
 

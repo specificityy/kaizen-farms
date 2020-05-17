@@ -3,30 +3,28 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 
-import { Container } from '../components/Container';
 import worldMap from '../img/world-map.jpg';
 
-import Layout from '../components/Layout';
 import { TitleAndContent } from '../components/TitleAndContent';
 
-export const ServicesPageTemplate = ({ title }) => {
+export const ServicesPageTemplate = React.forwardRef(({ title, ...props }, ref) => {
     return (
-        <Container renderInnerWrapper>
-            <TitleAndContent
-                title={({ className }) => (
-                    <LeftSide className={className}>
-                        <Title>{title}</Title>
-                    </LeftSide>
-                )}
-            >
-                <StyledBackground />
-            </TitleAndContent>
-        </Container>
+        <TitleAndContent
+            ref={ref}
+            {...props}
+            title={({ className }) => (
+                <LeftSide className={className}>
+                    <Title>{title}</Title>
+                </LeftSide>
+            )}
+        >
+            <StyledBackground />
+        </TitleAndContent>
     );
-};
+});
 
 const Title = styled.h1`
-    color: white;
+    color: #1c1c1c;
 `;
 
 const LeftSide = styled.div`
@@ -46,11 +44,7 @@ const StyledBackground = styled.div`
 const ServicesPage = ({ data }) => {
     const { frontmatter } = data.markdownRemark;
 
-    return (
-        <Layout>
-            <ServicesPageTemplate title={frontmatter.title} services={frontmatter.services} image={frontmatter.image} />
-        </Layout>
-    );
+    return <ServicesPageTemplate title={frontmatter.title} services={frontmatter.services} image={frontmatter.image} />;
 };
 
 export const servicesPageQuery = graphql`
@@ -58,13 +52,6 @@ export const servicesPageQuery = graphql`
         markdownRemark(id: { eq: $id }) {
             frontmatter {
                 title
-                image {
-                    childImageSharp {
-                        fluid(maxWidth: 1500, quality: 90) {
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
                 services {
                     title
                     description

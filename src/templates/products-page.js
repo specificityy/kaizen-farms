@@ -4,17 +4,15 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import chunk from 'lodash/chunk';
 
-import { Container } from '../components/Container';
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 import { TitleAndContent } from '../components/TitleAndContent';
-import Layout from '../components/Layout';
 
 const COLS = 3;
 const ROWS = 15;
 
 const rowSpanOptions = [2, 3, 4, 5];
 
-export const ProductsPageTemplate = ({ title, image, products }) => {
+export const ProductsPageTemplate = React.forwardRef(({ title, image, products, className, ...props }, ref) => {
     const productCols = chunk(products, COLS);
 
     if (productCols.length === COLS + 1) {
@@ -23,32 +21,22 @@ export const ProductsPageTemplate = ({ title, image, products }) => {
     }
 
     return (
-        <StyledContainer renderInnerWrapper>
-            <Page>
-                <TitleAndContent
-                    title={({ className }) => (
-                        <LeftSide className={className}>
-                            <Title>{title}</Title>
-                        </LeftSide>
-                    )}
-                >
-                    <ProdList>{productCols.map(mapProductToStyledComponent)}</ProdList>
-                </TitleAndContent>
-            </Page>
-        </StyledContainer>
+        <TitleAndContent
+            ref={ref}
+            {...props}
+            className={className}
+            title={({ className }) => (
+                <LeftSide className={className}>
+                    <Title>{title}</Title>
+                </LeftSide>
+            )}
+        >
+            <ProdList>{productCols.map(mapProductToStyledComponent)}</ProdList>
+        </TitleAndContent>
     );
-};
+});
 
-const StyledContainer = styled(Container)``;
-const Page = styled.section`
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-`;
 const ProdList = styled.div`
-    height: 75%;
     display: grid;
     grid-template-columns: repeat(${COLS}, auto);
     grid-template-rows: repeat(${ROWS}, auto);
@@ -95,17 +83,13 @@ const LeftSide = styled.div`
 `;
 
 const Title = styled.h1`
-    color: white;
+    color: #1c1c1c;
 `;
 
 const ProductsPage = ({ data }) => {
     const { frontmatter } = data.markdownRemark;
 
-    return (
-        <Layout>
-            <ProductsPageTemplate title={frontmatter.title} products={frontmatter.products} image={frontmatter.image} />
-        </Layout>
-    );
+    return <ProductsPageTemplate title={frontmatter.title} products={frontmatter.products} image={frontmatter.image} />;
 };
 
 export const productsPageQuery = graphql`
@@ -113,18 +97,11 @@ export const productsPageQuery = graphql`
         markdownRemark(id: { eq: $id }) {
             frontmatter {
                 title
-                image {
-                    childImageSharp {
-                        fluid(maxWidth: 3000, quality: 100) {
-                            ...GatsbyImageSharpFluid
-                        }
-                    }
-                }
                 products {
                     title
                     image {
                         childImageSharp {
-                            fluid(maxWidth: 1000, quality: 100) {
+                            fluid(maxWidth: 1000, quality: 80) {
                                 ...GatsbyImageSharpFluid
                             }
                         }

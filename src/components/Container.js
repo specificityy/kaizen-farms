@@ -1,18 +1,18 @@
 import React from 'react';
-import { Layout } from 'antd';
 import styled from '@emotion/styled';
 
-const { Content } = Layout;
+export const Container = React.forwardRef(({ children, renderInnerWrapper, ...props }, ref) => {
+    const StyledContent = calcStyledContent(renderInnerWrapper);
+    return (
+        <StyledContent name="container" {...props} className={props.className} ref={ref}>
+            <div name="container--content-outer-wrapper">
+                {renderInnerWrapper ? <div name="container--content-inner-wrapper">{children}</div> : children}
+            </div>
+        </StyledContent>
+    );
+});
 
-export const Container = ({ children, renderInnerWrapper, ...props }) => (
-    <StyledContent name="container" {...props}>
-        <div name="container--content-outer-wrapper">
-            {renderInnerWrapper ? <div name="container--content-inner-wrapper">{children}</div> : children}
-        </div>
-    </StyledContent>
-);
-
-const StyledContent = styled(Content)`
+const calcStyledContent = renderInnerWrapper => styled.main`
     width: 100%;
     & > div {
         width: 100%;
@@ -20,9 +20,11 @@ const StyledContent = styled(Content)`
         margin-left: auto;
         margin-right: auto;
     }
-    & > div > div {
+    ${renderInnerWrapper
+        ? `& > div > div {
         width: 90%;
         margin-left: auto;
         margin-right: auto;
-    }
+    }`
+        : ''}
 `;

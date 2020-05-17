@@ -3,14 +3,12 @@ import { Helmet } from 'react-helmet';
 import { withPrefix } from 'gatsby';
 import { Global, css } from '@emotion/core';
 import styled from '@emotion/styled';
-import { Layout, BackTop } from 'antd';
+import { BackTop } from 'antd';
 
 import { cssReset } from './cssReset';
 import useSiteMetadata from './SiteMetadata';
 import { Footer } from '../components/Footer';
 import Navbar from '../components/Navbar';
-
-const { Content } = Layout;
 
 const TemplateWrapper = ({ children }) => {
     const { title, description } = useSiteMetadata();
@@ -35,22 +33,23 @@ const TemplateWrapper = ({ children }) => {
             </Helmet>
             <GlobalStyles />
 
-            <Layout>
+            <StyledContent>
                 <Navbar />
-                <StyledContent>{children}</StyledContent>
+                {children}
                 <Footer />
                 <BackTop>
                     <StyledUp>UP</StyledUp>
                 </BackTop>
-            </Layout>
+            </StyledContent>
         </>
     );
 };
 
-const StyledContent = styled(Content)`
-    background: #1c1c1c;
-    color: white;
+const StyledContent = styled.main`
+    background: white;
+    color: #1c1c1c;
 `;
+
 const StyledUp = styled.div`
     height: 40px;
     width: 40px;

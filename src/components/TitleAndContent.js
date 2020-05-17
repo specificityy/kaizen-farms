@@ -2,33 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-export const TitleAndContent = React.forwardRef(({ title, children }, ref) => {
+import { Container } from '../components/Container';
+
+export const TitleAndContent = React.forwardRef(({ title, className, children, ...props }, ref) => {
     const LeftSide = leftSideStyle(title);
     return (
-        <StyledSection ref={ref}>
+        <StyledContainer className={className} {...props} ref={ref}>
             <LeftSide />
             <RightSide>{children}</RightSide>
-        </StyledSection>
+        </StyledContainer>
     );
 });
 
 const leftSideStyle = title => styled(title)`
-    color: white;
+    color: #1c1c1c;
     font-size: 5rem;
     font-weight: 100;
-    flex: 0 1 auto;
     margin-right: 50px;
-    position: sticky;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-bottom: 30vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const RightSide = styled.div`
-    flex: 1 1 80%;
     position: relative;
 
-    height: 100%;
+    flex: 1 1 auto;
+    width: 100%;
+
     max-width: 1500px;
     display: flex;
 
@@ -37,14 +39,22 @@ const RightSide = styled.div`
     }
 `;
 
-const StyledSection = styled.section`
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: space-between;
+const StyledContainer = styled(Container)`
+    position: fixed;
+    will-change: transform;
+    margin-bottom: 15vh;
+    & > div {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
 `;
 
 TitleAndContent.propTypes = {
     title: PropTypes.func,
     children: PropTypes.node,
+    className: PropTypes.string,
 };

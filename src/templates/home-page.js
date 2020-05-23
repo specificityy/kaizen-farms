@@ -4,25 +4,22 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 
 import Peppers from '../img/peppers.svg';
+import vegetables from '../img/vegetables-market.jpg';
+import logo from '../img/logo-no-text.png';
 import { TitleAndContent } from '../components/TitleAndContent';
+import { Container } from '../components/Container';
+import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 
 export const HomePageTemplate = React.forwardRef(({ title, description, image, className, ...props }, ref) => {
     return (
-        <TitleAndContent
-            ref={ref}
-            {...props}
-            className={className}
-            title={({ className }) => (
-                <LeftSide className={className}>
-                    <Title>{title}</Title>
-                    <Tagline>{description}</Tagline>
-                </LeftSide>
-            )}
-        >
-            <RightSide>
-                <Peppers />
-            </RightSide>
-        </TitleAndContent>
+        <StyledContainer>
+            <LeftSide variant="base" name="text">
+                <StyledLogo />
+                <Title>{title}</Title>
+                <Tagline>{description}</Tagline>
+            </LeftSide>
+            <StyledHeroBackground name="hero-background" variant="back" />
+        </StyledContainer>
     );
 });
 
@@ -44,38 +41,52 @@ const HomePage = ({ data }) => {
     );
 };
 
-const LeftSide = styled.div`
+const LeftSide = styled(ParallaxLayer)`
     padding: 1rem 2rem;
     height: fit-content;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `;
 
 const Title = styled.h1`
     font-size: 7rem;
     font-weight: 800;
-    color: #1c1c1c;
-`;
-
-const RightSide = styled.div`
-    width: 100%;
-    svg {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+    color: white;
 `;
 
 const Tagline = styled.div`
     font-size: 2rem;
+    color: white;
 `;
 
-// const StyledBackground = styled.div`
-//     height: 100%;
-//     width: 100%;
-//     background: url(${worldMap});
-//     background-position: center;
-//     background-repeat: no-repeat;
-//     background-size: contain;
-// `;
+const StyledContainer = styled(ParallaxGroup)``;
+
+const StyledHeroBackground = styled(ParallaxLayer)`
+    background: url(${vegetables});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    &::before {
+        content: '';
+        display: block;
+        background: rgba(20, 25, 30, 0.3);
+        height: 100%;
+    }
+`;
+
+const StyledLogo = styled.div`
+    width: 85px;
+    height: 85px;
+    background: url(${logo}) no-repeat 50% scroll;
+    background-size: contain;
+`;
 
 HomePage.propTypes = {
     data: PropTypes.object.isRequired,

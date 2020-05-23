@@ -9,6 +9,7 @@ import { cssReset } from './cssReset';
 import useSiteMetadata from './SiteMetadata';
 import { Footer } from '../components/Footer';
 import Navbar from '../components/Navbar';
+import { Parallax } from './Parallax';
 
 const TemplateWrapper = ({ children }) => {
     const { title, description } = useSiteMetadata();
@@ -37,6 +38,7 @@ const TemplateWrapper = ({ children }) => {
                 <Navbar />
                 {children}
                 <Footer />
+
                 <BackTop>
                     <StyledUp>UP</StyledUp>
                 </BackTop>
@@ -45,7 +47,7 @@ const TemplateWrapper = ({ children }) => {
     );
 };
 
-const StyledContent = styled.main`
+const StyledContent = styled(Parallax)`
     background: white;
     color: #1c1c1c;
 `;
@@ -69,22 +71,6 @@ const GlobalStyles = () => {
                 ${cssReset}
                 * {
                     font-family: 'Open Sans', sans-serif;
-
-                    &::-webkit-scrollbar-track {
-                        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-                        background: #1c1c1c;
-                        border-radius: 10px;
-                    }
-
-                    &::-webkit-scrollbar {
-                        width: 10px;
-                        background-color: #f5f5f5;
-                    }
-
-                    &::-webkit-scrollbar-thumb {
-                        border-radius: 10px;
-                        background-color: #424242;
-                    }
                 }
                 h1,
                 h2,
@@ -98,5 +84,24 @@ const GlobalStyles = () => {
         />
     );
 };
+
+// scroll styles, add to the * element
+/*
+    &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+        background: #1c1c1c;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        background-color: #f5f5f5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #424242;
+    }
+*/
 
 export default TemplateWrapper;

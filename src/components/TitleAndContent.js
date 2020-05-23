@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import { ParallaxLayer } from 'react-spring/renderprops-addons';
 
 import { Container } from '../components/Container';
 
 export const TitleAndContent = React.forwardRef(({ title, className, children, ...props }, ref) => {
-    const LeftSide = leftSideStyle(title);
     return (
         <StyledContainer className={className} {...props} ref={ref}>
-            <LeftSide />
-            <RightSide>{children}</RightSide>
+            {children}
         </StyledContainer>
     );
 });
@@ -40,7 +39,7 @@ const RightSide = styled.div`
 `;
 
 const StyledContainer = styled(Container)`
-    position: fixed;
+    height: 100vh;
     will-change: transform;
     margin-bottom: 15vh;
     & > div {

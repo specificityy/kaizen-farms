@@ -15,24 +15,24 @@ export const FooterTemplate = ({ instagram, email, telephones }) => {
                 <StyledFirstCell>
                     <div>
                         <Title>
-                            Kaizen Farms<Red>.</Red>
+                            Kaizen Farms<Dot>.</Dot>
                         </Title>
                         <Tagline>
-                            Dominican Producers <Red>&</Red> Exporters
+                            Dominican Producers <Dot>&</Dot> Exporters
                         </Tagline>
                     </div>
                 </StyledFirstCell>
                 <StyledSider>
                     <Title>
-                        Contact us<Red>.</Red>
+                        Contact us<Dot>.</Dot>
                         <Email>
-                            <Red>@</Red>&nbsp;&nbsp;&nbsp;
+                            <Dot>@</Dot>&nbsp;&nbsp;&nbsp;
                             <a href={'mailto:' + email} subject="Customer enquiry">
                                 {email}
                             </a>
                         </Email>
                         <Telephones>
-                            <Red>T</Red>&nbsp;&nbsp;&nbsp;
+                            <Dot>T</Dot>&nbsp;&nbsp;&nbsp;
                             {telephones.map(({ number }, index) => (
                                 <a
                                     href={'tel:' + number}
@@ -47,7 +47,7 @@ export const FooterTemplate = ({ instagram, email, telephones }) => {
                 </StyledSider>
                 <StyledSecondCell>
                     <Title>
-                        Find us on<Red>:</Red>
+                        Find us on<Dot>:</Dot>
                         <StyledInstagram title="Instagram" href={instagram}>
                             <Instagram />
                         </StyledInstagram>
@@ -140,7 +140,7 @@ const Email = styled.div`
     margin-top: 20px;
 `;
 
-const Red = styled.span`
+const Dot = styled.span`
     font-weight: bold;
     color: crimson;
 `;

@@ -13,7 +13,10 @@ export const AboutPageTemplate = React.forwardRef(({ title, description, image, 
             <BaseParallax variant="base">
                 <BaseText>
                     <SubHeading>About us</SubHeading>
-                    <Title>{title}</Title>
+                    <Title>
+                        {title}
+                        <Dot>.</Dot>
+                    </Title>
                     <Description>{description}</Description>
                 </BaseText>
             </BaseParallax>
@@ -69,6 +72,11 @@ const StyledHeroBackground = styled(ParallaxLayer)`
         background: rgba(20, 25, 30, 0.3);
         height: 100%;
     }
+`;
+
+const Dot = styled.span`
+    font-weight: bold;
+    color: crimson;
 `;
 
 AboutPageTemplate.propTypes = {

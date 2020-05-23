@@ -39,7 +39,7 @@ const TemplateWrapper = ({ children }) => {
                 {children}
                 <Footer />
 
-                <BackTop>
+                <BackTop name="back-top">
                     <StyledUp>UP</StyledUp>
                 </BackTop>
             </StyledContent>

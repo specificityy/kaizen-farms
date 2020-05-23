@@ -9,7 +9,7 @@ import farmPath from '../img/farm-path.jpg';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 
 const COLS = 3;
-const ROWS = 15;
+const ROWS = 18;
 
 const rowSpanOptions = [2, 3, 4, 5];
 
@@ -27,7 +27,9 @@ export const ProductsPageTemplate = React.forwardRef(({ title, image, products, 
                 <BaseParallax variant="back">
                     <BaseText>
                         <SubHeading>{title}</SubHeading>
-                        <Title>What we Produce</Title>
+                        <Title>
+                            What we Produce<Dot>.</Dot>
+                        </Title>
                         <Description>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis, neque sit amet
                             dapibus varius, risus ipsum sagittis elit, a venenatis enim metus eu neque.
@@ -57,7 +59,7 @@ const BaseText = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 6rem 4rem;
+    padding: 7rem 4rem 12rem 4rem;
 `;
 
 const SubHeading = styled.p`
@@ -83,7 +85,7 @@ const ProdList = styled.div`
     display: grid;
     grid-template-columns: repeat(${COLS}, auto);
     grid-template-rows: repeat(${ROWS}, auto);
-    column-gap: 75px;
+    column-gap: 100px;
     row-gap: 75px;
     height: 80%;
     width: 95%;
@@ -94,7 +96,7 @@ const Product = (rowSpan, colStart, rowStart) => {
     return styled.div`
         text-align: center;
         position: relative;
-        box-shadow: 0 24px 80px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: 0 24px 100px 0 rgba(0, 0, 0, 0.41), 0 6px 40px 0 rgba(0, 0, 0, 0.4);
 
         &:hover {
             box-shadow: 0px 20px 60px -10px rgba(0, 0, 0, 0.3);
@@ -145,6 +147,11 @@ const StyledHeroBackground = styled(ParallaxLayer)`
         background: rgba(20, 25, 30, 0.3);
         height: 100%;
     }
+`;
+
+const Dot = styled.span`
+    font-weight: bold;
+    color: crimson;
 `;
 
 const ProductsPage = ({ data }) => {

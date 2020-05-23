@@ -14,7 +14,10 @@ export const ServicesPageTemplate = React.forwardRef(({ title, ...props }, ref) 
             <BaseParallax variant="base">
                 <BaseText>
                     <SubHeading>Our Services</SubHeading>
-                    <Title>{title}</Title>
+                    <Title>
+                        {title}
+                        <Dot>.</Dot>
+                    </Title>
                     <Description>
                         Proin vel ante placerat velit eleifend dignissim blandit nec tortor. Mauris ut tellus lobortis,
                         mattis leo non, laoreet arcu. Nunc nec mi vitae nisi rutrum pretium.
@@ -65,6 +68,11 @@ const Description = styled.p`
 const StyledHeroBackground = styled(ParallaxLayer)`
     height: 110%;
     top: 26%;
+`;
+
+const Dot = styled.span`
+    font-weight: bold;
+    color: crimson;
 `;
 
 const ServicesPage = ({ data }) => {

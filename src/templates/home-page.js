@@ -3,21 +3,18 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 
-import Peppers from '../img/peppers.svg';
 import vegetables from '../img/vegetables-market.jpg';
 import logo from '../img/logo-no-text.png';
-import { TitleAndContent } from '../components/TitleAndContent';
-import { Container } from '../components/Container';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 
-export const HomePageTemplate = React.forwardRef(({ title, description, image, className, ...props }, ref) => {
+export const HomePageTemplate = React.forwardRef(({ title, description, image, className }) => {
     return (
         <StyledContainer>
-            <LeftSide variant="base" name="text">
+            <CenteredText variant="base" name="text">
                 <StyledLogo />
                 <Title>{title}</Title>
                 <Tagline>{description}</Tagline>
-            </LeftSide>
+            </CenteredText>
             <StyledHeroBackground name="hero-background" variant="back" />
         </StyledContainer>
     );
@@ -41,13 +38,13 @@ const HomePage = ({ data }) => {
     );
 };
 
-const LeftSide = styled(ParallaxLayer)`
+const CenteredText = styled(ParallaxLayer)`
     padding: 1rem 2rem;
-    height: fit-content;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 
     position: absolute;
     top: 50%;

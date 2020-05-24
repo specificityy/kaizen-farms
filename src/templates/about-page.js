@@ -4,60 +4,22 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 
 import farmer from '../img/farmer.jpg';
-import { TitleAndContent } from '../components/TitleAndContent';
+import { TextBlock } from '../components/TextBlock';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 
-export const AboutPageTemplate = React.forwardRef(({ title, description, image, ...props }, ref) => {
+export const AboutPageTemplate = ({ title, description, image }) => {
     return (
         <ParallaxGroup>
             <BaseParallax variant="base">
-                <BaseText>
-                    <SubHeading>About us</SubHeading>
-                    <Title>
-                        {title}
-                        <Dot>.</Dot>
-                    </Title>
-                    <Description>{description}</Description>
-                </BaseText>
+                <TextBlock title={title} description={description} subheading="About us" />
             </BaseParallax>
             <StyledHeroBackground variant="back" />
         </ParallaxGroup>
     );
-});
+};
 
 const BaseParallax = styled(ParallaxLayer)`
     color: black;
-`;
-
-const BaseText = styled.div`
-    background: white;
-    padding: 1rem 2rem;
-    height: 40%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 4rem;
-`;
-
-const SubHeading = styled.p`
-    margin-top: -5rem;
-    font-size: 1rem;
-    letter-spacing: 0.1rem;
-    text-transform: uppercase;
-    color: #c0c0c3;
-`;
-
-const Title = styled.h1`
-    font-size: 5rem;
-    font-weight: 700;
-    color: #1c1c1c;
-`;
-
-const Description = styled.p`
-    font-size: 1.5rem;
-    color: #8b8b92;
-    max-width: 1000px;
 `;
 
 const StyledHeroBackground = styled(ParallaxLayer)`
@@ -72,11 +34,6 @@ const StyledHeroBackground = styled(ParallaxLayer)`
         background: rgba(20, 25, 30, 0.3);
         height: 100%;
     }
-`;
-
-const Dot = styled.span`
-    font-weight: bold;
-    color: crimson;
 `;
 
 AboutPageTemplate.propTypes = {

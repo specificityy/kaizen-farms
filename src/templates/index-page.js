@@ -11,7 +11,7 @@ import { AboutPage } from '../components/AboutPage';
 import farmer from '../img/farmer.jpg';
 
 const IndexPage = () => {
-    const [pageHeight, setPageHeight] = useState(window.innerHeight);
+    // const [pageHeight, setPageHeight] = useState(window.innerHeight);
     const parallax = useRef(null);
     const home = useRef(null);
     const prod = useRef(null);

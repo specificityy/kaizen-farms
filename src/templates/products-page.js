@@ -7,13 +7,14 @@ import chunk from 'lodash/chunk';
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 import farmPath from '../img/farm-path.jpg';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
+import { TextBlock } from '../components/TextBlock';
 
 const COLS = 3;
-const ROWS = 18;
+const ROWS = 16;
 
-const rowSpanOptions = [2, 3, 4, 5];
+const rowSpanOptions = [3, 3, 4, 5, 6];
 
-export const ProductsPageTemplate = React.forwardRef(({ title, image, products, className, ...props }, ref) => {
+export const ProductsPageTemplate = ({ title, image, products, className }) => {
     const productCols = chunk(products, COLS);
 
     if (productCols.length === COLS + 1) {
@@ -23,62 +24,32 @@ export const ProductsPageTemplate = React.forwardRef(({ title, image, products, 
 
     return (
         <>
-            <MainParallaxGroup>
-                <BaseParallax variant="back">
-                    <BaseText>
-                        <SubHeading>{title}</SubHeading>
-                        <Title>
-                            What we Produce<Dot>.</Dot>
-                        </Title>
-                        <Description>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis, neque sit amet
-                            dapibus varius, risus ipsum sagittis elit, a venenatis enim metus eu neque.
-                        </Description>
-                    </BaseText>
-                    <ProdList>{productCols.map(mapProductToStyledComponent)}</ProdList>
+            <MainParallaxGroup name="products-parallax-group">
+                <BaseParallax variant="back" name="text-and-products-parallax-layer">
+                    <TextBlock
+                        name="text-wrapper"
+                        title="What we produce"
+                        subheading={title}
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis, neque sit amet
+                            dapibus varius, risus ipsum sagittis elit, a venenatis enim metus eu neque."
+                    />
+                    <ProdList name="products-grid">{productCols.map(mapProductToStyledComponent)}</ProdList>
                 </BaseParallax>
             </MainParallaxGroup>
-            <StyledBackgroundParallaxGroup>
+            <StyledBackgroundParallaxGroup name="background-parallax-group">
                 <StyledHeroBackground variant="deep" />
             </StyledBackgroundParallaxGroup>
         </>
     );
-});
+};
 
 const MainParallaxGroup = styled(ParallaxGroup)``;
 
 const BaseParallax = styled(ParallaxLayer)`
     color: black;
-    padding-bottom: 20rem;
+    padding-bottom: 10rem;
     background: white;
-`;
-
-const BaseText = styled.div`
-    padding: 1rem 2rem;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 7rem 4rem 12rem 4rem;
-`;
-
-const SubHeading = styled.p`
-    font-size: 1rem;
-    letter-spacing: 0.1rem;
-    text-transform: uppercase;
-    color: #c0c0c3;
-`;
-
-const Title = styled.h1`
-    font-size: 5rem;
-    font-weight: 700;
-    color: #1c1c1c;
-`;
-
-const Description = styled.p`
-    font-size: 1.5rem;
-    color: #8b8b92;
-    max-width: 1000px;
+    height: fit-content;
 `;
 
 const ProdList = styled.div`
@@ -147,11 +118,6 @@ const StyledHeroBackground = styled(ParallaxLayer)`
         background: rgba(20, 25, 30, 0.3);
         height: 100%;
     }
-`;
-
-const Dot = styled.span`
-    font-weight: bold;
-    color: crimson;
 `;
 
 const ProductsPage = ({ data }) => {

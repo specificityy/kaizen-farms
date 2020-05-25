@@ -9,21 +9,29 @@ import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 
 export const AboutPageTemplate = ({ title, description, image }) => {
     return (
-        <ParallaxGroup>
-            <BaseParallax variant="base">
-                <TextBlock title={title} description={description} subheading="About us" />
-            </BaseParallax>
+        <MainParallaxGroup name="about-us-parallax-group" id="about">
+            <BaseLayer variant="base">
+                <StyledTextBlock title={title} description={description} subheading="About us" />
+            </BaseLayer>
             <StyledHeroBackground variant="back" />
-        </ParallaxGroup>
+        </MainParallaxGroup>
     );
 };
 
-const BaseParallax = styled(ParallaxLayer)`
+const MainParallaxGroup = styled(ParallaxGroup)`
+    height: 120vh;
+`;
+
+const BaseLayer = styled(ParallaxLayer)`
     color: black;
 `;
 
+const StyledTextBlock = styled(TextBlock)`
+    min-height: 25%;
+`;
+
 const StyledHeroBackground = styled(ParallaxLayer)`
-    top: 22%;
+    top: 23%;
     background: url(${farmer});
     background-position: center;
     background-repeat: no-repeat;

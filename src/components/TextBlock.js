@@ -19,14 +19,13 @@ const Wrapper = styled.div`
     background: white;
     padding: 1rem 2rem;
     width: 100%;
-    min-height: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 6rem 4rem;
 `;
 
-const Subheading = styled.p`
+const Subheading = styled.h5`
     font-size: 1rem;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
@@ -36,6 +35,7 @@ const Subheading = styled.p`
 const Title = styled.h1`
     font-size: 5rem;
     font-weight: 700;
+    line-height: 1.12;
     color: #1c1c1c;
 `;
 

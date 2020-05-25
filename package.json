@@ -9,6 +9,7 @@
         "@rebass/forms": "4.0.6",
         "antd": "4.2.0",
         "bulma": "0.8.2",
+        "emotion-theming": "10.0.27",
         "gatsby": "2.21.21",
         "gatsby-background-image": "1.1.1",
         "gatsby-image": "2.4.3",

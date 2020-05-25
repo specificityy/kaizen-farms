@@ -7,9 +7,9 @@ import { TextBlock } from '../components/TextBlock';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import { Map } from '../components/map/Map';
 
-export const ServicesPageTemplate = ({ title, ...props }) => {
+export const ServicesPageTemplate = ({ title }) => {
     return (
-        <ParallaxGroup>
+        <ParallaxGroup name="services-parallax-group" id="services">
             <BaseParallax variant="base">
                 <TextBlock
                     title={title}

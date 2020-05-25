@@ -1,15 +1,18 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { withPrefix } from 'gatsby';
-import { Global, css } from '@emotion/core';
+/** @jsx jsx */
+import { Global, css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
+import { ThemeProvider } from 'emotion-theming';
 import { BackTop } from 'antd';
 
 import { cssReset } from './cssReset';
 import useSiteMetadata from './SiteMetadata';
+import { Parallax } from './Parallax';
 import { Footer } from '../components/Footer';
 import Navbar from '../components/Navbar';
-import { Parallax } from './Parallax';
+import theme from '../components/theme';
 
 const TemplateWrapper = ({ children }) => {
     const { title, description } = useSiteMetadata();
@@ -34,15 +37,17 @@ const TemplateWrapper = ({ children }) => {
             </Helmet>
             <GlobalStyles />
 
-            <StyledContent>
-                <Navbar />
-                {children}
-                <Footer />
+            <ThemeProvider theme={theme}>
+                <StyledContent>
+                    <Navbar />
+                    {children}
+                    <Footer />
 
-                <BackTop name="back-top">
-                    <StyledUp>UP</StyledUp>
-                </BackTop>
-            </StyledContent>
+                    <BackTop name="back-top">
+                        <StyledUp>UP</StyledUp>
+                    </BackTop>
+                </StyledContent>
+            </ThemeProvider>
         </>
     );
 };
@@ -67,18 +72,10 @@ const GlobalStyles = () => {
     return (
         <Global
             styles={css`
-                @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@100;300;400;700;900&family=Open+Sans:wght@300;400;700&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;700;800&display=swap');
                 ${cssReset}
                 * {
-                    font-family: 'Open Sans', sans-serif;
-                }
-                h1,
-                h2,
-                h3,
-                h4,
-                h5,
-                h6 {
-                    font-family: 'Cairo', sans-serif;
+                    font-family: 'Josefin Sans', sans-serif;
                 }
             `}
         />

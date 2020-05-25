@@ -39,10 +39,10 @@ const IndexPage = () => {
     return (
         <Layout>
             {/* <StyledFixedBackground name="fixed-background" /> */}
-            <HomePage ref={home} />
-            <AboutPage ref={about} />
-            <ProductsPage ref={prod} />
-            <ServicesPage ref={services} />
+            <HomePage />
+            <AboutPage />
+            <ProductsPage />
+            <ServicesPage />
         </Layout>
     );
 };

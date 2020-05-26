@@ -8,7 +8,7 @@ export const TextBlock = ({ title, description, subheading, ...props }) => {
             <Subheading>{subheading}</Subheading>
             <Title>
                 {title}
-                <Dot>.</Dot>
+                <Red>.</Red>
             </Title>
             <Description>{description}</Description>
         </Wrapper>
@@ -54,7 +54,7 @@ const Description = styled.p`
     }
 `;
 
-const Dot = styled.span`
+export const Red = styled.span`
     font-weight: bold;
     color: crimson;
 `;

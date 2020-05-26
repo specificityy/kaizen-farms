@@ -13,33 +13,43 @@ export const ServicesPageTemplate = ({ title }) => {
     return (
         <ThemeProvider theme={theme}>
             <MainParallaxGroup name="services-parallax-group" id="services">
-                <BaseParallax variant="base">
-                    <TextBlock
+                <BaseParallax variant="base" name="services-text">
+                    <StyledTextBlock
                         title={title}
                         description="Proin vel ante placerat velit eleifend dignissim blandit nec tortor. Mauris ut tellus lobortis,
                         mattis leo non, laoreet arcu. Nunc nec mi vitae nisi rutrum pretium."
                         subheading="Our Services"
                     />
                 </BaseParallax>
-                <StyledHeroBackground variant="back">
+                <StyledHeroMap variant="back" name="services-map">
                     <Map />
-                </StyledHeroBackground>
+                </StyledHeroMap>
             </MainParallaxGroup>
         </ThemeProvider>
     );
 };
 
 const MainParallaxGroup = styled(ParallaxGroup)`
-    height: 120vh;
+    height: 100vh;
+    @media (${({ theme }) => theme.mediaQueries.m}) {
+        height: 120vh;
+    }
 `;
 
 const BaseParallax = styled(ParallaxLayer)`
     color: black;
 `;
 
-const StyledHeroBackground = styled(ParallaxLayer)`
-    height: 110%;
-    top: 26%;
+const StyledHeroMap = styled(ParallaxLayer)`
+    top: 28%;
+    height: 80%;
+    @media (${({ theme }) => theme.mediaQueries.m}) {
+        top: 23%;
+    }
+`;
+
+const StyledTextBlock = styled(TextBlock)`
+    min-height: 500px;
 `;
 
 const ServicesPage = ({ data }) => {

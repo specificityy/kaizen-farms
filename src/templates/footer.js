@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import { Layout } from 'antd';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 
 import Instagram from '../img/social/instagram.svg';
 import plants from '../img/little-plants.jpg';
 import theme from '../components/theme';
-
-const { Footer: AntdFooter } = Layout;
+import { Red } from '../components/TextBlock';
 
 export const FooterTemplate = ({ instagram, email, telephones }) => {
     return (
@@ -17,44 +15,42 @@ export const FooterTemplate = ({ instagram, email, telephones }) => {
             <StyledFooter>
                 <StyledFirstCell>
                     <div>
-                        <Title>
-                            Kaizen Farms<Dot>.</Dot>
-                        </Title>
-                        <Tagline>
-                            Dominican Producers <Dot>&</Dot> Exporters
-                        </Tagline>
+                        <Heading>
+                            Kaizen Farms<Red>.</Red>
+                        </Heading>
+                        <Subheading>Dominican Producers and Exporters</Subheading>
                     </div>
                 </StyledFirstCell>
                 <StyledSider>
-                    <Title>
-                        Contact us<Dot>.</Dot>
+                    <Heading>
+                        Contact us<Red>.</Red>
                         <Email>
-                            <Dot>@</Dot>&nbsp;&nbsp;&nbsp;
+                            <Red>@</Red>&nbsp;&nbsp;&nbsp;
                             <a href={'mailto:' + email} subject="Customer enquiry">
                                 {email}
                             </a>
                         </Email>
                         <Telephones>
-                            <Dot>T</Dot>&nbsp;&nbsp;&nbsp;
                             {telephones.map(({ number }, index) => (
                                 <a
                                     href={'tel:' + number}
                                     key={number}
-                                    className={index === 0 ? 'first phone' : 'phone'}
+                                    className={index === 0 ? 'first-phone' : ''}
+                                    first
                                 >
                                     {number}
                                 </a>
                             ))}
                         </Telephones>
-                    </Title>
+                    </Heading>
                 </StyledSider>
                 <StyledSecondCell>
-                    <Title>
-                        Find us on<Dot>:</Dot>
+                    <Heading>
+                        Find us on<Red>:</Red>
                         <StyledInstagram title="Instagram" href={instagram}>
                             <Instagram />
                         </StyledInstagram>
-                    </Title>
+                    </Heading>
                 </StyledSecondCell>
             </StyledFooter>
         </ThemeProvider>
@@ -65,17 +61,16 @@ const StyledFooter = styled.footer`
     height: 100vh;
     position: relative;
     background: #1c1c1c;
-    background: url(${plants});
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
 
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 50% 50%;
     color: #fff;
 
-    // grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    @media (${({ theme }) => theme.mediaQueries.m}) {
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(4, 1fr);
+    }
 `;
 
 const StyledCell = styled.div`
@@ -83,23 +78,31 @@ const StyledCell = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    padding: 50px 0;
 `;
 
 const StyledFirstCell = styled(StyledCell)`
-    background: rgba(0, 0, 0, 0.5);
+    background: #1f1f1f;
+    @media (${({ theme }) => theme.mediaQueries.m}) {
+        grid-row: 4;
+    }
 `;
 
 const StyledSecondCell = styled(StyledCell)`
-    background: rgba(0, 0, 0, 0.57);
+    background: #232323;
 `;
 
 const StyledInstagram = styled.a`
     & svg {
         display: block;
         fill: #3273dc;
-        width: 150px;
+        width: 100px;
         margin-top: 20px;
         transition: fill 0.3s;
+        @media (${({ theme }) => theme.mediaQueries.m}) {
+            width: 50px;
+        }
     }
     &:hover svg {
         fill: #424242;
@@ -111,44 +114,51 @@ const StyledSider = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.55);
+    background: #1c1c1c;
 `;
 
-const Title = styled.h2`
-    font-size: 4.5rem;
+const Heading = styled.h2`
+    font-size: 3.5rem;
     font-weight: bold;
     color: #fff;
+    @media (${({ theme }) => theme.mediaQueries.m}) {
+        font-size: 2.3rem;
+    }
 `;
 
-const Tagline = styled.h4`
-    font-size: 1.5rem;
-    color: #fff;
+const BaseSubheading = styled.div`
+    font-size: 1.2rem;
+    @media (${({ theme }) => theme.mediaQueries.m}) {
+        font-size: 1.2rem;
+    }
 `;
 
-const Telephones = styled.div`
-    font-size: 1.5rem;
+const Subheading = styled(BaseSubheading)`
+    color: #424242;
+`;
+
+const Telephones = styled(BaseSubheading)`
     color: #424242;
     margin-top: 20px;
-    & > .phone {
+    a {
         display: block;
-    }
-    & > .first.phone {
-        display: inline;
-    }
-    & > .phone:not(.first) {
-        text-indent: 2rem;
+        text-indent: 2.5rem;
+        margin-bottom: 0.7rem;
+        &.first-phone {
+            position: relative;
+            &::before {
+                content: 'T';
+                color: crimson;
+                position: absolute;
+                left: -2rem;
+            }
+        }
     }
 `;
 
-const Email = styled.div`
-    font-size: 1.5rem;
+const Email = styled(BaseSubheading)`
     color: #424242;
     margin-top: 20px;
-`;
-
-const Dot = styled.span`
-    font-weight: bold;
-    color: crimson;
 `;
 
 FooterTemplate.propTypes = {
@@ -161,13 +171,11 @@ const Footer = ({ data }) => {
     const { markdownRemark: post } = data;
 
     return (
-        <Layout>
-            <FooterTemplate
-                instagram={post.frontmatter.instagram}
-                email={post.frontmatter.email}
-                telephones={post.frontmatter.telephones}
-            />
-        </Layout>
+        <FooterTemplate
+            instagram={post.frontmatter.instagram}
+            email={post.frontmatter.email}
+            telephones={post.frontmatter.telephones}
+        />
     );
 };
 

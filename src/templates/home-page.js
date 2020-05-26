@@ -49,7 +49,7 @@ const CenteredText = styled(ParallaxLayer)`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    top: 48%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     height: fit-content;
@@ -73,19 +73,19 @@ const Subheading = styled.h2`
     position: relative;
     &::before {
         content: '';
-        width: 25%;
+        width: 20%;
         height: 10px;
         border-radius: 20px 0 20px;
         background: crimson;
         position: absolute;
-        top: 130%;
+        top: 140%;
         left: 50%;
         transform: translateX(-50%);
     }
     @media (${({ theme }) => theme.mediaQueries.s}) {
         font-size: 1.3rem;
         &::before {
-            height: 6px;
+            height: 7px;
         }
     }
 `;
@@ -108,9 +108,7 @@ const StyledLogo = styled.div`
     height: 85px;
     background: url(${logo}) no-repeat 50% scroll;
     background-size: contain;
-    @media (${({ theme }) => theme.mediaQueries.s}) {
-        display: none;
-    }
+    margin-bottom: 20px;
 `;
 
 HomePage.propTypes = {

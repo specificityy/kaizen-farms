@@ -18,7 +18,7 @@ export const Map = () => {
             const styledMapType = new window.google.maps.StyledMapType(styles, { name: 'Styled Map' });
             map.current = new window.google.maps.Map(mapElement.current, {
                 center: { lat: 18.796986, lng: -23.930993 }, // -69.78747 }, // Monte Plata
-                zoom: 4,
+                zoom: 1.5,
                 fullscreenControl: false,
                 clickableIcons: false,
                 zoomControl: false,

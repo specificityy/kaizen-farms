@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import chunk from 'lodash/chunk';
 import throttle from 'lodash/throttle';
 import Measure from 'react-measure';
+import { ThemeProvider } from 'emotion-theming';
 
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 import farmPath from '../img/farm-path.jpg';
@@ -12,6 +13,7 @@ import vegetables from '../img/vegetables-plants.jpg';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import { TextBlock } from '../components/TextBlock';
 import { Hexagon, Hexagon1 } from '../components/Hexagon';
+import theme from '../components/theme';
 
 const COLS = 3;
 const ROWS = 20;
@@ -65,32 +67,34 @@ export const ProductsPageTemplate = ({ title, image, products, className }) => {
     // }, [page.current]);
 
     return (
-        <MainParallaxGroup name="prod-main-parallax-group" id="products">
-            <ProductsLayer variant="base" name="text-and-products-parallax-layer">
-                <StyledTextBlock
-                    name="text-wrapper"
-                    title="What we produce"
-                    subheading={title}
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis, neque sit amet
+        <ThemeProvider theme={theme}>
+            <MainParallaxGroup name="prod-main-parallax-group" id="products">
+                <ProductsLayer variant="base" name="text-and-products-parallax-layer">
+                    <StyledTextBlock
+                        name="text-wrapper"
+                        title="What we produce"
+                        subheading={title}
+                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis, neque sit amet
                             dapibus varius, risus ipsum sagittis elit, a venenatis enim metus eu neque."
-                />
-                <ProdList ref={page} name="products-grid" id="hex-grid">
-                    {products.map(({ title, description, image }) => {
-                        return (
-                            <Product key={title} reveal={reveal} name={title}>
-                                <ProductsOverlay
+                    />
+                    <ProdList ref={page} name="products-grid" id="hex-grid">
+                        {products.map(({ title, description, image }) => {
+                            return (
+                                <Product key={title} reveal={reveal} name={title}>
+                                    {/* <ProductsImage
                                     className="overlay"
                                     hide={reveal}
                                     src={image.childImageSharp.fluid.src}
-                                />
-                                <ProdImage imageInfo={image} />
-                            </Product>
-                        );
-                    })}
-                </ProdList>
-            </ProductsLayer>
-            <HeroBackgroundLayer variant="back" />
-        </MainParallaxGroup>
+                                /> */}
+                                    <ProdImage imageInfo={image} />
+                                </Product>
+                            );
+                        })}
+                    </ProdList>
+                </ProductsLayer>
+                <HeroBackgroundLayer variant="back" />
+            </MainParallaxGroup>
+        </ThemeProvider>
     );
 };
 
@@ -104,10 +108,12 @@ const ProductsLayer = styled(ParallaxLayer)`
     background: white;
     height: 100vh;
     display: flex;
-`;
-
-const StyledTextBlock = styled(TextBlock)`
-    flex: 1 1 35%;
+    align-items: center;
+    @media (${({ theme }) => theme.mediaQueries.l}) {
+        height: fit-content;
+        display: block;
+        padding-bottom: 3rem;
+    }
 `;
 
 const HeroBackgroundLayer = styled(ParallaxLayer)`
@@ -124,15 +130,21 @@ const HeroBackgroundLayer = styled(ParallaxLayer)`
     }
 `;
 
+const StyledTextBlock = styled(TextBlock)``;
+
 const ProdList = styled.ul`
-    height: 100%;
     width: 100%;
+    height: fit-content;
     max-width: 1450px;
-    min-width: 1000px;
-    margin: 100px;
+    margin: 100px 50px 100px 0;
     padding: 20px 2%;
     overflow: hidden;
     background: white;
+    flex: 1 0 60%;
+    @media (${({ theme }) => theme.mediaQueries.l}) {
+        width: 90%;
+        margin: 0 auto;
+    }
 `;
 
 const Product = styled(Hexagon)``;
@@ -146,7 +158,7 @@ const ProdImage = styled(PreviewCompatibleBackgroundImage)`
     padding: 5px;
 `;
 
-const ProductsOverlay = styled.div`
+const ProductsImage = styled.div`
     ${props => `
         background: url(${props.src});
         background-position: 50% 60%;

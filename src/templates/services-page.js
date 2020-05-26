@@ -2,28 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
+import { ThemeProvider } from 'emotion-theming';
 
 import { TextBlock } from '../components/TextBlock';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import { Map } from '../components/map/Map';
+import theme from '../components/theme';
 
 export const ServicesPageTemplate = ({ title }) => {
     return (
-        <ParallaxGroup name="services-parallax-group" id="services">
-            <BaseParallax variant="base">
-                <TextBlock
-                    title={title}
-                    description="Proin vel ante placerat velit eleifend dignissim blandit nec tortor. Mauris ut tellus lobortis,
+        <ThemeProvider theme={theme}>
+            <MainParallaxGroup name="services-parallax-group" id="services">
+                <BaseParallax variant="base">
+                    <TextBlock
+                        title={title}
+                        description="Proin vel ante placerat velit eleifend dignissim blandit nec tortor. Mauris ut tellus lobortis,
                         mattis leo non, laoreet arcu. Nunc nec mi vitae nisi rutrum pretium."
-                    subheading="Our Services"
-                />
-            </BaseParallax>
-            <StyledHeroBackground variant="back">
-                <Map />
-            </StyledHeroBackground>
-        </ParallaxGroup>
+                        subheading="Our Services"
+                    />
+                </BaseParallax>
+                <StyledHeroBackground variant="back">
+                    <Map />
+                </StyledHeroBackground>
+            </MainParallaxGroup>
+        </ThemeProvider>
     );
 };
+
+const MainParallaxGroup = styled(ParallaxGroup)`
+    height: 120vh;
+`;
 
 const BaseParallax = styled(ParallaxLayer)`
     color: black;

@@ -87,4 +87,10 @@ export const cssReset = `
     * {
         box-sizing: border-box; /* fixes ghost scroll when height:100vh */
     }
+
+    h1,
+    h2,
+    h3 {
+        line-height: 1.15;
+    }
 `;

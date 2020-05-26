@@ -1,5 +1,15 @@
+const breakpoints = { xs: 0, s: 600, m: 960, l: 1280, xl: 1920 };
+const mediaQueries = {
+    xs: `max-width: ${breakpoints.xs}px`,
+    s: `max-width: ${breakpoints.s}px`,
+    m: `max-width: ${breakpoints.m}px`,
+    l: `max-width: ${breakpoints.l}px`,
+    xl: `max-width: ${breakpoints.xl}px`,
+};
+
 export default {
-    breakpoints: { keys: ['xs', 'sm', 'md', 'lg', 'xl'], values: { xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920 } },
+    breakpoints,
+    mediaQueries,
     palette: {
         common: { black: '#000', white: '#fff' },
         type: 'light',

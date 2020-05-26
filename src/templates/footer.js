@@ -3,15 +3,18 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { Layout } from 'antd';
 import styled from '@emotion/styled';
+import { ThemeProvider } from 'emotion-theming';
 
 import Instagram from '../img/social/instagram.svg';
+import plants from '../img/little-plants.jpg';
+import theme from '../components/theme';
 
 const { Footer: AntdFooter } = Layout;
 
 export const FooterTemplate = ({ instagram, email, telephones }) => {
     return (
-        <StyledFooter>
-            <StyledContent>
+        <ThemeProvider theme={theme}>
+            <StyledFooter>
                 <StyledFirstCell>
                     <div>
                         <Title>
@@ -53,23 +56,26 @@ export const FooterTemplate = ({ instagram, email, telephones }) => {
                         </StyledInstagram>
                     </Title>
                 </StyledSecondCell>
-            </StyledContent>
-        </StyledFooter>
+            </StyledFooter>
+        </ThemeProvider>
     );
 };
 
-const StyledFooter = styled(AntdFooter)`
+const StyledFooter = styled.footer`
     height: 100vh;
     position: relative;
     background: #1c1c1c;
-`;
+    background: url(${plants});
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
 
-const StyledContent = styled.div`
-    height: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 50% 50%;
     color: #fff;
+
+    // grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 `;
 
 const StyledCell = styled.div`
@@ -80,11 +86,11 @@ const StyledCell = styled.div`
 `;
 
 const StyledFirstCell = styled(StyledCell)`
-    background: #1f1f1f;
+    background: rgba(0, 0, 0, 0.5);
 `;
 
 const StyledSecondCell = styled(StyledCell)`
-    background: #232323;
+    background: rgba(0, 0, 0, 0.57);
 `;
 
 const StyledInstagram = styled.a`
@@ -105,7 +111,7 @@ const StyledSider = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #1c1c1c;
+    background: rgba(0, 0, 0, 0.55);
 `;
 
 const Title = styled.h2`
@@ -116,7 +122,7 @@ const Title = styled.h2`
 
 const Tagline = styled.h4`
     font-size: 1.5rem;
-    color: #424242;
+    color: #fff;
 `;
 
 const Telephones = styled.div`

@@ -6,12 +6,16 @@ import styled from '@emotion/styled';
 export const Hexagon = ({ children, name, ...props }) => (
     <>
         <HexagonListItem {...props}>
-            <HexagonInner>{children}</HexagonInner>
-            <Name>{name}</Name>
+            <HexagonInner>
+                {children}
+                <Name>{name}</Name>
+            </HexagonInner>
         </HexagonListItem>
     </>
 );
 
+// padding = 1.15473441108545 * width
+const PADDING_FACTOR = 1.15473441108545;
 const HexagonListItem = styled.li`
     ${props => `
     position: relative;
@@ -24,23 +28,10 @@ const HexagonListItem = styled.li`
     visibility: hidden;
     margin-right: 2%;
 
-
     transition: all 700ms;
 
     & * {
         visibility: visible;
-    }
-
-
-    &:nth-of-type(n + 1) {
-        // margin-left: -0.1%;
-    }
-
-    &:nth-of-type(n + 4) {
-    }
-
-    &:nth-of-type(3n + 2) {
-        // margin: 0 1%;
     }
 
     &:nth-of-type(6n + 4),
@@ -63,7 +54,28 @@ const HexagonListItem = styled.li`
     &:nth-of-type(6n + 1) {
         margin-left: 0.5%;
     }
-    
+
+    // @media (${props.theme.mediaQueries.l}) {
+    //     width: 30%;
+    //     padding: 0 0 ${30 * PADDING_FACTOR}% 0;
+
+    //     &:nth-of-type(2n - 1) {
+    //         transform: translateX(0) rotate(-60deg) skewY(30deg);
+    //     }
+
+    //     &:nth-of-type(2n - 1):not(:first-of-type) {
+    //         margin-bottom: 5%;
+    //     }
+
+    //     &:nth-of-type(2n - 1):not(:last-of-type) {
+    //         margin-top: 5%;
+    //     }
+
+    //     &:nth-of-type(2n) {
+    //         transform: translate(-29%,83%) rotate(-60deg) skewY(30deg);
+    //     }
+    // }
+
     ${
         props.reveal
             ? ''
@@ -115,7 +127,7 @@ const HexagonInner = styled.div`
 `;
 
 const Name = styled.h3`
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: bold;
     margin-top: 20px;
     position: absolute;
@@ -126,7 +138,9 @@ const Name = styled.h3`
     padding: 5px 10px;
     z-index: 10;
     transform: translateX(-50%);
-    width: fit-content;
-    text-align: center;
     width: 50%;
+    text-align: center;
+    @media (${({ theme }) => theme.mediaQueries.s}) {
+        font-size: 0.7rem;
+    }
 `;

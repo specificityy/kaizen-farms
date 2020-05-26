@@ -4,7 +4,6 @@ import { withPrefix } from 'gatsby';
 /** @jsx jsx */
 import { Global, css, jsx } from '@emotion/core';
 import styled from '@emotion/styled';
-import { ThemeProvider } from 'emotion-theming';
 import { BackTop } from 'antd';
 
 import { cssReset } from './cssReset';
@@ -12,7 +11,6 @@ import useSiteMetadata from './SiteMetadata';
 import { Parallax } from './Parallax';
 import { Footer } from '../components/Footer';
 import Navbar from '../components/Navbar';
-import theme from '../components/theme';
 
 const TemplateWrapper = ({ children }) => {
     const { title, description } = useSiteMetadata();
@@ -37,17 +35,15 @@ const TemplateWrapper = ({ children }) => {
             </Helmet>
             <GlobalStyles />
 
-            <ThemeProvider theme={theme}>
-                <StyledContent>
-                    <Navbar />
-                    {children}
-                    <Footer />
+            <StyledContent>
+                <Navbar />
+                {children}
+                <Footer />
 
-                    <BackTop name="back-top">
-                        <StyledUp>UP</StyledUp>
-                    </BackTop>
-                </StyledContent>
-            </ThemeProvider>
+                <BackTop name="back-top">
+                    <StyledUp>UP</StyledUp>
+                </BackTop>
+            </StyledContent>
         </>
     );
 };

@@ -23,6 +23,9 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     padding: 6rem 4rem;
+    @media (${({ theme }) => theme.mediaQueries.s}) {
+        padding: 5rem 2rem;
+    }
 `;
 
 const Subheading = styled.h5`
@@ -33,16 +36,22 @@ const Subheading = styled.h5`
 `;
 
 const Title = styled.h1`
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 700;
-    line-height: 1.12;
     color: #1c1c1c;
+    @media (${({ theme }) => theme.mediaQueries.s}) {
+        font-size: 2.7rem;
+        margin: 10px 0;
+    }
 `;
 
 const Description = styled.p`
     font-size: 1.5rem;
     color: #8b8b92;
     max-width: 1000px;
+    @media (${({ theme }) => theme.mediaQueries.s}) {
+        font-size: 1.2rem;
+    }
 `;
 
 const Dot = styled.span`

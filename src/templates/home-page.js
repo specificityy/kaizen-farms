@@ -2,21 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
+import { ThemeProvider } from 'emotion-theming';
 
 import vegetables from '../img/peppers-basket.jpg';
 import logo from '../img/logo-no-text.png';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
+import theme from '../components/theme';
 
 export const HomePageTemplate = ({ title, description, image }) => {
     return (
-        <ParallaxGroup name="home-parallax-group">
-            <CenteredText variant="base" name="text-layer">
-                <StyledLogo />
-                <Title>{title}</Title>
-                <Subheading>{description}</Subheading>
-            </CenteredText>
-            <StyledHeroBackground name="hero-background" variant="deep" />
-        </ParallaxGroup>
+        <ThemeProvider theme={theme}>
+            <ParallaxGroup name="home-parallax-group">
+                <CenteredText variant="base" name="text-layer">
+                    <StyledLogo />
+                    <Title>{title}</Title>
+                    <Subheading>{description}</Subheading>
+                </CenteredText>
+                <StyledHeroBackground name="hero-background" variant="deep" />
+            </ParallaxGroup>
+        </ThemeProvider>
     );
 };
 
@@ -45,18 +49,22 @@ const CenteredText = styled(ParallaxLayer)`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    top: 58%;
+    top: 48%;
     left: 50%;
-    transform: translate(-50%, -58%);
+    transform: translate(-50%, -50%);
+    height: fit-content;
 `;
 
 const Title = styled.h1`
-    ${props => {
-        // console.log(props);
-        return `font-size: 6rem;
-                font-weight: 900;
-                color: white;`;
-    }}
+    ${({ theme }) =>
+        `font-size: 6rem;
+        font-weight: 900;
+        color: white;
+        @media (${theme.mediaQueries.s}) {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+    `}
 `;
 
 const Subheading = styled.h2`
@@ -73,6 +81,12 @@ const Subheading = styled.h2`
         top: 130%;
         left: 50%;
         transform: translateX(-50%);
+    }
+    @media (${({ theme }) => theme.mediaQueries.s}) {
+        font-size: 1.3rem;
+        &::before {
+            height: 6px;
+        }
     }
 `;
 
@@ -94,6 +108,9 @@ const StyledLogo = styled.div`
     height: 85px;
     background: url(${logo}) no-repeat 50% scroll;
     background-size: contain;
+    @media (${({ theme }) => theme.mediaQueries.s}) {
+        display: none;
+    }
 `;
 
 HomePage.propTypes = {

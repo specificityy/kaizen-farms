@@ -2,19 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
+import { ThemeProvider } from 'emotion-theming';
 
 import farmer from '../img/farmer.jpg';
 import { TextBlock } from '../components/TextBlock';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
+import theme from '../components/theme';
 
 export const AboutPageTemplate = ({ title, description, image }) => {
     return (
-        <MainParallaxGroup name="about-us-parallax-group" id="about">
-            <BaseLayer variant="base">
-                <StyledTextBlock title={title} description={description} subheading="About us" />
-            </BaseLayer>
-            <StyledHeroBackground variant="back" />
-        </MainParallaxGroup>
+        <ThemeProvider theme={theme}>
+            <MainParallaxGroup name="about-us-parallax-group" id="about">
+                <BaseLayer variant="base">
+                    <StyledTextBlock title={title} description={description} subheading="About us" />
+                </BaseLayer>
+                <StyledHeroBackground variant="back" />
+            </MainParallaxGroup>
+        </ThemeProvider>
     );
 };
 
@@ -36,6 +40,9 @@ const StyledHeroBackground = styled(ParallaxLayer)`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    @media (${({ theme }) => theme.mediaQueries.s}) {
+        top: 40%;
+    }
     &::before {
         content: '';
         display: block;

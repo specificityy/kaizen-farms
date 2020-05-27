@@ -111,6 +111,9 @@ const StyledLogo = styled.div`
     background-size: 700px auto;
     background-position: 17.3% 50%;
     margin-bottom: 20px;
+    @media (${({ theme }) => theme.mediaQueries.s}) {
+        transform: scale(0.5) translateY(50%);
+    }
 `;
 
 HomePage.propTypes = {

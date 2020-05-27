@@ -37,9 +37,7 @@ const Navbar = class extends React.Component {
     };
     render() {
         return (
-            <StyledLogoLink to="/">
-                <StyledLogo />
-            </StyledLogoLink>
+            <StyledLogoLink to="/">{/* <StyledLogo /> */}</StyledLogoLink>
             // <StyledContainer renderInnerWrapper>
             //     <StyledHeader>
             //         <Link to="/">

@@ -1,16 +1,15 @@
 import React from 'react';
 /** @jsx jsx */
-import { Global, css, jsx } from '@emotion/core';
+import { jsx, css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 
 export const Hexagon = ({ children, name, ...props }) => (
     <>
         <HexagonListItem {...props}>
-            <Name>{name}</Name>
+            <Lid>{name}</Lid>
             <Tape />
             <HexagonInner>
                 {children}
-                <MobileName>{name}</MobileName>
                 <BoxSide name="box-side" />
             </HexagonInner>
         </HexagonListItem>
@@ -20,102 +19,149 @@ export const Hexagon = ({ children, name, ...props }) => (
 // padding = 1.15473441108545 * width
 const PADDING_FACTOR = 1.15473441108545;
 const HexagonListItem = styled.li`
-    ${props => `
-    position: relative;
-    float: left;
-    width: 27.85714285714286%;
-    padding: 0 0 32.16760145166612% 0;
-    list-style-type: none;
-    transform: rotate(-60deg) skewY(30deg);
-    overflow: hidden;
-    visibility: hidden;
-    margin-right: 2%;
+    ${({ reveal, theme: { transitions } }) => css`
+        position: relative;
+        float: left;
+        width: 27.85714285714286%;
+        padding: 0 0 32.16760145166612% 0;
+        list-style-type: none;
+        overflow: hidden;
+        visibility: hidden;
+        margin-right: 2%;
 
-    transition: all 700ms;
-
-    & * {
-        visibility: visible;
-    }
-
-    &:nth-of-type(6n + 4),
-    &:nth-of-type(6n + 5),
-    &:nth-of-type(6n + 6) {
-        margin-top: -3.9285714285%;
-        margin-bottom: -3.9285714285%;
-    }
-
-    &:nth-of-type(6n + 1),
-    &:nth-of-type(6n + 2),
-    &:nth-of-type(6n + 3) {
-        transform: translateX(50%) rotate(-60deg) skewY(30deg);
-
-        & .overlay:before {
-            background-position: 77% 50%;
+        & * {
+            visibility: visible;
         }
-    }
 
-    &:nth-of-type(6n + 1) {
-        margin-left: 0.5%;
-    }
+        &:nth-of-type(6n + 4),
+        &:nth-of-type(6n + 5),
+        &:nth-of-type(6n + 6) {
+            margin-top: -3.9285714285%;
+            margin-bottom: -3.9285714285%;
+        }
 
-    // @media (${props.theme.mediaQueries.l}) {
-    //     width: 30%;
-    //     padding: 0 0 ${30 * PADDING_FACTOR}% 0;
+        &:nth-of-type(6n + 1) {
+            margin-left: 0.5%;
+        }
 
-    //     &:nth-of-type(2n - 1) {
-    //         transform: translateX(0) rotate(-60deg) skewY(30deg);
-    //     }
+        &:last-of-type {
+            transform: rotate(-60deg) skewY(30deg);
+        }
 
-    //     &:nth-of-type(2n - 1):not(:first-of-type) {
-    //         margin-bottom: 5%;
-    //     }
+        &:nth-of-type(1),
+        &:nth-of-type(2),
+        &:nth-of-type(3) {
+            z-index: 40;
+            ${reveal
+                ? css`
+                      animation: ${transitions.duration.long * 2}ms ${transitions.easing.easeOutQuint} forwards
+                          ${slideInFirstRow};
+                  `
+                : css`
+                      animation: ${transitions.duration.long}ms ${transitions.easing.easeOutQuint} forwards
+                          ${slideOutFirstRow};
+                  `}
+        }
 
-    //     &:nth-of-type(2n - 1):not(:last-of-type) {
-    //         margin-top: 5%;
-    //     }
+        &:nth-of-type(4),
+        &:nth-of-type(5),
+        &:nth-of-type(6) {
+            z-index: 30;
+            ${reveal
+                ? css`
+                      animation: ${transitions.duration.long * 2}ms ${transitions.easing.easeOutQuint} forwards
+                          ${slideInSecondRow};
+                  `
+                : css`
+                      animation: ${transitions.duration.long}ms ${transitions.easing.easeOutQuint} forwards
+                          ${slideOutSecondRow};
+                  `}
+        }
 
-    //     &:nth-of-type(2n) {
-    //         transform: translate(-29%,83%) rotate(-60deg) skewY(30deg);
-    //     }
-    // }
-
-    ${
-        props.reveal
-            ? ''
-            : `
-                &:nth-of-type(n + 1) {
-                    margin-left: 0;;
-                }
-
-                &:nth-of-type(3n + 2) {
-                    margin: 0;
-                }
-
-                &:nth-of-type(6n + 4),
-                &:nth-of-type(6n + 5),
-                &:nth-of-type(6n + 6) {
-                    margin-top: -8.2%;
-                    margin-bottom: -8.2%;
-                }
-
-                &:nth-of-type(6n + 1),
-                &:nth-of-type(6n + 2),
-                &:nth-of-type(6n + 3) {
-                    transform: translateX(50%) rotate(-60deg) skewY(30deg);
-
-                    & .overlay:before {
-                        background-position: 77% 50%;
-                    }
-                }
-
-                &:nth-of-type(6n + 1) {
-                    margin-left: 0;
-                }
-                `
-    }
-    
-    
+        &:nth-of-type(7),
+        &:nth-of-type(8),
+        &:nth-of-type(9) {
+            z-index: 20;
+            ${reveal
+                ? css`
+                      animation: ${transitions.duration.long}ms ${transitions.easing.easeOutQuint} forwards
+                          ${slideInThirdRow};
+                  `
+                : css`
+                      animation: ${transitions.duration.long}ms ${transitions.easing.easeOutQuint} forwards
+                          ${slideOutThirdRow};
+                  `}
+        }
     `}
+`;
+
+const slideInFirstRow = keyframes`
+    0% {
+        transform: translate(-2%, 105%) rotate(-60deg) skewY(30deg);
+    }
+
+    50% {
+        transform: translate(50%, 70%) rotate(-60deg) skewY(30deg);
+    }
+
+    80% {
+        transform: translate(-2%, 35%) rotate(-60deg) skewY(30deg);
+    }
+
+    100% {
+        transform: translateX(50%) rotate(-60deg) skewY(30deg);
+    }
+`;
+
+const slideOutFirstRow = keyframes`
+    from {
+        transform: translateX(50%) rotate(-60deg) skewY(30deg);
+    }
+    to {
+        transform: translate(-2%, 105%) rotate(-60deg) skewY(30deg);
+    }
+`;
+
+const slideInSecondRow = keyframes`
+    0% {
+        transform: translate(0%, 70%) rotate(-60deg) skewY(30deg);
+    }
+
+    50% {
+        transform: translate(52%, 35%) rotate(-60deg) skewY(30deg);
+    }
+
+    100% {
+        transform: rotate(-60deg) skewY(30deg);
+    }
+`;
+
+const slideOutSecondRow = keyframes`
+    from {
+        transform: rotate(-60deg) skewY(30deg);
+    }
+    to {
+       transform: translate(0%, 70%) rotate(-60deg) skewY(30deg);
+    }
+`;
+
+const slideInThirdRow = keyframes`
+    from {
+        transform: translate(-2%, 35%) rotate(-60deg) skewY(30deg);
+    }
+
+    to {
+        transform: translateX(50%) rotate(-60deg) skewY(30deg);
+    }
+`;
+
+const slideOutThirdRow = keyframes`
+    from {
+        transform: translateX(50%) rotate(-60deg) skewY(30deg);
+    }
+    to {
+        transform: translate(-2%, 35%) rotate(-60deg) skewY(30deg);
+    }
 `;
 
 const HexagonInner = styled.div`
@@ -129,7 +175,7 @@ const HexagonInner = styled.div`
     background: none;
 `;
 
-const Name = styled.h3`
+const Lid = styled.div`
     font-size: 1.5rem;
     position: absolute;
     top: 0%;
@@ -138,38 +184,15 @@ const Name = styled.h3`
     background-image: linear-gradient(to right, #ddbf6d, #c39d54, #a97b3d, #8d5c28, #713e15);
 
     color: #fff;
-    padding: 5px 10px;
     z-index: 10;
     transform: translate(-50%, 0%);
     width: 50%;
     height: 50%;
     text-align: center;
+    word-break: break-word;
     padding-top: 5%;
-    @media (${({ theme }) => theme.mediaQueries.l}) {
-        font-size: 1.2rem;
-    }
-    @media (${({ theme }) => theme.mediaQueries.m}) {
-        // display: none;
-        font-size: 0.6rem;
-    }
-`;
-
-const MobileName = styled.h3`
-    font-size: 1rem;
-    margin-top: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background: rgba(25, 25, 25, 0.7);
-    color: #fff;
-    padding: 5px 10px;
-    z-index: 10;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    display: none;
-    width: 100%;
-    @media (${({ theme }) => theme.mediaQueries.m}) {
-        // display: block;
+    @media (${({ theme }) => theme.mediaQueries.s}) {
+        font-size: 0.61rem;
     }
 `;
 

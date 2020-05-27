@@ -2,9 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
-import chunk from 'lodash/chunk';
-import throttle from 'lodash/throttle';
-import Measure from 'react-measure';
 import { ThemeProvider } from 'emotion-theming';
 
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
@@ -12,59 +9,34 @@ import farmPath from '../img/farm-path.jpg';
 import vegetables from '../img/vegetables-plants.jpg';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import { TextBlock } from '../components/TextBlock';
-import { Hexagon, Hexagon1 } from '../components/Hexagon';
+import { Hexagon } from '../components/Hexagon';
 import theme from '../components/theme';
 
-const COLS = 3;
-const ROWS = 20;
-
-const rowSpanOptions = [3, 3, 4, 5, 6];
-
-let prevRatio = 0;
-
-export const ProductsPageTemplate = ({ title, image, products, className }) => {
+export const ProductsPageTemplate = ({ title, products }) => {
     const page = useRef(null);
-    const productsRef = useRef(null);
-    const [reveal, setReveal] = useState(true);
+    const [reveal, setReveal] = useState(false);
 
-    // useEffect(() => {
-    //     if (!page.current) return;
+    useEffect(() => {
+        if (!page.current) return;
 
-    //     const options = {
-    //         // root: page.current,
-    //         rootMargin: '0px',
-    //         threshold: [0.25, 0.5, 1],
-    //     };
+        const options = {
+            rootMargin: '0px',
+            threshold: [0.25, 0.8],
+        };
 
-    //     const callback = (entries, observer) => {
-    //         // console.log(entries);
-    //         entries.forEach(entry => {
-    //             // console.log(entry);
-    //             // Each entry describes an intersection change for one observed
-    //             // target element:
-    //             //   entry.boundingClientRect
-    //             //   entry.intersectionRatio
-    //             //   entry.intersectionRect
-    //             //   entry.isIntersecting
-    //             //   entry.rootBounds
-    //             //   entry.target
-    //             //   entry.time
-    //             if (entry.intersectionRatio > 0.8) {
-    //                 console.log(entry);
-    //                 setReveal(true);
-    //             } else {
-    //                 console.log('below');
-    //                 setReveal(false);
-    //             }
+        const callback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.intersectionRatio > 0.8) {
+                    if (!reveal) setReveal(true);
+                    observer.disconnect();
+                }
+            });
+        };
 
-    //             // prevRatio = entry.intersectionRatio;
-    //         });
-    //     };
+        const observer = new IntersectionObserver(callback, options);
 
-    //     const observer = new IntersectionObserver(callback, options);
-
-    //     observer.observe(page.current);
-    // }, [page.current]);
+        observer.observe(page.current);
+    }, [page.current]);
 
     return (
         <ThemeProvider theme={theme}>
@@ -78,14 +50,9 @@ export const ProductsPageTemplate = ({ title, image, products, className }) => {
                             dapibus varius, risus ipsum sagittis elit, a venenatis enim metus eu neque."
                     />
                     <ProdList ref={page} name="products-grid" id="hex-grid">
-                        {products.map(({ title, description, image }) => {
+                        {products.map(({ title, image }) => {
                             return (
                                 <Product key={title} reveal={reveal} name={title}>
-                                    {/* <ProductsImage
-                                    className="overlay"
-                                    hide={reveal}
-                                    src={image.childImageSharp.fluid.src}
-                                /> */}
                                     <ProdImage imageInfo={image} />
                                 </Product>
                             );
@@ -137,7 +104,7 @@ const ProdList = styled.ul`
     height: fit-content;
     max-width: 1450px;
     margin: 100px 50px 100px 0;
-    padding: 55px 2%;
+    padding: 20px 2% 55px 2%;
     overflow: hidden;
     background: white;
     flex: 1 0 60%;

@@ -137,7 +137,7 @@ const ProdList = styled.ul`
     height: fit-content;
     max-width: 1450px;
     margin: 100px 50px 100px 0;
-    padding: 20px 2%;
+    padding: 55px 2%;
     overflow: hidden;
     background: white;
     flex: 1 0 60%;
@@ -147,7 +147,10 @@ const ProdList = styled.ul`
     }
 `;
 
-const Product = styled(Hexagon)``;
+const Product = styled(Hexagon)`
+    box-shadow: 0px 9px 11px -5px rgba(0, 0, 0, 0.2), 0px 18px 28px 2px rgba(0, 0, 0, 0.14),
+        0px 7px 34px 6px rgba(0, 0, 0, 0.12);
+`;
 
 const ProdImage = styled(PreviewCompatibleBackgroundImage)`
     width: 100%;

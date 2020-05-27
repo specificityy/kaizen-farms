@@ -32,12 +32,7 @@ export const FooterTemplate = ({ instagram, email, telephones }) => {
                         </Email>
                         <Telephones>
                             {telephones.map(({ number }, index) => (
-                                <a
-                                    href={'tel:' + number}
-                                    key={number}
-                                    className={index === 0 ? 'first-phone' : ''}
-                                    first
-                                >
+                                <a href={'tel:' + number} key={number} className={index === 0 ? 'first-phone' : ''}>
                                     {number}
                                 </a>
                             ))}
@@ -56,6 +51,10 @@ export const FooterTemplate = ({ instagram, email, telephones }) => {
         </ThemeProvider>
     );
 };
+
+// #12843C
+// #33953B
+// #56A73D
 
 const StyledFooter = styled.footer`
     height: 100vh;

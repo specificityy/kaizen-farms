@@ -5,9 +5,10 @@ import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 
 import vegetables from '../img/peppers-basket.jpg';
-import logo from '../img/logo-no-text.png';
+// import logo from '../img/logo-no-text.png';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import theme from '../components/theme';
+import logo from '../img/kaizen-farms-logo.png';
 
 export const HomePageTemplate = ({ title, description, image }) => {
     return (
@@ -78,7 +79,7 @@ const Subheading = styled.h2`
         border-radius: 20px 0 20px;
         background: crimson;
         position: absolute;
-        top: 140%;
+        top: 150%;
         left: 50%;
         transform: translateX(-50%);
     }
@@ -104,10 +105,11 @@ const StyledHeroBackground = styled(ParallaxLayer)`
 `;
 
 const StyledLogo = styled.div`
-    width: 85px;
-    height: 85px;
+    width: 160px;
+    height: 165px;
     background: url(${logo}) no-repeat 50% scroll;
-    background-size: contain;
+    background-size: 700px auto;
+    background-position: 17.3% 50%;
     margin-bottom: 20px;
 `;
 

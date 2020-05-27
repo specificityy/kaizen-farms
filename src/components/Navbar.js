@@ -5,7 +5,7 @@ import { Menu, Layout } from 'antd';
 
 import { Container } from './Container';
 
-import logo from '../img/kaizen-farms-logo.jpg';
+import logo from '../img/kaizen-farms-logo.png';
 
 const Navbar = class extends React.Component {
     constructor(props) {

@@ -6,7 +6,6 @@ import { ThemeProvider } from 'emotion-theming';
 
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 import farmPath from '../img/farm-path.jpg';
-import vegetables from '../img/vegetables-plants.jpg';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import { TextBlock } from '../components/TextBlock';
 import { Hexagon } from '../components/Hexagon';
@@ -21,13 +20,13 @@ export const ProductsPageTemplate = ({ title, products }) => {
 
         const options = {
             rootMargin: '0px',
-            threshold: [0.25, 0.8],
+            threshold: 1,
         };
 
         const callback = (entries, observer) => {
             entries.forEach(entry => {
-                if (entry.intersectionRatio > 0.8) {
-                    if (!reveal) setReveal(true);
+                if (entry.intersectionRatio > 0.6) {
+                    setReveal(true);
                     observer.disconnect();
                 }
             });
@@ -36,7 +35,7 @@ export const ProductsPageTemplate = ({ title, products }) => {
         const observer = new IntersectionObserver(callback, options);
 
         observer.observe(page.current);
-    }, [page.current]);
+    }, [page]);
 
     return (
         <ThemeProvider theme={theme}>
@@ -126,33 +125,6 @@ const ProdImage = styled(PreviewCompatibleBackgroundImage)`
     background-repeat: no-repeat;
     background-size: cover;
     padding: 5px;
-`;
-
-const ProductsImage = styled.div`
-    ${props => `
-        background: url(${props.src});
-        background-position: 50% 60%;
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding: 5px;
-
-        transition: all 700ms;
-
-        &::before {
-            content: '';
-            position: fixed;
-            z-index: 10;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url(${vegetables});
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            opacity: ${props.hide ? '0' : '1'};
-        }`}
 `;
 
 const ProductsPage = ({ data }) => {

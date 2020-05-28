@@ -12,7 +12,7 @@ import theme from '../components/theme';
 export const ServicesPageTemplate = ({ title }) => {
     return (
         <ThemeProvider theme={theme}>
-            <MainParallaxGroup name="services-parallax-group" id="services">
+            <MainParallaxGroup name="services-parallax-group" id="reach">
                 <BaseParallax variant="base" name="services-text">
                     <StyledTextBlock
                         title={title}
@@ -41,15 +41,12 @@ const BaseParallax = styled(ParallaxLayer)`
 `;
 
 const StyledHeroMap = styled(ParallaxLayer)`
-    top: 28%;
+    top: 23%;
     height: 80%;
-    @media (${({ theme }) => theme.mediaQueries.m}) {
-        top: 23%;
-    }
 `;
 
 const StyledTextBlock = styled(TextBlock)`
-    min-height: 500px;
+    min-height: 600px;
 `;
 
 const ServicesPage = ({ data }) => {

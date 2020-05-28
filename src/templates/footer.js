@@ -5,14 +5,13 @@ import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 
 import Instagram from '../img/social/instagram.svg';
-import plants from '../img/little-plants.jpg';
 import theme from '../components/theme';
 import { Red } from '../components/TextBlock';
 
 export const FooterTemplate = ({ instagram, email, telephones }) => {
     return (
         <ThemeProvider theme={theme}>
-            <StyledFooter>
+            <StyledFooter id="contact">
                 <StyledFirstCell>
                     <div>
                         <Heading>

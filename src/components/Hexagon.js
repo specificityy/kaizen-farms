@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line
 /** @jsx jsx */
 import { jsx, css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
@@ -17,7 +17,6 @@ export const Hexagon = ({ children, name, ...props }) => (
 );
 
 // padding = 1.15473441108545 * width
-const PADDING_FACTOR = 1.15473441108545;
 const HexagonListItem = styled.li`
     ${({ reveal, theme: { transitions } }) => css`
         position: relative;
@@ -54,11 +53,11 @@ const HexagonListItem = styled.li`
             z-index: 40;
             ${reveal
                 ? css`
-                      animation: ${transitions.duration.long * 2}ms ${transitions.easing.easeOutQuint} forwards
+                      animation: ${transitions.duration.complex}ms ${transitions.easing.easeInOutQuint} forwards
                           ${slideInFirstRow};
                   `
                 : css`
-                      animation: ${transitions.duration.long}ms ${transitions.easing.easeOutQuint} forwards
+                      animation: ${transitions.duration.complex}ms ${transitions.easing.easeInOutQuint} forwards
                           ${slideOutFirstRow};
                   `}
         }
@@ -69,11 +68,11 @@ const HexagonListItem = styled.li`
             z-index: 30;
             ${reveal
                 ? css`
-                      animation: ${transitions.duration.long * 2}ms ${transitions.easing.easeOutQuint} forwards
+                      animation: ${transitions.duration.complex}ms ${transitions.easing.easeInOutQuint} forwards
                           ${slideInSecondRow};
                   `
                 : css`
-                      animation: ${transitions.duration.long}ms ${transitions.easing.easeOutQuint} forwards
+                      animation: ${transitions.duration.complex}ms ${transitions.easing.easeInOutQuint} forwards
                           ${slideOutSecondRow};
                   `}
         }
@@ -84,11 +83,11 @@ const HexagonListItem = styled.li`
             z-index: 20;
             ${reveal
                 ? css`
-                      animation: ${transitions.duration.long}ms ${transitions.easing.easeOutQuint} forwards
+                      animation: ${transitions.duration.complex}ms ${transitions.easing.easeInOutQuint} forwards
                           ${slideInThirdRow};
                   `
                 : css`
-                      animation: ${transitions.duration.long}ms ${transitions.easing.easeOutQuint} forwards
+                      animation: ${transitions.duration.complex}ms ${transitions.easing.easeInOutQuint} forwards
                           ${slideOutThirdRow};
                   `}
         }
@@ -100,13 +99,13 @@ const slideInFirstRow = keyframes`
         transform: translate(-2%, 105%) rotate(-60deg) skewY(30deg);
     }
 
-    50% {
-        transform: translate(50%, 70%) rotate(-60deg) skewY(30deg);
-    }
+    // 50% {
+    //     transform: translate(50%, 70%) rotate(-60deg) skewY(30deg);
+    // }
 
-    80% {
-        transform: translate(-2%, 35%) rotate(-60deg) skewY(30deg);
-    }
+    // 80% {
+    //     transform: translate(-2%, 35%) rotate(-60deg) skewY(30deg);
+    // }
 
     100% {
         transform: translateX(50%) rotate(-60deg) skewY(30deg);
@@ -127,9 +126,9 @@ const slideInSecondRow = keyframes`
         transform: translate(0%, 70%) rotate(-60deg) skewY(30deg);
     }
 
-    50% {
-        transform: translate(52%, 35%) rotate(-60deg) skewY(30deg);
-    }
+    // 50% {
+    //     transform: translate(52%, 35%) rotate(-60deg) skewY(30deg);
+    // }
 
     100% {
         transform: rotate(-60deg) skewY(30deg);
@@ -194,6 +193,7 @@ const Lid = styled.div`
     @media (${({ theme }) => theme.mediaQueries.s}) {
         font-size: 0.61rem;
     }
+    filter: opacity(0.9);
 `;
 
 const BoxSide = styled.div`
@@ -207,13 +207,7 @@ const BoxSide = styled.div`
     transform-origin: left top;
     width: 100%;
     height: 50%;
-    @media (${({ theme }) => theme.mediaQueries.l}) {
-        font-size: 1.2rem;
-    }
-    @media (${({ theme }) => theme.mediaQueries.m}) {
-        // display: none;
-        font-size: 0.7rem;
-    }
+    opacity: 0.7;
 `;
 
 const Tape = styled.div`

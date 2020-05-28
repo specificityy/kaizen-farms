@@ -8,7 +8,7 @@ import styles from './styles';
 export const Map = () => {
     const mapElement = useRef(null);
     const map = useRef(null);
-    const { mediaQueries, breakpoints } = useTheme();
+    const { mediaQueries } = useTheme();
 
     useEffect(() => {
         const calcZoomAndLocation = () => {
@@ -59,7 +59,7 @@ export const Map = () => {
             // map.current !== null && map.current.removeListener(handleZoomChanged);
             window.removeEventListener('resize', handleWindowResize);
         };
-    }, []);
+    }, [mediaQueries.m]);
 
     return <StyledMap name="map" ref={mapElement} />;
 };

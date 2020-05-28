@@ -13,7 +13,7 @@ import logo from '../img/kaizen-farms-logo.png';
 export const HomePageTemplate = ({ title, description, image }) => {
     return (
         <ThemeProvider theme={theme}>
-            <ParallaxGroup name="home-parallax-group">
+            <ParallaxGroup name="home-parallax-group" id="home">
                 <CenteredText variant="base" name="text-layer">
                     <StyledLogo />
                     <Title>{title}</Title>

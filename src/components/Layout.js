@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { withPrefix } from 'gatsby';
 /** @jsx jsx */
@@ -12,8 +12,21 @@ import { Parallax } from './Parallax';
 import { Footer } from '../components/Footer';
 import Navbar from '../components/Navbar';
 
+const vw = v => {
+    const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    return (v * w) / 100;
+};
+
+const maxNavbarWidth = 400;
+
 const TemplateWrapper = ({ children }) => {
     const { title, description } = useSiteMetadata();
+    const [navOpen, setNavOpen] = useState(false);
+    const contentRef = React.useRef(null);
+
+    const handleNavOpen = () => setNavOpen(true);
+    const handleNavClose = () => setNavOpen(false);
+
     return (
         <>
             <Helmet>
@@ -35,8 +48,15 @@ const TemplateWrapper = ({ children }) => {
             </Helmet>
             <GlobalStyles />
 
-            <StyledContent>
-                <Navbar />
+            <Navbar
+                onOpen={handleNavOpen}
+                onClose={handleNavClose}
+                open={navOpen}
+                maxWidth={maxNavbarWidth}
+                contentRef={contentRef}
+            />
+
+            <StyledContent navOpen={navOpen} ref={contentRef}>
                 {children}
                 <Footer />
 
@@ -51,6 +71,8 @@ const TemplateWrapper = ({ children }) => {
 const StyledContent = styled(Parallax)`
     background: white;
     color: #1c1c1c;
+    transition: transform 300ms;
+    ${props => (props.navOpen ? `transform: translateX(-${Math.min(maxNavbarWidth, vw(40))}px);` : '')}
 `;
 
 const StyledUp = styled.div`
@@ -77,24 +99,5 @@ const GlobalStyles = () => {
         />
     );
 };
-
-// scroll styles, add to the * element
-/*
-    &::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-        background: #1c1c1c;
-        border-radius: 10px;
-    }
-
-    &::-webkit-scrollbar {
-        width: 10px;
-        background-color: #f5f5f5;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        background-color: #424242;
-    }
-*/
 
 export default TemplateWrapper;

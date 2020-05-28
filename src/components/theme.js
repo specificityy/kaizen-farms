@@ -112,7 +112,7 @@ export default {
             shorter: 200,
             short: 250,
             standard: 300,
-            complex: 375,
+            complex: 575,
             long: 860,
         },
     },

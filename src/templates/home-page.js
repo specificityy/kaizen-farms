@@ -3,21 +3,28 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
+/** @jsx jsx */
+import { jsx, css, keyframes } from '@emotion/core';
 
 import vegetables from '../img/peppers-basket.jpg';
-// import logo from '../img/logo-no-text.png';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import theme from '../components/theme';
 import logo from '../img/kaizen-farms-logo.png';
 
-export const HomePageTemplate = ({ title, description, image }) => {
+export const HomePageTemplate = ({ title, description }) => {
     return (
         <ThemeProvider theme={theme}>
             <ParallaxGroup name="home-parallax-group" id="home">
                 <CenteredText variant="base" name="text-layer">
-                    <StyledLogo />
-                    <Title>{title}</Title>
-                    <Subheading>{description}</Subheading>
+                    <AnimateContainer delay={500}>
+                        <StyledLogo />
+                    </AnimateContainer>
+                    <AnimateContainer delay={700}>
+                        <Title>{title}</Title>
+                    </AnimateContainer>
+                    <AnimateContainer delay={900}>
+                        <Subheading>{description}</Subheading>
+                    </AnimateContainer>
                 </CenteredText>
                 <StyledHeroBackground name="hero-background" variant="deep" />
             </ParallaxGroup>
@@ -42,6 +49,26 @@ const HomePage = ({ data }) => {
         />
     );
 };
+
+const AnimateContainer = styled.div`
+    ${({ delay, theme: { transitions } }) => css`
+        overflow: hidden;
+        & > * {
+            transition: transform ${transitions.duration.complex}ms;
+            transform: translateY(120%);
+            animation: 0.8s ${revealUp} cubic-bezier(0.24, 0.72, 0.35, 1.01) ${delay}ms forwards;
+        }
+    `}
+`;
+
+const revealUp = keyframes`
+    from {
+        transform: translateY(120%);
+    }
+    to {
+        transform: translate(0);
+    }
+`;
 
 const CenteredText = styled(ParallaxLayer)`
     padding: 1rem 2rem;

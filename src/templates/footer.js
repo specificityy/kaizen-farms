@@ -183,15 +183,8 @@ FooterTemplate.propTypes = {
 };
 
 const Footer = ({ data }) => {
-    const { markdownRemark: post } = data;
-
-    return (
-        <FooterTemplate
-            instagram={post.frontmatter.instagram}
-            email={post.frontmatter.email}
-            telephones={post.frontmatter.telephones}
-        />
-    );
+    const { frontmatter } = data.markdownRemark;
+    return <FooterTemplate {...frontmatter} />;
 };
 
 Footer.propTypes = {

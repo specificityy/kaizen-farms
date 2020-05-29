@@ -131,7 +131,7 @@ const ProdImage = styled(PreviewCompatibleBackgroundImage)`
 
 const ProductsPage = ({ data }) => {
     const { frontmatter } = data.markdownRemark;
-    return <ProductsPageTemplate title={frontmatter.title} products={frontmatter.products} image={frontmatter.image} />;
+    return <ProductsPageTemplate {...frontmatter} />;
 };
 
 export const productsPageQuery = graphql`

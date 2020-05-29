@@ -144,15 +144,8 @@ HomePageTemplate.propTypes = {
 };
 
 const HomePage = ({ data }) => {
-    const { markdownRemark: post } = data;
-
-    return (
-        <HomePageTemplate
-            heading={post.frontmatter.heading}
-            description={post.frontmatter.description}
-            image={post.frontmatter.image}
-        />
-    );
+    const { frontmatter } = data.markdownRemark;
+    return <HomePageTemplate {...frontmatter} />;
 };
 
 HomePage.propTypes = {

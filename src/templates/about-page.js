@@ -60,15 +60,8 @@ AboutPageTemplate.propTypes = {
 };
 
 const AboutPage = ({ data }) => {
-    const { markdownRemark: post } = data;
-
-    return (
-        <AboutPageTemplate
-            title={post.frontmatter.title}
-            description={post.frontmatter.description}
-            image={post.frontmatter.image}
-        />
-    );
+    const { frontmatter } = data.markdownRemark;
+    return <AboutPageTemplate {...frontmatter} />;
 };
 
 AboutPage.propTypes = {

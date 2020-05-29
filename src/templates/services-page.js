@@ -69,8 +69,7 @@ const List = styled.ul`
 
 const ServicesPage = ({ data }) => {
     const { frontmatter } = data.markdownRemark;
-
-    return <ServicesPageTemplate title={frontmatter.title} services={frontmatter.services} image={frontmatter.image} />;
+    return <ServicesPageTemplate {...frontmatter} />;
 };
 
 export const servicesPageQuery = graphql`

@@ -9,12 +9,12 @@ import { TextBlock } from '../components/TextBlock';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import theme from '../components/theme';
 
-export const AboutPageTemplate = ({ title, description, image }) => {
+export const AboutPageTemplate = ({ heading, subheading, description, image }) => {
     return (
         <ThemeProvider theme={theme}>
             <MainParallaxGroup name="about-us-parallax-group" id="about">
                 <BaseLayer variant="base">
-                    <StyledTextBlock title={title} description={description} subheading="About us" />
+                    <StyledTextBlock heading={heading} subheading={subheading} description={description} />
                 </BaseLayer>
                 <StyledHeroBackground variant="back" />
             </MainParallaxGroup>
@@ -53,8 +53,9 @@ const StyledHeroBackground = styled(ParallaxLayer)`
 `;
 
 AboutPageTemplate.propTypes = {
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    heading: PropTypes.string,
+    subheading: PropTypes.string,
+    description: PropTypes.string,
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
@@ -80,7 +81,8 @@ export const aboutPageQuery = graphql`
     query AboutPage($id: String!) {
         markdownRemark(id: { eq: $id }) {
             frontmatter {
-                title
+                heading
+                subheading
                 description
             }
         }

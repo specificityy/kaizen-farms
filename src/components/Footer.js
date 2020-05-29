@@ -11,7 +11,11 @@ const useFooter = () => {
             {
                 markdownRemark(frontmatter: { templateKey: { eq: "footer" } }) {
                     frontmatter {
-                        instagram
+                        heading
+                        description
+                        instagramHeading
+                        instagramLink
+                        contactHeading
                         email
                         telephones {
                             number

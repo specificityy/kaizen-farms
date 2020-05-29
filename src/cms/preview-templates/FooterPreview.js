@@ -5,7 +5,11 @@ import { FooterTemplate } from '../../templates/footer';
 const FooterPreview = ({ entry }) => {
     return (
         <FooterTemplate
-            instagram={entry.getIn(['data', 'instagram'])}
+            heading={entry.getIn(['data', 'heading'])}
+            description={entry.getIn(['data', 'description'])}
+            instagramHeading={entry.getIn(['data', 'instagramHeading'])}
+            instagramLink={entry.getIn(['data', 'instagramLink'])}
+            contactHeading={entry.getIn(['data', 'contactHeading'])}
             email={entry.getIn(['data', 'email'])}
             telephones={entry.getIn(['data', 'telephones'])}
         />

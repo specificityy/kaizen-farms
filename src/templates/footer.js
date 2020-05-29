@@ -8,24 +8,34 @@ import Instagram from '../img/social/instagram.svg';
 import theme from '../components/theme';
 import { Red } from '../components/TextBlock';
 
-export const FooterTemplate = ({ instagram, email, telephones }) => {
+export const FooterTemplate = ({
+    heading,
+    description,
+    instagramHeading,
+    instagramLink,
+    contactHeading,
+    email,
+    telephones,
+}) => {
     return (
         <ThemeProvider theme={theme}>
             <StyledFooter id="contact">
                 <StyledFirstCell>
                     <div>
                         <Heading>
-                            Kaizen Farms<Red>.</Red>
+                            {heading}
+                            <Red>.</Red>
                         </Heading>
-                        <Subheading>Dominican Producers and Exporters</Subheading>
+                        <Subheading>{description}</Subheading>
                     </div>
                 </StyledFirstCell>
                 <StyledSider>
                     <Heading>
-                        Contact us<Red>.</Red>
+                        {contactHeading}
+                        <Red>.</Red>
                         <Email>
                             <Red>@</Red>&nbsp;&nbsp;&nbsp;
-                            <a href={'mailto:' + email} subject="Customer enquiry">
+                            <a href={'mailto:' + email} subject="Kaizen Customer enquiry">
                                 {email}
                             </a>
                         </Email>
@@ -40,8 +50,9 @@ export const FooterTemplate = ({ instagram, email, telephones }) => {
                 </StyledSider>
                 <StyledSecondCell>
                     <Heading>
-                        Find us on<Red>:</Red>
-                        <StyledInstagram title="Instagram" href={instagram}>
+                        {instagramHeading}
+                        <Red>.</Red>
+                        <StyledInstagram title="Instagram" href={instagramLink}>
                             <Instagram />
                         </StyledInstagram>
                     </Heading>
@@ -51,6 +62,7 @@ export const FooterTemplate = ({ instagram, email, telephones }) => {
     );
 };
 
+// greens
 // #12843C
 // #33953B
 // #56A73D
@@ -161,8 +173,12 @@ const Email = styled(BaseSubheading)`
 `;
 
 FooterTemplate.propTypes = {
-    instagram: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
+    heading: PropTypes.string,
+    description: PropTypes.string,
+    instagramHeading: PropTypes.string,
+    instagramLink: PropTypes.string,
+    contactHeading: PropTypes.string,
+    email: PropTypes.string,
     telephones: PropTypes.array,
 };
 
@@ -186,7 +202,11 @@ export const footerQuery = graphql`
     query Footer($id: String!) {
         markdownRemark(id: { eq: $id }) {
             frontmatter {
-                instagram
+                heading
+                description
+                instagramHeading
+                instagramLink
+                contactHeading
                 email
                 telephones {
                     number

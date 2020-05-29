@@ -3,40 +3,31 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
+import { v4 as uuidv4 } from 'uuid';
 
 import { TextBlock } from '../components/TextBlock';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import { Map } from '../components/map/Map';
 import theme from '../components/theme';
 
-export const ServicesPageTemplate = ({ title }) => {
+export const ServicesPageTemplate = ({ heading, subheading, description, bulletPoints }) => {
     return (
         <ThemeProvider theme={theme}>
             <MainParallaxGroup name="services-parallax-group" id="services">
                 <BaseParallax variant="base" name="services-text">
                     <StyledTextBlock
-                        title={title}
+                        heading={heading}
                         description={
                             <>
-                                <p>
-                                    At Kaizen farms we put the effort to bring you the best quality. This is our promise
-                                    to you:
-                                </p>
+                                <p>{description}</p>
                                 <List>
-                                    <li>Sole use of agrochemicals approved byt the FDA and the European guidelines.</li>
-                                    <li>Phytosanitary registry.</li>
-                                    <li>
-                                        Key location for commercialization: 45min from our farm to the airport/seaport.
-                                    </li>
-                                    <li>Sole use of certified seeds for the germination process.</li>
-                                    <li>
-                                        Customs management for exporting: guarantee of origin, commercial invoice,
-                                        declaration of application form and shipment.
-                                    </li>
+                                    {bulletPoints.map(({ text }) => (
+                                        <li key={uuidv4()}>{text}</li>
+                                    ))}
                                 </List>
                             </>
                         }
-                        subheading="Our Services"
+                        subheading={subheading}
                     />
                 </BaseParallax>
                 <StyledHeroMap variant="back" name="services-map">
@@ -86,17 +77,11 @@ export const servicesPageQuery = graphql`
     query ServicesPage($id: String!) {
         markdownRemark(id: { eq: $id }) {
             frontmatter {
-                title
-                services {
-                    title
-                    description
-                    image {
-                        childImageSharp {
-                            fluid(maxWidth: 1500, quality: 90) {
-                                ...GatsbyImageSharpFluid
-                            }
-                        }
-                    }
+                heading
+                subheading
+                description
+                bulletPoints {
+                    text
                 }
             }
         }
@@ -112,9 +97,10 @@ ServicesPage.propTypes = {
 };
 
 ServicesPageTemplate.propTypes = {
-    title: PropTypes.string,
-    services: PropTypes.array,
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    heading: PropTypes.string,
+    subheading: PropTypes.string,
+    description: PropTypes.string,
+    bulletPoints: PropTypes.array,
 };
 
 export default ServicesPage;

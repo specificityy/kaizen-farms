@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ServicesPageTemplate } from '../../templates/services-page';
 
-const ServicesPagePreview = ({ entry, getAsset }) => {
-    const entryProducts = entry.getIn(['data', 'services']);
-    const services = entryProducts ? entryProducts.toJS() : [];
+const ServicesPagePreview = ({ entry }) => {
+    const entryBulletPoints = entry.getIn(['data', 'bulletPoints']);
+    const bulletPoints = entryBulletPoints ? entryBulletPoints.toJS() : [];
 
     return (
         <ServicesPageTemplate
-            title={entry.getIn(['data', 'title'])}
-            services={services}
-            image={getAsset(entry.getIn(['data', 'image']))}
+            heading={entry.getIn(['data', 'heading'])}
+            subheading={entry.getIn(['data', 'subheading'])}
+            description={entry.getIn(['data', 'description'])}
+            bulletPoints={bulletPoints}
         />
     );
 };
@@ -19,7 +20,6 @@ ServicesPagePreview.propTypes = {
     entry: PropTypes.shape({
         getIn: PropTypes.func,
     }),
-    getAsset: PropTypes.func,
 };
 
 export default ServicesPagePreview;

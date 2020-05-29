@@ -11,7 +11,7 @@ import { TextBlock } from '../components/TextBlock';
 import { Hexagon } from '../components/Hexagon';
 import theme from '../components/theme';
 
-export const ProductsPageTemplate = ({ title, products }) => {
+export const ProductsPageTemplate = ({ heading, subheading, description, products }) => {
     const page = useRef(null);
     const [reveal, setReveal] = useState(false);
 
@@ -43,10 +43,9 @@ export const ProductsPageTemplate = ({ title, products }) => {
                 <ProductsLayer variant="base" name="text-and-products-parallax-layer">
                     <StyledTextBlock
                         name="text-wrapper"
-                        title="What we produce"
-                        subheading={title}
-                        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis, neque sit amet
-                            dapibus varius, risus ipsum sagittis elit, a venenatis enim metus eu neque."
+                        heading={heading}
+                        subheading={subheading}
+                        description={description}
                     />
                     <ProdList ref={page} name="products-grid" id="hex-grid">
                         {products.map(({ title, image }) => {
@@ -139,7 +138,9 @@ export const productsPageQuery = graphql`
     query ProductsPage($id: String!) {
         markdownRemark(id: { eq: $id }) {
             frontmatter {
-                title
+                heading
+                subheading
+                description
                 products {
                     title
                     image {
@@ -164,7 +165,9 @@ ProductsPage.propTypes = {
 };
 
 ProductsPageTemplate.propTypes = {
-    title: PropTypes.string,
+    heading: PropTypes.string,
+    subheading: PropTypes.string,
+    description: PropTypes.string,
     products: PropTypes.array,
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };

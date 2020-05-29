@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 
-export const TextBlock = ({ title, description, subheading, ...props }) => {
+export const TextBlock = ({ heading, description, subheading, ...props }) => {
     return (
         <Wrapper {...props}>
             <Subheading>{subheading}</Subheading>
-            <Title>
-                {title}
+            <Heading>
+                {heading}
                 <Red>.</Red>
-            </Title>
+            </Heading>
             <Description>{description}</Description>
         </Wrapper>
     );
@@ -35,17 +35,18 @@ const Subheading = styled.h5`
     color: #c0c0c3;
 `;
 
-const Title = styled.h1`
+const Heading = styled.h1`
     font-size: 4rem;
     font-weight: 700;
     color: #1c1c1c;
+    margin: 15px 0;
     @media (${({ theme }) => theme.mediaQueries.s}) {
         font-size: 2.7rem;
         margin: 10px 0;
     }
 `;
 
-const Description = styled.p`
+const Description = styled.div`
     font-size: 1.5rem;
     color: #8b8b92;
     max-width: 1000px;
@@ -60,7 +61,7 @@ export const Red = styled.span`
 `;
 
 TextBlock.propTypes = {
-    title: PropTypes.string,
-    description: PropTypes.string,
+    heading: PropTypes.string,
+    description: PropTypes.oneOf(PropTypes.string, PropTypes.element),
     subheading: PropTypes.string,
 };

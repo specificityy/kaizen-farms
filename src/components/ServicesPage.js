@@ -3,9 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import { ServicesPageTemplate } from '../templates/services-page';
 
-export const ServicesPage = React.forwardRef((props, ref) => (
-    <ServicesPageTemplate {...useServices()} {...props} ref={ref} />
-));
+export const ServicesPage = props => <ServicesPageTemplate {...useServices()} {...props} />;
 
 const useServices = () => {
     return useStaticQuery(
@@ -13,17 +11,11 @@ const useServices = () => {
             {
                 markdownRemark(frontmatter: { templateKey: { eq: "services-page" } }) {
                     frontmatter {
-                        title
-                        services {
-                            title
-                            description
-                            image {
-                                childImageSharp {
-                                    fluid(maxWidth: 1500, quality: 90) {
-                                        ...GatsbyImageSharpFluid
-                                    }
-                                }
-                            }
+                        heading
+                        subheading
+                        description
+                        bulletPoints {
+                            text
                         }
                     }
                 }

@@ -35,7 +35,7 @@ collections:
                     { label: Description, name: description, widget: text },
                     { label: 'Instagram Heading', name: instagramHeading, widget: string },
                     { label: 'Instagram Link', name: instagramLink, widget: string },
-                    { label: 'Contact Heading', name: ContactHeading, widget: string },
+                    { label: 'Contact Heading', name: contactHeading, widget: string },
                     { label: Email, name: email, widget: string },
                     { label: Telephones, name: telephones, widget: list, fields: [{ label: Number, name: number }] },
                 ]

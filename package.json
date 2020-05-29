@@ -41,7 +41,7 @@
         "react-parallax": "3.0.3",
         "react-spring": "8.0.27",
         "rebass": "4.0.7",
-        "uuid": "8.0.0"
+        "uuid": "8.1.0"
     },
     "keywords": [
         "gatsby"

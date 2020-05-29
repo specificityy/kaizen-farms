@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import { HomePageTemplate } from '../templates/home-page';
 
-export const HomePage = React.forwardRef((props, ref) => <HomePageTemplate {...useHomepage()} {...props} ref={ref} />);
+export const HomePage = props => <HomePageTemplate {...useHomepage()} {...props} />;
 
 const useHomepage = () => {
     return useStaticQuery(
@@ -11,7 +11,7 @@ const useHomepage = () => {
             {
                 markdownRemark(frontmatter: { templateKey: { eq: "home-page" } }) {
                     frontmatter {
-                        title
+                        heading
                         description
                     }
                 }

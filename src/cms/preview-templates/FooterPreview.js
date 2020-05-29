@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { FooterTemplate } from '../../templates/footer';
 
 const FooterPreview = ({ entry }) => {
+    const entryTelephones = entry.getIn(['data', 'telephones']);
+    const telephones = entryTelephones ? entryTelephones.toJS() : [];
+
     return (
         <FooterTemplate
             heading={entry.getIn(['data', 'heading'])}
@@ -11,7 +14,7 @@ const FooterPreview = ({ entry }) => {
             instagramLink={entry.getIn(['data', 'instagramLink'])}
             contactHeading={entry.getIn(['data', 'contactHeading'])}
             email={entry.getIn(['data', 'email'])}
-            telephones={entry.getIn(['data', 'telephones'])}
+            telephones={telephones}
         />
     );
 };

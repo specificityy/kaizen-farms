@@ -11,7 +11,7 @@ import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import theme from '../components/theme';
 import logo from '../img/kaizen-farms-logo.png';
 
-export const HomePageTemplate = ({ title, description }) => {
+export const HomePageTemplate = ({ heading, description }) => {
     return (
         <ThemeProvider theme={theme}>
             <MainParallaxGroup name="home-parallax-group" id="home">
@@ -20,7 +20,7 @@ export const HomePageTemplate = ({ title, description }) => {
                         <StyledLogo />
                     </AnimateContainer>
                     <AnimateContainer delay={700}>
-                        <Title>{title}</Title>
+                        <Heading>{heading}</Heading>
                     </AnimateContainer>
                     <AnimateContainer delay={1000}>
                         <Subheading>{description}</Subheading>
@@ -52,7 +52,7 @@ const CenteredText = styled(ParallaxLayer)`
     }
 `;
 
-const Title = styled.h1`
+const Heading = styled.h1`
     ${({ theme }) =>
         `font-size: 6rem;
         font-weight: 900;
@@ -138,7 +138,7 @@ const revealUp = keyframes`
 `;
 
 HomePageTemplate.propTypes = {
-    title: PropTypes.string.isRequired,
+    heading: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
@@ -148,7 +148,7 @@ const HomePage = ({ data }) => {
 
     return (
         <HomePageTemplate
-            title={post.frontmatter.title}
+            heading={post.frontmatter.heading}
             description={post.frontmatter.description}
             image={post.frontmatter.image}
         />
@@ -166,7 +166,7 @@ export const homePageQuery = graphql`
         markdownRemark(id: { eq: $id }) {
             html
             frontmatter {
-                title
+                heading
                 description
             }
         }

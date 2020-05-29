@@ -16,8 +16,26 @@ export const ServicesPageTemplate = ({ title }) => {
                 <BaseParallax variant="base" name="services-text">
                     <StyledTextBlock
                         title={title}
-                        description="Proin vel ante placerat velit eleifend dignissim blandit nec tortor. Mauris ut tellus lobortis,
-                        mattis leo non, laoreet arcu. Nunc nec mi vitae nisi rutrum pretium."
+                        description={
+                            <>
+                                <p>
+                                    At Kaizen farms we put the effort to bring you the best quality, hence, our produce
+                                    have the following features:
+                                </p>
+                                <ul>
+                                    <li>Sole use of agrochemicals approved byt the FDA and the European guidelines.</li>
+                                    <li>Phytosanitary registry.</li>
+                                    <li>
+                                        Key location for commercialization: 45min from our farm to the airport/seaport.
+                                    </li>
+                                    <li>Sole use of certified seeds for the germination process.</li>
+                                    <li>
+                                        Customs management for exporting: guarantee of origin, commercial invoice,
+                                        declaration of application form and shipment.
+                                    </li>
+                                </ul>
+                            </>
+                        }
                         subheading="Our Services"
                     />
                 </BaseParallax>
@@ -30,7 +48,7 @@ export const ServicesPageTemplate = ({ title }) => {
 };
 
 const MainParallaxGroup = styled(ParallaxGroup)`
-    height: 100vh;
+    height: 120vh;
     min-height: 900px;
     @media (${({ theme }) => theme.mediaQueries.m}) {
         height: 120vh;

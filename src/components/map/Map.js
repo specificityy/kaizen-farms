@@ -14,8 +14,8 @@ export const Map = () => {
         const calcZoomAndLocation = () => {
             const { matches } = window.matchMedia(`(${mediaQueries.m})`);
             return {
-                zoom: matches ? 1.7 : 4,
-                center: matches ? { lat: 50.79, lng: -55.78 } : { lat: 10.79, lng: -43.93 },
+                zoom: matches ? 1.7 : 3.5,
+                center: matches ? { lat: 50.79, lng: -55.78 } : { lat: 22.79, lng: -43.93 },
             };
         };
 

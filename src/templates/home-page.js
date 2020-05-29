@@ -25,6 +25,9 @@ export const HomePageTemplate = ({ title, description }) => {
                     <AnimateContainer delay={1000}>
                         <Subheading>{description}</Subheading>
                     </AnimateContainer>
+                    <AnimateContainer delay={1300}>
+                        <Underscore />
+                    </AnimateContainer>
                 </CenteredText>
                 <StyledHeroBackground name="hero-background" variant="deep" />
             </MainParallaxGroup>
@@ -45,7 +48,7 @@ const CenteredText = styled(ParallaxLayer)`
     width: 100%;
     top: 30%;
     @media (${({ theme }) => theme.mediaQueries.s}) {
-        top: 25%;
+        top: 20%;
     }
 `;
 
@@ -65,22 +68,20 @@ const Subheading = styled.h2`
     font-size: 2rem;
     color: white;
     position: relative;
-    &::before {
-        content: '';
-        width: 20%;
-        height: 10px;
-        border-radius: 20px 0 20px;
-        background: crimson;
-        position: absolute;
-        top: 150%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
     @media (${({ theme }) => theme.mediaQueries.s}) {
         font-size: 1.3rem;
-        &::before {
-            height: 7px;
-        }
+    }
+`;
+
+const Underscore = styled.div`
+    width: 75px;
+    height: 15px;
+    border-radius: 20px 0 20px;
+    background: crimson;
+    margin-top: 25px;
+    @media (${({ theme }) => theme.mediaQueries.s}) {
+        height: 10px;
+        margin-top: 20px;
     }
 `;
 
@@ -104,6 +105,7 @@ const StyledLogo = styled.div`
     background-size: 700px auto;
     background-position: 17.3% 50%;
     margin-bottom: 20px;
+    filter: drop-shadow(2px 4px 6px black);
     @media (${({ theme }) => theme.mediaQueries.s}) {
         width: 81px;
         height: 82px;

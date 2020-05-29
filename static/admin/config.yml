@@ -12,51 +12,53 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-    - name: 'pages'
-      label: 'Pages'
+    - name: pages
+      label: Pages
       files:
-          - file: 'src/pages/home/index.md'
-            label: 'Home'
-            name: 'home'
+          - file: src/pages/home/index.md
+            label: Home
+            name: home
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'home-page' },
-                    { abel: Image, name: image, widget: image },
-                    { label: 'Title', name: 'title', widget: 'string' },
-                    { label: 'Description', name: 'description', widget: text },
+                    { label: Heading, name: heading, widget: string },
+                    { label: Description, name: description, widget: text },
+                    { label: Image, name: image, widget: image },
                 ]
-          - file: 'src/pages/footer/index.md'
-            label: 'Footer'
-            name: 'footer'
+          - file: src/pages/footer/index.md
+            label: Footer
+            name: footer
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'footer' },
-                    { label: 'Instagram', name: 'instagram', widget: 'string' },
-                    { label: 'Email', name: 'email', widget: 'string' },
-                    {
-                        label: 'Telephones',
-                        name: 'telephones',
-                        widget: list,
-                        fields: [{ label: Number, name: number }],
-                    },
+                    { label: Heading, name: heading, widget: string },
+                    { label: Description, name: description, widget: text },
+                    { label: 'Instagram Heading', name: instagramHeading, widget: string },
+                    { label: 'Instagram Link', name: instagramLink, widget: string },
+                    { label: 'Contact Heading', name: ContactHeading, widget: string },
+                    { label: Email, name: email, widget: string },
+                    { label: Telephones, name: telephones, widget: list, fields: [{ label: Number, name: number }] },
                 ]
-          - file: 'src/pages/about/index.md'
-            label: 'About'
-            name: 'about'
+          - file: src/pages/about/index.md
+            label: About
+            name: about
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'about-page' },
+                    { label: Heading, name: heading, widget: string },
+                    { label: Subheading, name: subheading, widget: string },
+                    { label: Description, name: description, widget: text },
                     { label: Image, name: image, widget: image },
-                    { label: 'Title', name: 'title', widget: 'string' },
-                    { label: 'Description', name: 'description', widget: text },
                 ]
-          - file: 'src/pages/products/index.md'
-            label: 'Products'
-            name: 'products'
+          - file: src/pages/products/index.md
+            label: Products
+            name: products
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'products-page' },
-                    { label: Title, name: title, widget: string },
+                    { label: Heading, name: heading, widget: string },
+                    { label: Subheading, name: subheading, widget: string },
+                    { label: Description, name: description, widget: text },
                     { label: Image, name: image, widget: image },
                     {
                         label: Products,
@@ -70,23 +72,19 @@ collections:
                             ],
                     },
                 ]
-          - file: 'src/pages/services/index.md'
-            label: 'Services'
-            name: 'services'
+          - file: src/pages/services/index.md
+            label: Services
+            name: services
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'services-page' },
-                    { label: Title, name: title, widget: string },
-                    { label: Image, name: image, widget: image },
+                    { label: Heading, name: heading, widget: string },
+                    { label: Subheading, name: subheading, widget: string },
+                    { label: Description, name: description, widget: text },
                     {
-                        label: Services,
-                        name: services,
+                        label: BulletPoints,
+                        name: bulletPoints,
                         widget: list,
-                        fields:
-                            [
-                                { label: title, name: title, widget: string },
-                                { label: Description, name: description, widget: text },
-                                { label: Image, name: image, widget: image },
-                            ],
+                        fields: [{ label: text, name: text, widget: string }],
                     },
                 ]

@@ -12,7 +12,7 @@ const links = [
     { href: 'home', label: 'Home' },
     { href: 'about', label: 'About us' },
     { href: 'products', label: 'Products' },
-    { href: 'reach', label: 'Our Reach' },
+    { href: 'services', label: 'Services' },
     { href: 'contact', label: 'Contact' },
 ];
 

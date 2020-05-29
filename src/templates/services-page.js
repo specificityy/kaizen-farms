@@ -12,17 +12,17 @@ import theme from '../components/theme';
 export const ServicesPageTemplate = ({ title }) => {
     return (
         <ThemeProvider theme={theme}>
-            <MainParallaxGroup name="services-parallax-group" id="reach">
+            <MainParallaxGroup name="services-parallax-group" id="services">
                 <BaseParallax variant="base" name="services-text">
                     <StyledTextBlock
                         title={title}
                         description={
                             <>
                                 <p>
-                                    At Kaizen farms we put the effort to bring you the best quality, hence, our produce
-                                    have the following features:
+                                    At Kaizen farms we put the effort to bring you the best quality. This is our promise
+                                    to you:
                                 </p>
-                                <ul>
+                                <List>
                                     <li>Sole use of agrochemicals approved byt the FDA and the European guidelines.</li>
                                     <li>Phytosanitary registry.</li>
                                     <li>
@@ -33,7 +33,7 @@ export const ServicesPageTemplate = ({ title }) => {
                                         Customs management for exporting: guarantee of origin, commercial invoice,
                                         declaration of application form and shipment.
                                     </li>
-                                </ul>
+                                </List>
                             </>
                         }
                         subheading="Our Services"
@@ -49,9 +49,9 @@ export const ServicesPageTemplate = ({ title }) => {
 
 const MainParallaxGroup = styled(ParallaxGroup)`
     height: 120vh;
-    min-height: 900px;
+    min-height: 1200px;
     @media (${({ theme }) => theme.mediaQueries.m}) {
-        height: 120vh;
+        height: 170vh;
     }
 `;
 
@@ -66,6 +66,14 @@ const StyledHeroMap = styled(ParallaxLayer)`
 
 const StyledTextBlock = styled(TextBlock)`
     min-height: 600px;
+`;
+
+const List = styled.ul`
+    margin-left: 40px;
+    & > li {
+        margin-top: 30px;
+        list-style: circle;
+    }
 `;
 
 const ServicesPage = ({ data }) => {

@@ -57,6 +57,7 @@ export const FooterTemplate = ({ instagram, email, telephones }) => {
 
 const StyledFooter = styled.footer`
     height: 100vh;
+    min-height: 700px;
     position: relative;
     background: #1c1c1c;
 

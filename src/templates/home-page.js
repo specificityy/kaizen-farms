@@ -14,7 +14,7 @@ import logo from '../img/kaizen-farms-logo.png';
 export const HomePageTemplate = ({ title, description }) => {
     return (
         <ThemeProvider theme={theme}>
-            <ParallaxGroup name="home-parallax-group" id="home">
+            <MainParallaxGroup name="home-parallax-group" id="home">
                 <CenteredText variant="base" name="text-layer">
                     <AnimateContainer delay={500}>
                         <StyledLogo />
@@ -27,51 +27,13 @@ export const HomePageTemplate = ({ title, description }) => {
                     </AnimateContainer>
                 </CenteredText>
                 <StyledHeroBackground name="hero-background" variant="deep" />
-            </ParallaxGroup>
+            </MainParallaxGroup>
         </ThemeProvider>
     );
 };
 
-HomePageTemplate.propTypes = {
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-};
-
-const HomePage = ({ data }) => {
-    const { markdownRemark: post } = data;
-
-    return (
-        <HomePageTemplate
-            title={post.frontmatter.title}
-            description={post.frontmatter.description}
-            image={post.frontmatter.image}
-        />
-    );
-};
-
-const AnimateContainer = styled.div`
-    ${({ delay, theme: { transitions } }) => css`
-        overflow: hidden;
-        & > * {
-            will-change: transform;
-            transform: translateY(120%);
-            opacity: 0.1;
-            animation: ${transitions.duration.long}ms ${revealUp} ${transitions.easing.noNameYet} forwards;
-            animation-delay: ${delay}ms;
-        }
-    `}
-`;
-
-const revealUp = keyframes`
-    from {
-        opacity: 0.1;
-        transform: translateY(120%);
-    }
-    to {
-        opacity: 1;
-        transform: translate(0);
-    }
+const MainParallaxGroup = styled(ParallaxGroup)`
+    min-height: 800px;
 `;
 
 const CenteredText = styled(ParallaxLayer)`
@@ -148,6 +110,48 @@ const StyledLogo = styled.div`
         background-size: 355px auto;
     }
 `;
+
+const AnimateContainer = styled.div`
+    ${({ delay, theme: { transitions } }) => css`
+        overflow: hidden;
+        & > * {
+            will-change: transform;
+            transform: translateY(120%);
+            opacity: 0.1;
+            animation: ${transitions.duration.long}ms ${revealUp} ${transitions.easing.noNameYet} forwards;
+            animation-delay: ${delay}ms;
+        }
+    `}
+`;
+
+const revealUp = keyframes`
+    from {
+        opacity: 0.1;
+        transform: translateY(120%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0);
+    }
+`;
+
+HomePageTemplate.propTypes = {
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+};
+
+const HomePage = ({ data }) => {
+    const { markdownRemark: post } = data;
+
+    return (
+        <HomePageTemplate
+            title={post.frontmatter.title}
+            description={post.frontmatter.description}
+            image={post.frontmatter.image}
+        />
+    );
+};
 
 HomePage.propTypes = {
     data: PropTypes.object.isRequired,

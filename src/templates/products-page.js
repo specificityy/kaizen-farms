@@ -66,6 +66,7 @@ export const ProductsPageTemplate = ({ title, products }) => {
 
 const MainParallaxGroup = styled(ParallaxGroup)`
     height: 200vh;
+    min-height: 1800px;
 `;
 
 const ProductsLayer = styled(ParallaxLayer)`
@@ -80,6 +81,7 @@ const ProductsLayer = styled(ParallaxLayer)`
         height: fit-content;
         display: block;
         padding-bottom: 3rem;
+        min-height: 440px;
     }
 `;
 

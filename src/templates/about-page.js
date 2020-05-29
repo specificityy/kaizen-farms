@@ -24,6 +24,7 @@ export const AboutPageTemplate = ({ title, description, image }) => {
 
 const MainParallaxGroup = styled(ParallaxGroup)`
     height: 120vh;
+    min-height: 900px;
 `;
 
 const BaseLayer = styled(ParallaxLayer)`

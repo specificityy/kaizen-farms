@@ -31,6 +31,7 @@ export const ServicesPageTemplate = ({ title }) => {
 
 const MainParallaxGroup = styled(ParallaxGroup)`
     height: 100vh;
+    min-height: 900px;
     @media (${({ theme }) => theme.mediaQueries.m}) {
         height: 120vh;
     }

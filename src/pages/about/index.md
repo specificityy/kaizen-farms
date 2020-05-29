@@ -3,9 +3,5 @@ templateKey: about-page
 path: /about
 image: /img/hero-tractor.jpg
 title: Who we are
-description: Kaizen Farms en un grupo empresarial ubicado en Hacienda Estrella,
-  Santo Domingo Norte formado por productores enfocados en el cultivo y
-  comercialización de productos agrícolas de clase mundial, en cumplimiento con
-  las normas y regulaciones para exportación hacia Estados Unidos, Canadá y
-  Europa.
+description: Kaizen farms is a business group located in Hacienda Estrella, Northern Santo Domingo. It's comprised of producers focused in the harvesting and commercialization of world class agricultural products, in compliance withthe guides and regulations for exporting to the US, Canada and Europe.
 ---

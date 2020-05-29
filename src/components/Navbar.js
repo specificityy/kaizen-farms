@@ -67,7 +67,7 @@ const Drawer = styled.aside`
     transition: transform 300ms;
     transform: ${props.open ? 'none' : 'translateX(100%)'};
     background: white;
-    padding: 20px;
+    padding: 30px;
     box-shadow: ${props.theme.shadows[8]};
 `}
 `;
@@ -84,12 +84,12 @@ const Link = styled.a`
 const OpenButton = styled(HamburgerIcon)`
     position: fixed;
     z-index: 100;
-    top: 20px;
-    right: 20px;
+    top: 30px;
+    right: 30px;
     cursor: pointer;
     width: 32px;
     height: 32px;
-    fill: crimson;
+    fill: gray;
 `;
 
 const CloseButton = styled(CloseIcon)`
@@ -99,7 +99,8 @@ const CloseButton = styled(CloseIcon)`
     cursor: pointer;
     width: 32px;
     height: 32px;
-    fill: crimson;
+    margin-left: auto;
+    fill: black;
 `;
 
 export default Navbar;

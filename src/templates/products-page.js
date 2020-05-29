@@ -75,6 +75,7 @@ const ProductsLayer = styled(ParallaxLayer)`
     height: 100vh;
     display: flex;
     align-items: center;
+    min-height: 1600px;
     @media (${({ theme }) => theme.mediaQueries.l}) {
         height: fit-content;
         display: block;

@@ -22,7 +22,7 @@ export const HomePageTemplate = ({ title, description }) => {
                     <AnimateContainer delay={700}>
                         <Title>{title}</Title>
                     </AnimateContainer>
-                    <AnimateContainer delay={900}>
+                    <AnimateContainer delay={1000}>
                         <Subheading>{description}</Subheading>
                     </AnimateContainer>
                 </CenteredText>
@@ -54,18 +54,22 @@ const AnimateContainer = styled.div`
     ${({ delay, theme: { transitions } }) => css`
         overflow: hidden;
         & > * {
-            transition: transform ${transitions.duration.complex}ms;
+            will-change: transform;
             transform: translateY(120%);
-            animation: 0.8s ${revealUp} cubic-bezier(0.24, 0.72, 0.35, 1.01) ${delay}ms forwards;
+            opacity: 0.1;
+            animation: ${transitions.duration.long}ms ${revealUp} ${transitions.easing.noNameYet} forwards;
+            animation-delay: ${delay}ms;
         }
     `}
 `;
 
 const revealUp = keyframes`
     from {
+        opacity: 0.1;
         transform: translateY(120%);
     }
     to {
+        opacity: 1;
         transform: translate(0);
     }
 `;
@@ -77,10 +81,10 @@ const CenteredText = styled(ParallaxLayer)`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: fit-content;
+    top: 30%;
+    @media (${({ theme }) => theme.mediaQueries.s}) {
+        top: 25%;
+    }
 `;
 
 const Title = styled.h1`
@@ -139,7 +143,9 @@ const StyledLogo = styled.div`
     background-position: 17.3% 50%;
     margin-bottom: 20px;
     @media (${({ theme }) => theme.mediaQueries.s}) {
-        transform: scale(0.5) translateY(50%);
+        width: 81px;
+        height: 82px;
+        background-size: 355px auto;
     }
 `;
 

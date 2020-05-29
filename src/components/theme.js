@@ -106,6 +106,7 @@ export default {
             easeOutQuint: 'cubic-bezier(0.23, 1, 0.32, 1)',
             easeInOutQuint: 'cubic-bezier(0.86, 0, 0.07, 1)',
             easeOutExpo: 'cubic-bezier(0.19, 1, 0.22, 1)',
+            noNameYet: 'cubic-bezier(0.24, 0.72, 0.35, 1.01)',
         },
         duration: {
             shortest: 150,

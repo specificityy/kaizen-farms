@@ -93,4 +93,11 @@ export const cssReset = `
     h3 {
         line-height: 1.15;
     }
+
+    a {
+        color: #007A3B;
+        &:hover {
+            color: #8BC53F;
+        }
+    }
 `;

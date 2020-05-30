@@ -7,6 +7,7 @@ import styled from '@emotion/styled';
 import { BackTop } from 'antd';
 
 import { cssReset } from './cssReset';
+import { cssFonts } from './cssFonts';
 import useSiteMetadata from './SiteMetadata';
 import { Parallax } from './Parallax';
 import { Footer } from '../components/Footer';
@@ -90,10 +91,11 @@ const GlobalStyles = () => {
     return (
         <Global
             styles={css`
-                @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;700;800&display=swap');
+                // @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;700;800&display=swap');
                 ${cssReset}
+                ${cssFonts}
                 * {
-                    font-family: 'Josefin Sans', sans-serif;
+                    font-family: 'Antipasto Pro Regular', sans-serif;
                 }
             `}
         />

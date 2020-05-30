@@ -118,3 +118,13 @@ export default {
         },
     },
 };
+
+/*
+Color Verde oscuro
+#007A3B
+R:0  G:122. B:59
+
+Color Verde claro
+#8BC53F
+R:139  G:197. B:63
+*/

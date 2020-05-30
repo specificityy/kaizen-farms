@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 
-import farmer from '../img/farmer.jpg';
+import farmer from '../assets/img/farmer.jpg';
 import { TextBlock } from '../components/TextBlock';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import theme from '../components/theme';

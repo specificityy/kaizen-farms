@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // eslint-disable-line
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
@@ -6,10 +6,10 @@ import { ThemeProvider } from 'emotion-theming';
 /** @jsx jsx */
 import { jsx, css, keyframes } from '@emotion/core';
 
-import vegetables from '../img/peppers-basket.jpg';
+import vegetables from '../assets/img/peppers-basket.jpg';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import theme from '../components/theme';
-import logo from '../img/kaizen-farms-logo.png';
+import Logo from '../assets/img/logo-no-text-color.svg';
 
 export const HomePageTemplate = ({ heading, description }) => {
     return (
@@ -77,7 +77,7 @@ const Underscore = styled.div`
     width: 75px;
     height: 15px;
     border-radius: 20px 0 20px;
-    background: crimson;
+    background: #8bc53f;
     margin-top: 25px;
     @media (${({ theme }) => theme.mediaQueries.s}) {
         height: 10px;
@@ -98,18 +98,15 @@ const StyledHeroBackground = styled(ParallaxLayer)`
     }
 `;
 
-const StyledLogo = styled.div`
+const StyledLogo = styled(Logo)`
     width: 160px;
     height: 165px;
-    background: url(${logo}) no-repeat 50% scroll;
     background-size: 700px auto;
-    background-position: 17.3% 50%;
     margin-bottom: 20px;
     filter: drop-shadow(2px 4px 6px black);
     @media (${({ theme }) => theme.mediaQueries.s}) {
         width: 81px;
         height: 82px;
-        background-size: 355px auto;
     }
 `;
 

@@ -4,7 +4,8 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 
-import Instagram from '../img/social/instagram.svg';
+import Instagram from '../assets/img/social/instagram.svg';
+import LogoSvg from '../assets/img/logo-color.svg';
 import theme from '../components/theme';
 import { Red } from '../components/TextBlock';
 
@@ -22,10 +23,7 @@ export const FooterTemplate = ({
             <StyledFooter id="contact">
                 <StyledFirstCell>
                     <div>
-                        <Heading>
-                            {heading}
-                            <Red>.</Red>
-                        </Heading>
+                        <Logo />
                         <Subheading>{description}</Subheading>
                     </div>
                 </StyledFirstCell>
@@ -34,7 +32,7 @@ export const FooterTemplate = ({
                         {contactHeading}
                         <Red>.</Red>
                         <Email>
-                            <Red>@</Red>&nbsp;&nbsp;&nbsp;
+                            <span>@</span>
                             <a href={'mailto:' + email} subject="Kaizen Customer enquiry">
                                 {email}
                             </a>
@@ -62,14 +60,19 @@ export const FooterTemplate = ({
     );
 };
 
-// greens
-// #12843C
-// #33953B
-// #56A73D
+/*
+Color Verde oscuro
+#007A3B
+R:0  G:122. B:59
+
+Color Verde claro
+#8BC53F
+R:139  G:197. B:63
+*/
 
 const StyledFooter = styled.footer`
     height: 100vh;
-    min-height: 700px;
+    min-height: 750px;
     position: relative;
     background: #1c1c1c;
 
@@ -107,7 +110,7 @@ const StyledSecondCell = styled(StyledCell)`
 const StyledInstagram = styled.a`
     & svg {
         display: block;
-        fill: #3273dc;
+        fill: #007a3b;
         width: 100px;
         margin-top: 20px;
         transition: fill 0.3s;
@@ -116,7 +119,7 @@ const StyledInstagram = styled.a`
         }
     }
     &:hover svg {
-        fill: #424242;
+        fill: #8bc53f;
     }
 `;
 
@@ -159,7 +162,7 @@ const Telephones = styled(BaseSubheading)`
             position: relative;
             &::before {
                 content: 'T';
-                color: crimson;
+                color: #424242;
                 position: absolute;
                 left: -2rem;
             }
@@ -170,6 +173,18 @@ const Telephones = styled(BaseSubheading)`
 const Email = styled(BaseSubheading)`
     color: #424242;
     margin-top: 20px;
+    span:first-of-type {
+        margin-right: 1rem;
+    }
+`;
+
+const Logo = styled(LogoSvg)`
+    transform: scale(1.2);
+    margin-bottom: 20px;
+    @media (${({ theme }) => theme.mediaQueries.s}) {
+        transform: scale(0.8);
+        margin-bottom: 10px;
+    }
 `;
 
 FooterTemplate.propTypes = {

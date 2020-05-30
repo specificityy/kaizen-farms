@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
-import farmPath from '../img/farm-path.jpg';
+import farmPath from '../assets/img/farm-path.jpg';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import { TextBlock } from '../components/TextBlock';
 import { Hexagon } from '../components/Hexagon';

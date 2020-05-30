@@ -4,8 +4,8 @@ import { ThemeProvider } from 'emotion-theming';
 import sortBy from 'lodash/sortBy';
 import throttle from 'lodash/throttle';
 
-import HamburgerIcon from '../img/hamburger-icon.svg';
-import CloseIcon from '../img/close-icon.svg';
+import HamburgerIcon from '../assets/img/hamburger-icon.svg';
+import CloseIcon from '../assets/img/close-icon.svg';
 import theme from '../components/theme';
 
 const links = [
@@ -39,10 +39,14 @@ const Navbar = ({ onOpen, onClose, open, maxWidth, contentRef }) => {
 
     return (
         <ThemeProvider theme={theme} id="contact">
-            <OpenButton onClick={onOpen} />
+            <OpenButton
+                onClick={onOpen}
+                fill={/home|contact/.test(active) ? '#8BC53F' : '#007A3B'}
+                title="Close navigation"
+            />
 
             <Drawer open={open} maxWidth={maxWidth}>
-                <CloseButton onClick={onClose} />
+                <CloseButton onClick={onClose} title="Close navigation" />
 
                 {links.map(({ href, label }) => (
                     <Link key={href} href={`#${href}`} onClick={onClose} active={href === active}>
@@ -64,7 +68,7 @@ const Drawer = styled.aside`
     top: 0;
     bottom: 0;
     right: 0;
-    transition: transform 300ms;
+    transition: transform ${props.theme.transitions.duration.standard}ms;
     transform: ${props.open ? 'none' : 'translateX(100%)'};
     background: white;
     padding: 30px;
@@ -74,11 +78,16 @@ const Drawer = styled.aside`
 
 const Link = styled.a`
     display: block;
-    font-size: 1.2rem;
+    font-size: ${props => (props.active ? '1.3' : '1.2')}rem;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
-    color: ${props => (props.active ? '#40a9ff' : '#c0c0c3')};
-    margin-bottom: 20px;
+    text-align: center;
+    color: ${props => (props.active ? '#007A3B' : '#8BC53F')};
+    font-weight: ${props => (props.active ? '700' : '400')};
+    margin-bottom: 40px;
+    &:hover {
+        color: #007a3b;
+    }
 `;
 
 const OpenButton = styled(HamburgerIcon)`
@@ -89,7 +98,8 @@ const OpenButton = styled(HamburgerIcon)`
     cursor: pointer;
     width: 32px;
     height: 32px;
-    fill: gray;
+    transition: fill ${props => props.theme.transitions.duration.standard}ms;
+    fill: ${props => props.fill};
 `;
 
 const CloseButton = styled(CloseIcon)`
@@ -100,7 +110,10 @@ const CloseButton = styled(CloseIcon)`
     width: 32px;
     height: 32px;
     margin-left: auto;
-    fill: black;
+    fill: #007a3b;
+    &:hover svg {
+        fill: #8bc53f;
+    }
 `;
 
 export default Navbar;

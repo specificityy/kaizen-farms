@@ -57,11 +57,11 @@ const Description = styled.div`
 
 export const Red = styled.span`
     font-weight: bold;
-    color: crimson;
+    color: #8bc53f;
 `;
 
 TextBlock.propTypes = {
     heading: PropTypes.string,
-    description: PropTypes.oneOf(PropTypes.string, PropTypes.element),
+    description: PropTypes.any,
     subheading: PropTypes.string,
 };

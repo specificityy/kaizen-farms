@@ -13,7 +13,7 @@ const useHomepage = () => {
                     frontmatter {
                         heading
                         description
-                        imageHome {
+                        backgroundHome {
                             childImageSharp {
                                 fluid(maxWidth: 2000, quality: 100) {
                                     ...GatsbyImageSharpFluid

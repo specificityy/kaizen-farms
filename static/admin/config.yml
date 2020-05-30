@@ -23,7 +23,7 @@ collections:
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'home-page' },
                     { label: Heading, name: heading, widget: string },
                     { label: Description, name: description, widget: text },
-                    { label: 'Image Home', name: imageHome, widget: image },
+                    { label: 'Background Home', name: backgroundHome, widget: image },
                 ]
           - file: src/pages/footer/index.md
             label: Footer
@@ -48,7 +48,7 @@ collections:
                     { label: Heading, name: heading, widget: string },
                     { label: Subheading, name: subheading, widget: string },
                     { label: Description, name: description, widget: text },
-                    { label: 'Image About', name: imageAbout, widget: image },
+                    { label: 'Background About', name: backgroundAbout, widget: image },
                 ]
           - file: src/pages/products/index.md
             label: Products
@@ -59,7 +59,7 @@ collections:
                     { label: Heading, name: heading, widget: string },
                     { label: Subheading, name: subheading, widget: string },
                     { label: Description, name: description, widget: text },
-                    { label: Image, name: image, widget: image },
+                    { label: 'Background Products', name: backgroundProducts, widget: image },
                     {
                         label: Products,
                         name: products,

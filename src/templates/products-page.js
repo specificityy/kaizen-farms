@@ -5,13 +5,12 @@ import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
-import farmPath from '../assets/img/farm-path.jpg';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import { TextBlock } from '../components/TextBlock';
 import { Hexagon } from '../components/Hexagon';
 import theme from '../components/theme';
 
-export const ProductsPageTemplate = ({ heading, subheading, description, products }) => {
+export const ProductsPageTemplate = ({ heading, subheading, description, products, backgroundProducts }) => {
     const page = useRef(null);
     const [reveal, setReveal] = useState(false);
 
@@ -41,7 +40,7 @@ export const ProductsPageTemplate = ({ heading, subheading, description, product
         <ThemeProvider theme={theme}>
             <MainParallaxGroup name="prod-main-parallax-group" id="products">
                 <ProductsLayer variant="base" name="text-and-products-parallax-layer">
-                    <StyledTextBlock
+                    <TextBlock
                         name="text-wrapper"
                         heading={heading}
                         subheading={subheading}
@@ -55,7 +54,10 @@ export const ProductsPageTemplate = ({ heading, subheading, description, product
                         ))}
                     </ProdList>
                 </ProductsLayer>
-                <HeroBackgroundLayer variant="back" />
+                <HeroBackgroundLayer name="products-hero-background" variant="back">
+                    <OverlayShade />
+                    <BackgroundImage imageInfo={backgroundProducts} />
+                </HeroBackgroundLayer>
             </MainParallaxGroup>
         </ThemeProvider>
     );
@@ -84,19 +86,26 @@ const ProductsLayer = styled(ParallaxLayer)`
 
 const HeroBackgroundLayer = styled(ParallaxLayer)`
     top: 50%;
-    background: url(${farmPath});
+`;
+
+const BackgroundImage = styled(PreviewCompatibleBackgroundImage)`
+    width: 100%;
+    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    &::before {
-        content: '';
-        display: block;
-        background: rgba(20, 25, 30, 0.3);
-        height: 100%;
-    }
 `;
 
-const StyledTextBlock = styled(TextBlock)``;
+const OverlayShade = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: rgba(20, 25, 30, 0.3);
+`;
 
 const ProdList = styled.ul`
     width: 100%;
@@ -139,11 +148,18 @@ export const productsPageQuery = graphql`
                 heading
                 subheading
                 description
+                backgroundProducts {
+                    childImageSharp {
+                        fluid(maxWidth: 2000, quality: 100) {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
                 products {
                     title
                     image {
                         childImageSharp {
-                            fluid(maxWidth: 1000, quality: 80) {
+                            fluid(maxWidth: 500, quality: 80) {
                                 ...GatsbyImageSharpFluid
                             }
                         }
@@ -167,7 +183,7 @@ ProductsPageTemplate.propTypes = {
     subheading: PropTypes.string,
     description: PropTypes.string,
     products: PropTypes.array,
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    backgroundProducts: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export default ProductsPage;

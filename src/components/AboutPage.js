@@ -14,7 +14,7 @@ const useAboutData = () => {
                         heading
                         subheading
                         description
-                        imageAbout {
+                        backgroundAbout {
                             childImageSharp {
                                 fluid(maxWidth: 2000, quality: 100) {
                                     ...GatsbyImageSharpFluid

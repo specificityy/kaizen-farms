@@ -14,6 +14,13 @@ const useProducts = () => {
                         heading
                         subheading
                         description
+                        backgroundProducts {
+                            childImageSharp {
+                                fluid(maxWidth: 2000, quality: 100) {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
+                        }
                         products {
                             title
                             image {

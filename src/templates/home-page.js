@@ -11,7 +11,7 @@ import theme from '../components/theme';
 import Logo from '../assets/img/logo-no-text-color.svg';
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 
-export const HomePageTemplate = ({ heading, description, imageHome }) => {
+export const HomePageTemplate = ({ heading, description, backgroundHome }) => {
     return (
         <ThemeProvider theme={theme}>
             <MainParallaxGroup name="home-parallax-group" id="home">
@@ -31,7 +31,7 @@ export const HomePageTemplate = ({ heading, description, imageHome }) => {
                 </CenteredText>
                 <ParallaxLayer name="hero-background" variant="deep">
                     <OverlayShade />
-                    <BackgroundImage imageInfo={imageHome} />
+                    <BackgroundImage imageInfo={backgroundHome} />
                 </ParallaxLayer>
             </MainParallaxGroup>
         </ThemeProvider>
@@ -146,7 +146,7 @@ const revealUp = keyframes`
 HomePageTemplate.propTypes = {
     heading: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    imageHome: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    backgroundHome: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 const HomePage = ({ data }) => {
@@ -167,7 +167,7 @@ export const homePageQuery = graphql`
             frontmatter {
                 heading
                 description
-                imageHome {
+                backgroundHome {
                     childImageSharp {
                         fluid(maxWidth: 2000, quality: 100) {
                             ...GatsbyImageSharpFluid

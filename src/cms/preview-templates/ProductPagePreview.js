@@ -12,7 +12,7 @@ const ProductPagePreview = ({ entry, getAsset }) => {
             suubheading={entry.getIn(['data', 'suubheading'])}
             description={entry.getIn(['data', 'description'])}
             products={products}
-            image={getAsset(entry.getIn(['data', 'image']))}
+            backgroundProducts={getAsset(entry.getIn(['data', 'backgroundProducts']))}
         />
     );
 };

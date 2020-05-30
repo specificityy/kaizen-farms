@@ -6,7 +6,7 @@ subheading: Our Products
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
     lobortis, neque sit amet dapibus varius, risus ipsum sagittis elit, a
     venenatis enim metus eu neque.
-image: /img/farm-path.jpg
+backgroundProducts: /img/farm-path.jpg
 products:
     - image: /img/mangoes.jpg
       title: Mango

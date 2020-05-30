@@ -9,7 +9,7 @@ import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import theme from '../components/theme';
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 
-export const AboutPageTemplate = ({ heading, subheading, description, imageAbout }) => {
+export const AboutPageTemplate = ({ heading, subheading, description, backgroundAbout }) => {
     return (
         <ThemeProvider theme={theme}>
             <MainParallaxGroup name="about-us-parallax-group" id="about">
@@ -18,7 +18,7 @@ export const AboutPageTemplate = ({ heading, subheading, description, imageAbout
                 </BaseLayer>
                 <StyledHeroBackground name="about-hero-background" variant="back">
                     <OverlayShade />
-                    <BackgroundImage imageInfo={imageAbout} />
+                    <BackgroundImage imageInfo={backgroundAbout} />
                 </StyledHeroBackground>
             </MainParallaxGroup>
         </ThemeProvider>
@@ -68,7 +68,7 @@ AboutPageTemplate.propTypes = {
     heading: PropTypes.string,
     subheading: PropTypes.string,
     description: PropTypes.string,
-    imageAbout: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    backgroundAbout: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 const AboutPage = ({ data }) => {
@@ -89,7 +89,7 @@ export const aboutPageQuery = graphql`
                 heading
                 subheading
                 description
-                imageAbout {
+                backgroundAbout {
                     childImageSharp {
                         fluid(maxWidth: 2000, quality: 100) {
                             ...GatsbyImageSharpFluid

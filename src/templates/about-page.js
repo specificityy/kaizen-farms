@@ -68,7 +68,7 @@ AboutPageTemplate.propTypes = {
     heading: PropTypes.string,
     subheading: PropTypes.string,
     description: PropTypes.string,
-    imageAboutZ: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    imageAbout: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 const AboutPage = ({ data }) => {

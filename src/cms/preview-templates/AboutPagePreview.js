@@ -7,7 +7,7 @@ const AboutPagePreview = ({ entry, getAsset }) => (
         heading={entry.getIn(['data', 'heading'])}
         subheading={entry.getIn(['data', 'subheading'])}
         description={entry.getIn(['data', 'description'])}
-        image={getAsset(entry.getIn(['data', 'imageAbout']))}
+        imageAbout={getAsset(entry.getIn(['data', 'imageAbout']))}
     />
 );
 

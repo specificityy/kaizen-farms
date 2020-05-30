@@ -9,7 +9,6 @@ import { jsx, css, keyframes } from '@emotion/core';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import theme from '../components/theme';
 import Logo from '../assets/img/logo-no-text-color.svg';
-
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 
 export const HomePageTemplate = ({ heading, description, imageHome }) => {

@@ -1,7 +1,10 @@
+import regularWoff2 from '../assets/fonts/antipastopro_trial-webfont.woff2';
+import regularWoff from '../assets/fonts/antipastopro_trial-webfont.woff';
+
 export const cssFonts = `
 @font-face {
     font-family: 'Antipasto Pro Regular';
-    src: local('Antipasto Pro Regular'), url('/static/antipastopro_trial-webfont.woff2') format('woff2'), url('./static/antipastopro_trial-webfont.woff') format('woff');
+    src: local('Antipasto Pro'), url('${regularWoff2}') format('woff2'), url('${regularWoff}') format('woff');
     font-weight: normal;
     font-style: normal;
 }

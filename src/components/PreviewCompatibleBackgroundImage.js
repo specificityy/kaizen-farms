@@ -3,10 +3,29 @@ import PropTypes from 'prop-types';
 import BackgroundImage from 'gatsby-background-image';
 
 export const PreviewCompatibleBackgroundImage = ({ imageInfo, className, style }) => {
-    const { childImageSharp = {}, image = {} } = imageInfo;
-    const { fluid = childImageSharp.fluid || image.path } = image;
+    if (typeof imageInfo === 'string' || typeof imageInfo.childImageSharp == 'undefined') {
+        return (
+            <div
+                style={{
+                    backgroundImage: `url(${imageInfo.src || imageInfo})`,
+                    ...style,
+                }}
+                className={className}
+            />
+        );
+    }
 
-    return <BackgroundImage Tag="div" className={className} fluid={fluid} backgroundColor={`#040e18`} style={style} />;
+    const { childImageSharp = {} } = imageInfo;
+
+    return (
+        <BackgroundImage
+            Tag="div"
+            className={className}
+            fluid={childImageSharp.fluid}
+            backgroundColor={`#040e18`}
+            style={style}
+        />
+    );
 };
 
 PreviewCompatibleBackgroundImage.propTypes = {

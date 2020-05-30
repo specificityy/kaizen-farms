@@ -48,13 +48,11 @@ export const ProductsPageTemplate = ({ heading, subheading, description, product
                         description={description}
                     />
                     <ProdList ref={page} name="products-grid" id="hex-grid">
-                        {products.map(({ title, image }) => {
-                            return (
-                                <Product key={title} reveal={reveal} name={title}>
-                                    <ProdImage imageInfo={image} />
-                                </Product>
-                            );
-                        })}
+                        {products.map(({ title, image }) => (
+                            <Product key={title} reveal={reveal} name={title}>
+                                <ProdImage imageInfo={image} />
+                            </Product>
+                        ))}
                     </ProdList>
                 </ProductsLayer>
                 <HeroBackgroundLayer variant="back" />

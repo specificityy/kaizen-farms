@@ -6,12 +6,13 @@ import { ThemeProvider } from 'emotion-theming';
 /** @jsx jsx */
 import { jsx, css, keyframes } from '@emotion/core';
 
-import vegetables from '../assets/img/peppers-basket.jpg';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import theme from '../components/theme';
 import Logo from '../assets/img/logo-no-text-color.svg';
 
-export const HomePageTemplate = ({ heading, description }) => {
+import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
+
+export const HomePageTemplate = ({ heading, description, image }) => {
     return (
         <ThemeProvider theme={theme}>
             <MainParallaxGroup name="home-parallax-group" id="home">
@@ -29,11 +30,33 @@ export const HomePageTemplate = ({ heading, description }) => {
                         <Underscore />
                     </AnimateContainer>
                 </CenteredText>
-                <StyledHeroBackground name="hero-background" variant="deep" />
+                <ParallaxLayer name="hero-background" variant="deep">
+                    <OverlayShade />
+                    <BackgroundImage imageInfo={image} />
+                </ParallaxLayer>
             </MainParallaxGroup>
         </ThemeProvider>
     );
 };
+
+const BackgroundImage = styled(PreviewCompatibleBackgroundImage)`
+    width: 100vw;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+`;
+
+const OverlayShade = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: rgba(20, 25, 30, 0.4);
+`;
 
 const MainParallaxGroup = styled(ParallaxGroup)`
     min-height: 800px;
@@ -82,19 +105,6 @@ const Underscore = styled.div`
     @media (${({ theme }) => theme.mediaQueries.s}) {
         height: 10px;
         margin-top: 20px;
-    }
-`;
-
-const StyledHeroBackground = styled(ParallaxLayer)`
-    background: url(${vegetables});
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    &::before {
-        content: '';
-        display: block;
-        background: rgba(20, 25, 30, 0.4);
-        height: 100%;
     }
 `;
 
@@ -158,6 +168,13 @@ export const homePageQuery = graphql`
             frontmatter {
                 heading
                 description
+                image {
+                    childImageSharp {
+                        fluid(maxWidth: 2000, quality: 100) {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
             }
         }
     }

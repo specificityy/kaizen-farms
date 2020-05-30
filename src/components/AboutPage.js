@@ -14,6 +14,13 @@ const useAboutData = () => {
                         heading
                         subheading
                         description
+                        imageAbout {
+                            childImageSharp {
+                                fluid(maxWidth: 2000, quality: 100) {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
+                        }
                     }
                 }
             }

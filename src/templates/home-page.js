@@ -12,7 +12,7 @@ import Logo from '../assets/img/logo-no-text-color.svg';
 
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 
-export const HomePageTemplate = ({ heading, description, image }) => {
+export const HomePageTemplate = ({ heading, description, imageHome }) => {
     return (
         <ThemeProvider theme={theme}>
             <MainParallaxGroup name="home-parallax-group" id="home">
@@ -32,7 +32,7 @@ export const HomePageTemplate = ({ heading, description, image }) => {
                 </CenteredText>
                 <ParallaxLayer name="hero-background" variant="deep">
                     <OverlayShade />
-                    <BackgroundImage imageInfo={image} />
+                    <BackgroundImage imageInfo={imageHome} />
                 </ParallaxLayer>
             </MainParallaxGroup>
         </ThemeProvider>
@@ -40,8 +40,8 @@ export const HomePageTemplate = ({ heading, description, image }) => {
 };
 
 const BackgroundImage = styled(PreviewCompatibleBackgroundImage)`
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -113,7 +113,7 @@ const StyledLogo = styled(Logo)`
     height: 165px;
     background-size: 700px auto;
     margin-bottom: 20px;
-    filter: drop-shadow(2px 4px 6px black);
+    filter: drop-shadow(2px 3px 2px black);
     @media (${({ theme }) => theme.mediaQueries.s}) {
         width: 81px;
         height: 82px;
@@ -147,7 +147,7 @@ const revealUp = keyframes`
 HomePageTemplate.propTypes = {
     heading: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    imageHome: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 const HomePage = ({ data }) => {
@@ -168,7 +168,7 @@ export const homePageQuery = graphql`
             frontmatter {
                 heading
                 description
-                image {
+                imageHome {
                     childImageSharp {
                         fluid(maxWidth: 2000, quality: 100) {
                             ...GatsbyImageSharpFluid

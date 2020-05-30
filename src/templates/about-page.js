@@ -4,19 +4,22 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 
-import farmer from '../assets/img/farmer.jpg';
 import { TextBlock } from '../components/TextBlock';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import theme from '../components/theme';
+import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 
-export const AboutPageTemplate = ({ heading, subheading, description, image }) => {
+export const AboutPageTemplate = ({ heading, subheading, description, imageAbout }) => {
     return (
         <ThemeProvider theme={theme}>
             <MainParallaxGroup name="about-us-parallax-group" id="about">
                 <BaseLayer variant="base">
                     <StyledTextBlock heading={heading} subheading={subheading} description={description} />
                 </BaseLayer>
-                <StyledHeroBackground variant="back" />
+                <StyledHeroBackground name="about-hero-background" variant="back">
+                    <OverlayShade />
+                    <BackgroundImage imageInfo={imageAbout} />
+                </StyledHeroBackground>
             </MainParallaxGroup>
         </ThemeProvider>
     );
@@ -37,26 +40,35 @@ const StyledTextBlock = styled(TextBlock)`
 
 const StyledHeroBackground = styled(ParallaxLayer)`
     top: 23%;
-    background: url(${farmer});
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     @media (${({ theme }) => theme.mediaQueries.s}) {
         top: 40%;
     }
-    &::before {
-        content: '';
-        display: block;
-        background: rgba(20, 25, 30, 0.3);
-        height: 100%;
-    }
+`;
+
+const BackgroundImage = styled(PreviewCompatibleBackgroundImage)`
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+`;
+
+const OverlayShade = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: rgba(20, 25, 30, 0.3);
 `;
 
 AboutPageTemplate.propTypes = {
     heading: PropTypes.string,
     subheading: PropTypes.string,
     description: PropTypes.string,
-    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    imageAboutZ: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 const AboutPage = ({ data }) => {
@@ -77,6 +89,13 @@ export const aboutPageQuery = graphql`
                 heading
                 subheading
                 description
+                imageAbout {
+                    childImageSharp {
+                        fluid(maxWidth: 2000, quality: 100) {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
             }
         }
     }

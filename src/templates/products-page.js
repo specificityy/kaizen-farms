@@ -150,7 +150,7 @@ export const productsPageQuery = graphql`
                 description
                 backgroundProducts {
                     childImageSharp {
-                        fluid(maxWidth: 2000, quality: 100) {
+                        fluid(maxWidth: 2000, quality: 50) {
                             ...GatsbyImageSharpFluid
                         }
                     }
@@ -159,7 +159,7 @@ export const productsPageQuery = graphql`
                     title
                     image {
                         childImageSharp {
-                            fluid(maxWidth: 500, quality: 80) {
+                            fluid(maxWidth: 500, quality: 30) {
                                 ...GatsbyImageSharpFluid
                             }
                         }

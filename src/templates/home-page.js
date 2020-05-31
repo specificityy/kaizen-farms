@@ -12,6 +12,8 @@ import Logo from '../assets/img/logo-no-text-color.svg';
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 
 export const HomePageTemplate = ({ heading, description, backgroundHome }) => {
+    console.log(backgroundHome);
+
     return (
         <ThemeProvider theme={theme}>
             <MainParallaxGroup name="home-parallax-group" id="home">
@@ -169,7 +171,7 @@ export const homePageQuery = graphql`
                 description
                 backgroundHome {
                     childImageSharp {
-                        fluid(maxWidth: 2000, quality: 100) {
+                        fluid(maxWidth: 2000, quality: 50) {
                             ...GatsbyImageSharpFluid
                         }
                     }

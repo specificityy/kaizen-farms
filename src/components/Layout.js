@@ -91,11 +91,10 @@ const GlobalStyles = () => {
     return (
         <Global
             styles={css`
-                // @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;700;800&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@100;300;400;700;800&display=swap');
                 ${cssReset}
-                ${cssFonts}
                 * {
-                    font-family: 'Antipasto Pro Regular', sans-serif;
+                    font-family: 'Quicksand', sans-serif;
                 }
             `}
         />

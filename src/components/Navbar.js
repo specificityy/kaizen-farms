@@ -19,8 +19,8 @@ const links = [
 const getActiveLink = () =>
     sortBy(
         links.map(({ href }) => {
-            const rect = document.getElementById(href).getBoundingClientRect();
-            return { href, top: Math.abs(rect.top) };
+            const rect = document.getElementById(href)?.getBoundingClientRect();
+            return { href, top: Math.abs(rect?.top) };
         }),
         'top'
     )[0].href;

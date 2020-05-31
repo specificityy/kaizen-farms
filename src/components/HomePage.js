@@ -15,7 +15,7 @@ const useHomepage = () => {
                         description
                         backgroundHome {
                             childImageSharp {
-                                fluid(maxWidth: 2000, quality: 100) {
+                                fluid(maxWidth: 2000, quality: 50) {
                                     ...GatsbyImageSharpFluid
                                 }
                             }

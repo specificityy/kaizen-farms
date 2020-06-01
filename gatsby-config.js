@@ -4,11 +4,10 @@ module.exports = {
     siteMetadata: {
         title: 'Kaizen Farms',
         description:
-            'This repo contains an example business website that is built with Gatsby, and Netlify CMS.It follows the JAMstack architecture by using Git as a single source of truth, and Netlify for continuous deployment, and CDN distribution.',
+            'Dominican Producers and Exporters. Producing various types of peppers, coconut, avocado, mango, ginger, banana, pineapple, among others.',
     },
     plugins: [
         'gatsby-plugin-react-helmet',
-        'gatsby-plugin-sass',
         'gatsby-plugin-emotion',
         'gatsby-plugin-antd',
         {

@@ -1,6 +1,6 @@
 ---
 templateKey: home-page
-backgroundHome: /img/peppers-basket.jpg
+backgroundHome: /img/hero-palm-trees.jpg
 title: Kaizen Farms
 heading: Kaizen Farms
 description: Dominican Producers and Exporters

@@ -84,7 +84,7 @@ const HexagonListItem = styled.li`
         &:nth-of-type(6n + 3) {
             ${reveal
                 ? css`
-                      animation: ${transitions.duration.long}ms ${transitions.easing.easeInOutQuint} 500ms forwards
+                      animation: ${transitions.duration.long}ms ${transitions.easing.easeInOutQuint} 700ms forwards
                           ${slideInOddRow};
                   `
                 : ''}
@@ -98,7 +98,7 @@ const HexagonListItem = styled.li`
 
             ${reveal
                 ? css`
-                      animation: ${transitions.duration.long}ms ${transitions.easing.easeInOutQuint} 500ms forwards
+                      animation: ${transitions.duration.long}ms ${transitions.easing.easeInOutQuint} 700ms forwards
                           ${slideInEvenRow};
                   `
                 : ''}
@@ -145,6 +145,9 @@ const Lid = styled.div`
     text-align: center;
     word-break: break-word;
     padding-top: 5%;
+    @media (${({ theme }) => theme.mediaQueries.l}) {
+        font-size: 1rem;
+    }
     @media (${({ theme }) => theme.mediaQueries.s}) {
         font-size: 0.61rem;
     }

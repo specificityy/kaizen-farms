@@ -4,7 +4,6 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 import kebabCase from 'lodash/kebabCase';
-import { v4 as uuidv4 } from 'uuid';
 
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
@@ -21,12 +20,12 @@ export const ProductsPageTemplate = ({ pageName, heading, subheading, descriptio
 
         const options = {
             rootMargin: '0px',
-            threshold: 0.6,
+            threshold: 0.2,
         };
 
         const callback = (entries, observer) => {
             entries.forEach(entry => {
-                if (entry.intersectionRatio > 0.5) {
+                if (entry.isIntersecting) {
                     setReveal(true);
                     observer.disconnect();
                 }
@@ -48,9 +47,9 @@ export const ProductsPageTemplate = ({ pageName, heading, subheading, descriptio
                         subheading={subheading}
                         description={description}
                     />
-                    <ProdList ref={page} name="products-grid" id="hex-grid">
+                    <ProdList ref={page} name="products-grid">
                         {products.map(({ title, image }) => (
-                            <Product key={uuidv4()} reveal={reveal} name={title}>
+                            <Product key={title} reveal={reveal} name={title}>
                                 <ProdImage imageInfo={image} />
                             </Product>
                         ))}
@@ -67,19 +66,21 @@ export const ProductsPageTemplate = ({ pageName, heading, subheading, descriptio
 
 const MainParallaxGroup = styled(ParallaxGroup)`
     height: 200vh;
-    min-height: 1800px;
+    min-height: 2000px;
+    @media (${({ theme }) => theme.mediaQueries.s}) {
+        min-height: 1700px;
+    }
 `;
 
 const ProductsLayer = styled(ParallaxLayer)`
+    height: max-content;
+    min-height: 1600px;
     color: black;
     padding-bottom: 10rem;
     background: white;
-    height: 100vh;
     display: flex;
     align-items: center;
-    min-height: 1600px;
     @media (${({ theme }) => theme.mediaQueries.l}) {
-        height: fit-content;
         display: block;
         padding-bottom: 3rem;
         min-height: 440px;

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import IndexPage from '../../templates/index-page';
 
 const IndexPagePreview = ({ entry }) => {

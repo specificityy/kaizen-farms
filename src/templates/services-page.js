@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
-import { v4 as uuidv4 } from 'uuid';
 import kebabCase from 'lodash/kebabCase';
 
 import { TextBlock } from '../components/TextBlock';
@@ -16,20 +15,7 @@ export const ServicesPageTemplate = ({ pageName, heading, subheading, descriptio
         <ThemeProvider theme={theme}>
             <MainParallaxGroup name="services-parallax-group" id={kebabCase(pageName)}>
                 <BaseParallax variant="base" name="services-text">
-                    <StyledTextBlock
-                        heading={heading}
-                        description={
-                            <>
-                                <p>{description}</p>
-                                <List>
-                                    {bulletPoints.map(({ text }) => (
-                                        <li key={uuidv4()}>{text}</li>
-                                    ))}
-                                </List>
-                            </>
-                        }
-                        subheading={subheading}
-                    />
+                    <StyledTextBlock heading={heading} description={description} subheading={subheading} />
                 </BaseParallax>
                 <StyledHeroMap variant="back" name="services-map">
                     <Map />
@@ -81,9 +67,6 @@ export const servicesPageQuery = graphql`
                 heading
                 subheading
                 description
-                bulletPoints {
-                    text
-                }
             }
         }
     }
@@ -102,7 +85,6 @@ ServicesPageTemplate.propTypes = {
     heading: PropTypes.string,
     subheading: PropTypes.string,
     description: PropTypes.string,
-    bulletPoints: PropTypes.array,
 };
 
 export default ServicesPage;

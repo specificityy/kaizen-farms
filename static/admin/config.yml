@@ -49,11 +49,11 @@ collections:
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'about-page' },
-                    { label: 'Page Name', name: pageName, widget: string },
-                    { label: Heading, name: heading, widget: string },
-                    { label: Subheading, name: subheading, widget: string },
-                    { label: Description, name: description, widget: text },
-                    { label: 'Background About', name: backgroundAbout, widget: image },
+                    { label: 'Page Name', name: 'pageName', widget: 'string' },
+                    { label: 'Heading', name: 'heading', widget: 'string' },
+                    { label: 'Subheading', name: 'subheading', widget: 'string' },
+                    { label: 'Description', name: 'description', widget: 'markdown' },
+                    { label: 'Background About', name: 'backgroundAbout', widget: 'image' },
                 ]
           - file: src/pages/products/index.md
             label: Products
@@ -64,7 +64,7 @@ collections:
                     { label: 'Page Name', name: pageName, widget: string },
                     { label: Heading, name: heading, widget: string },
                     { label: Subheading, name: subheading, widget: string },
-                    { label: Description, name: description, widget: text },
+                    { label: Description, name: description, widget: markdown },
                     { label: 'Background Products', name: backgroundProducts, widget: image },
                     {
                         label: Products,
@@ -73,7 +73,7 @@ collections:
                         fields:
                             [
                                 { label: title, name: title, widget: string },
-                                { label: Description, name: description, widget: text },
+                                { label: Description, name: description, widget: markdown },
                                 { label: Image, name: image, widget: image },
                             ],
                     },
@@ -87,11 +87,5 @@ collections:
                     { label: 'Page Name', name: pageName, widget: string },
                     { label: Heading, name: heading, widget: string },
                     { label: Subheading, name: subheading, widget: string },
-                    { label: Description, name: description, widget: text },
-                    {
-                        label: BulletPoints,
-                        name: bulletPoints,
-                        widget: list,
-                        fields: [{ label: text, name: text, widget: string }],
-                    },
+                    { label: Description, name: description, widget: markdown },
                 ]

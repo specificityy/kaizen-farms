@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
+import marked from 'marked';
 
 export const TextBlock = ({ heading, description, subheading, ...props }) => {
     return (
@@ -10,7 +11,7 @@ export const TextBlock = ({ heading, description, subheading, ...props }) => {
                 {heading}
                 <Red>.</Red>
             </Heading>
-            <Description>{description}</Description>
+            <Description dangerouslySetInnerHTML={{ __html: marked(description) }} />
         </Wrapper>
     );
 };

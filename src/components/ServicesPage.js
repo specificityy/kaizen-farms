@@ -15,9 +15,6 @@ const useServices = () => {
                         heading
                         subheading
                         description
-                        bulletPoints {
-                            text
-                        }
                     }
                 }
             }

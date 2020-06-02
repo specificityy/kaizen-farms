@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 import kebabCase from 'lodash/kebabCase';
+import { v4 as uuidv4 } from 'uuid';
 
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
@@ -25,7 +26,7 @@ export const ProductsPageTemplate = ({ pageName, heading, subheading, descriptio
 
         const callback = (entries, observer) => {
             entries.forEach(entry => {
-                if (entry.intersectionRatio > 0.6) {
+                if (entry.intersectionRatio > 0.5) {
                     setReveal(true);
                     observer.disconnect();
                 }
@@ -49,7 +50,7 @@ export const ProductsPageTemplate = ({ pageName, heading, subheading, descriptio
                     />
                     <ProdList ref={page} name="products-grid" id="hex-grid">
                         {products.map(({ title, image }) => (
-                            <Product key={title} reveal={reveal} name={title}>
+                            <Product key={uuidv4()} reveal={reveal} name={title}>
                                 <ProdImage imageInfo={image} />
                             </Product>
                         ))}

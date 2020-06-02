@@ -8,10 +8,12 @@ const FooterPreview = ({ entry }) => {
 
     return (
         <FooterTemplate
-            heading={entry.getIn(['data', 'heading'])}
             description={entry.getIn(['data', 'description'])}
-            instagramHeading={entry.getIn(['data', 'instagramHeading'])}
+            socialMediaHeading={entry.getIn(['data', 'socialMediaHeading'])}
             instagramLink={entry.getIn(['data', 'instagramLink'])}
+            facebookLink={entry.getIn(['data', 'facebookLink'])}
+            twitterLink={entry.getIn(['data', 'twitterLink'])}
+            linkedinLink={entry.getIn(['data', 'linkedinLink'])}
             contactHeading={entry.getIn(['data', 'contactHeading'])}
             email={entry.getIn(['data', 'email'])}
             telephones={telephones}

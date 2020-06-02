@@ -31,10 +31,12 @@ collections:
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'footer' },
-                    { label: Heading, name: heading, widget: string },
                     { label: Description, name: description, widget: text },
-                    { label: 'Instagram Heading', name: instagramHeading, widget: string },
+                    { label: 'Social Media Heading', name: socialMediaHeading, widget: string },
                     { label: 'Instagram Link', name: instagramLink, widget: string },
+                    { label: 'Facebook Link', name: facebookLink, widget: string },
+                    { label: 'Twitter Link', name: twitterLink, widget: string },
+                    { label: 'LinkedIn Link', name: linkedinLink, widget: string },
                     { label: 'Contact Heading', name: contactHeading, widget: string },
                     { label: Email, name: email, widget: string },
                     { label: Telephones, name: telephones, widget: list, fields: [{ label: Number, name: number }] },

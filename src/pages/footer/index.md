@@ -1,11 +1,12 @@
 ---
 contactHeading: Contact us
-ContactHeading: Contact us
 templateKey: footer
-heading: Kaizen Farms
 description: Dominican Producers and Exporters
-instagramHeading: Find us on
+socialMediaHeading: Find us on
 instagramLink: https://www.instagram.com/kaizenfarmsrd
+facebookLink: https://www.facebook.com
+twitterLink: https://www.twitter.com
+linkedinLink: https://www.linkedin.com
 email: info@kaizenfarmsrd.com
 telephones:
     - number: 849-207-7478

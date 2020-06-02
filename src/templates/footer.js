@@ -5,15 +5,20 @@ import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 
 import Instagram from '../assets/img/social/instagram.svg';
+import Facebook from '../assets/img/social/facebook.svg';
+import Twitter from '../assets/img/social/twitter.svg';
+import LinkedIn from '../assets/img/social/linkedin.svg';
 import LogoSvg from '../assets/img/logo-color.svg';
 import theme from '../components/theme';
 import { Red } from '../components/TextBlock';
 
 export const FooterTemplate = ({
-    heading,
     description,
-    instagramHeading,
+    socialMediaHeading,
     instagramLink,
+    facebookLink,
+    twitterLink,
+    linkedinLink,
     contactHeading,
     email,
     telephones,
@@ -48,11 +53,30 @@ export const FooterTemplate = ({
                 </StyledSider>
                 <StyledSecondCell>
                     <Heading>
-                        {instagramHeading}
+                        {socialMediaHeading}
                         <Red>.</Red>
-                        <StyledInstagram title="Instagram" href={instagramLink}>
-                            <Instagram />
-                        </StyledInstagram>
+                        <SocialMediaList>
+                            {instagramLink ? (
+                                <SocialMediaButton title="Instagram Kaizen Farms" href={instagramLink}>
+                                    <Instagram />
+                                </SocialMediaButton>
+                            ) : null}
+                            {facebookLink ? (
+                                <SocialMediaButton title="Facebook Kaizen Farms" href={facebookLink}>
+                                    <Facebook />
+                                </SocialMediaButton>
+                            ) : null}
+                            {twitterLink ? (
+                                <SocialMediaButton title="Twitter Kaizen Farms" href={twitterLink}>
+                                    <Twitter />
+                                </SocialMediaButton>
+                            ) : null}
+                            {linkedinLink ? (
+                                <SocialMediaButton title="LinkedIn Kaizen Farms" href={linkedinLink}>
+                                    <LinkedIn />
+                                </SocialMediaButton>
+                            ) : null}
+                        </SocialMediaList>
                     </Heading>
                 </StyledSecondCell>
             </StyledFooter>
@@ -107,7 +131,8 @@ const StyledSecondCell = styled(StyledCell)`
     background: #232323;
 `;
 
-const StyledInstagram = styled.a`
+const SocialMediaButton = styled.a`
+    margin-right: 20px;
     & svg {
         display: block;
         fill: #007a3b;
@@ -121,6 +146,10 @@ const StyledInstagram = styled.a`
     &:hover svg {
         fill: #8bc53f;
     }
+`;
+
+const SocialMediaList = styled.div`
+    display: flex;
 `;
 
 const StyledSider = styled.div`
@@ -190,8 +219,11 @@ const Logo = styled(LogoSvg)`
 FooterTemplate.propTypes = {
     heading: PropTypes.string,
     description: PropTypes.string,
-    instagramHeading: PropTypes.string,
+    socialMediaHeading: PropTypes.string,
     instagramLink: PropTypes.string,
+    facebookLink: PropTypes.string,
+    twitterLink: PropTypes.string,
+    linkedinLink: PropTypes.string,
     contactHeading: PropTypes.string,
     email: PropTypes.string,
     telephones: PropTypes.array,
@@ -212,8 +244,11 @@ export const footerQuery = graphql`
             frontmatter {
                 heading
                 description
-                instagramHeading
+                socialMediaHeading
                 instagramLink
+                facebookLink
+                twitterLink
+                linkedinLink
                 contactHeading
                 email
                 telephones {

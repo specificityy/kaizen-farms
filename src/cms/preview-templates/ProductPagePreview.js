@@ -9,7 +9,7 @@ const ProductPagePreview = ({ entry, getAsset }) => {
     return (
         <ProductsPageTemplate
             heading={entry.getIn(['data', 'heading'])}
-            suubheading={entry.getIn(['data', 'suubheading'])}
+            suubheading={entry.getIn(['data', 'subheading'])}
             description={entry.getIn(['data', 'description'])}
             products={products}
             backgroundProducts={getAsset(entry.getIn(['data', 'backgroundProducts']))}

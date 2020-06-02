@@ -6,12 +6,13 @@ export const cssReset = `
         box-sizing: border-box;
     }
 
-    /* Remove default padding */
+    /* Remove default padding
         ul,
         ol {
         padding: 0;
     }
-
+    */
+   
     /* Remove default margin */
     body,
     h1,

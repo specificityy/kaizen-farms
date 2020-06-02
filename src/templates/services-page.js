@@ -46,14 +46,6 @@ const StyledTextBlock = styled(TextBlock)`
     min-height: 600px;
 `;
 
-const List = styled.ul`
-    margin-left: 40px;
-    & > li {
-        margin-top: 30px;
-        list-style: circle;
-    }
-`;
-
 const ServicesPage = ({ data }) => {
     const { frontmatter } = data.markdownRemark;
     return <ServicesPageTemplate {...frontmatter} />;

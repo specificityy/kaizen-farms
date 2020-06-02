@@ -7,7 +7,6 @@ import styled from '@emotion/styled';
 import { BackTop } from 'antd';
 
 import { cssReset } from './cssReset';
-import { cssFonts } from './cssFonts';
 import useSiteMetadata from './SiteMetadata';
 import { Parallax } from './Parallax';
 import { Footer } from '../components/Footer';
@@ -87,7 +86,7 @@ const StyledUp = styled.div`
     font-size: 14px;
 `;
 
-const GlobalStyles = () => {
+export const GlobalStyles = () => {
     return (
         <Global
             styles={css`

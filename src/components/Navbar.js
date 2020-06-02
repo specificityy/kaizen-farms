@@ -31,7 +31,7 @@ const Navbar = ({ onOpen, onClose, open, maxWidth, contentRef }) => {
         return () => {
             content.removeEventListener('scroll', handleScroll);
         };
-    }, [contentRef]);
+    }, [contentRef, pages]);
 
     return (
         <ThemeProvider theme={theme} id="contact">

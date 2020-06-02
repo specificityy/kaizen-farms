@@ -3,6 +3,8 @@ import { CacheProvider } from '@emotion/core';
 import createCache from '@emotion/cache';
 import weakMemoize from '@emotion/weak-memoize';
 
+import { GlobalStyles } from '../components/Layout';
+
 const memoizedCreateCacheWithContainer = weakMemoize(container => {
     const newCache = createCache({ container });
     return newCache;
@@ -19,6 +21,7 @@ export const withStyled = Component => props => {
 
     return (
         <CacheProvider value={memoizedCreateCacheWithContainer(iframeHeadElem)}>
+            <GlobalStyles />
             <Component {...props} />
         </CacheProvider>
     );

@@ -5,6 +5,7 @@ import { HomePageTemplate } from '../../templates/home-page';
 const HomePagePreview = ({ entry, getAsset }) => {
     return (
         <HomePageTemplate
+            pageName={entry.getIn(['data', 'pageName'])}
             heading={entry.getIn(['data', 'heading'])}
             description={entry.getIn(['data', 'description'])}
             backgroundHome={getAsset(entry.getIn(['data', 'backgroundHome']))}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
+import kebabCase from 'lodash/kebabCase';
 
 import Instagram from '../assets/img/social/instagram.svg';
 import Facebook from '../assets/img/social/facebook.svg';
@@ -13,6 +14,7 @@ import theme from '../components/theme';
 import { Red } from '../components/TextBlock';
 
 export const FooterTemplate = ({
+    pageName,
     description,
     socialMediaHeading,
     instagramLink,
@@ -25,7 +27,7 @@ export const FooterTemplate = ({
 }) => {
     return (
         <ThemeProvider theme={theme}>
-            <StyledFooter id="contact">
+            <StyledFooter id={kebabCase(pageName)}>
                 <StyledFirstCell>
                     <div>
                         <Logo />
@@ -122,6 +124,7 @@ const StyledCell = styled.div`
 
 const StyledFirstCell = styled(StyledCell)`
     background: #1f1f1f;
+    text-align: center;
     @media (${({ theme }) => theme.mediaQueries.m}) {
         grid-row: 4;
     }
@@ -132,15 +135,15 @@ const StyledSecondCell = styled(StyledCell)`
 `;
 
 const SocialMediaButton = styled.a`
-    margin-right: 20px;
+    margin-right: 25px;
     & svg {
         display: block;
         fill: #007a3b;
-        width: 100px;
+        width: 70px;
         margin-top: 20px;
         transition: fill 0.3s;
         @media (${({ theme }) => theme.mediaQueries.m}) {
-            width: 50px;
+            width: 40px;
         }
     }
     &:hover svg {
@@ -170,9 +173,9 @@ const Heading = styled.h2`
 `;
 
 const BaseSubheading = styled.div`
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     @media (${({ theme }) => theme.mediaQueries.m}) {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 `;
 
@@ -210,13 +213,15 @@ const Email = styled(BaseSubheading)`
 const Logo = styled(LogoSvg)`
     transform: scale(1.2);
     margin-bottom: 20px;
+    width: 300px;
     @media (${({ theme }) => theme.mediaQueries.s}) {
-        transform: scale(0.8);
+        transform: scale(0.7);
         margin-bottom: 10px;
     }
 `;
 
 FooterTemplate.propTypes = {
+    pageName: PropTypes.string,
     heading: PropTypes.string,
     description: PropTypes.string,
     socialMediaHeading: PropTypes.string,
@@ -242,6 +247,7 @@ export const footerQuery = graphql`
     query Footer($id: String!) {
         markdownRemark(id: { eq: $id }) {
             frontmatter {
+                pageName
                 heading
                 description
                 socialMediaHeading

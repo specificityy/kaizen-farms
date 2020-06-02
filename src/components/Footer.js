@@ -11,6 +11,7 @@ const useFooter = () => {
             {
                 markdownRemark(frontmatter: { templateKey: { eq: "footer" } }) {
                     frontmatter {
+                        pageName
                         description
                         socialMediaHeading
                         instagramLink

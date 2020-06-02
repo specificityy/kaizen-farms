@@ -4,6 +4,7 @@ import { AboutPageTemplate } from '../../templates/about-page';
 
 const AboutPagePreview = ({ entry, getAsset }) => (
     <AboutPageTemplate
+        pageName={entry.getIn(['data', 'pageName'])}
         heading={entry.getIn(['data', 'heading'])}
         subheading={entry.getIn(['data', 'subheading'])}
         description={entry.getIn(['data', 'description'])}

@@ -1,5 +1,7 @@
 ---
 templateKey: about-page
+pageName: About
+pageIndex: 1
 path: /about
 heading: Who we are
 subheading: About Us

@@ -5,18 +5,17 @@ import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 /** @jsx jsx */
 import { jsx, css, keyframes } from '@emotion/core';
+import kebabCase from 'lodash/kebabCase';
 
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import theme from '../components/theme';
 import Logo from '../assets/img/logo-no-text-color.svg';
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 
-export const HomePageTemplate = ({ heading, description, backgroundHome }) => {
-    console.log(backgroundHome);
-
+export const HomePageTemplate = ({ pageName, heading, description, backgroundHome }) => {
     return (
         <ThemeProvider theme={theme}>
-            <MainParallaxGroup name="home-parallax-group" id="home">
+            <MainParallaxGroup name="home-parallax-group" id={kebabCase(pageName)}>
                 <CenteredText variant="base" name="text-layer">
                     <AnimateContainer delay={500}>
                         <StyledLogo />
@@ -146,6 +145,7 @@ const revealUp = keyframes`
 `;
 
 HomePageTemplate.propTypes = {
+    pageName: PropTypes.string,
     heading: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     backgroundHome: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
@@ -167,6 +167,7 @@ export const homePageQuery = graphql`
         markdownRemark(id: { eq: $id }) {
             html
             frontmatter {
+                pageName
                 heading
                 description
                 backgroundHome {

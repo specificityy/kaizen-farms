@@ -8,6 +8,7 @@ const ServicesPagePreview = ({ entry }) => {
 
     return (
         <ServicesPageTemplate
+            pageName={entry.getIn(['data', 'pageName'])}
             heading={entry.getIn(['data', 'heading'])}
             subheading={entry.getIn(['data', 'subheading'])}
             description={entry.getIn(['data', 'description'])}

@@ -8,6 +8,7 @@ const ProductPagePreview = ({ entry, getAsset }) => {
 
     return (
         <ProductsPageTemplate
+            pageName={entry.getIn(['data', 'pageName'])}
             heading={entry.getIn(['data', 'heading'])}
             suubheading={entry.getIn(['data', 'subheading'])}
             description={entry.getIn(['data', 'description'])}

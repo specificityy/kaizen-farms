@@ -11,6 +11,7 @@ const useServices = () => {
             {
                 markdownRemark(frontmatter: { templateKey: { eq: "services-page" } }) {
                     frontmatter {
+                        pageName
                         heading
                         subheading
                         description

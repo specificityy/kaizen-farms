@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
+import kebabCase from 'lodash/kebabCase';
 
 import { TextBlock } from '../components/TextBlock';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import theme from '../components/theme';
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 
-export const AboutPageTemplate = ({ heading, subheading, description, backgroundAbout }) => {
+export const AboutPageTemplate = ({ pageName, heading, subheading, description, backgroundAbout }) => {
     return (
         <ThemeProvider theme={theme}>
-            <MainParallaxGroup name="about-us-parallax-group" id="about">
+            <MainParallaxGroup name="about-us-parallax-group" id={kebabCase(pageName)}>
                 <BaseLayer variant="base">
                     <StyledTextBlock heading={heading} subheading={subheading} description={description} />
                 </BaseLayer>
@@ -65,6 +66,7 @@ const OverlayShade = styled.div`
 `;
 
 AboutPageTemplate.propTypes = {
+    pageName: PropTypes.string,
     heading: PropTypes.string,
     subheading: PropTypes.string,
     description: PropTypes.string,
@@ -86,6 +88,7 @@ export const aboutPageQuery = graphql`
     query AboutPage($id: String!) {
         markdownRemark(id: { eq: $id }) {
             frontmatter {
+                pageName
                 heading
                 subheading
                 description

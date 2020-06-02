@@ -1,24 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 import sortBy from 'lodash/sortBy';
 import throttle from 'lodash/throttle';
+import kebabCase from 'lodash/kebabCase';
+import startCase from 'lodash/startCase';
 
 import HamburgerIcon from '../assets/img/hamburger-icon.svg';
 import CloseIcon from '../assets/img/close-icon.svg';
 import theme from '../components/theme';
 
-const links = [
-    { href: 'home', label: 'Home' },
-    { href: 'about', label: 'About us' },
-    { href: 'products', label: 'Products' },
-    { href: 'services', label: 'Services' },
-    { href: 'contact', label: 'Contact' },
-];
-
-const getActiveLink = () =>
+const getActiveLink = pages =>
     sortBy(
-        links.map(({ href }) => {
+        pages.map(({ href }) => {
             const rect = document.getElementById(href)?.getBoundingClientRect();
             return { href, top: Math.abs(rect?.top) };
         }),
@@ -26,11 +21,12 @@ const getActiveLink = () =>
     )[0].href;
 
 const Navbar = ({ onOpen, onClose, open, maxWidth, contentRef }) => {
-    const [active, setActive] = useState(links[0].href);
+    const pages = usePagesInfo();
+    const [active, setActive] = useState(pages[0].href);
 
     useEffect(() => {
         const content = contentRef.current;
-        const handleScroll = throttle(() => setActive(getActiveLink()), 300);
+        const handleScroll = throttle(() => setActive(getActiveLink(pages)), 300);
         content.addEventListener('scroll', handleScroll);
         return () => {
             content.removeEventListener('scroll', handleScroll);
@@ -48,7 +44,7 @@ const Navbar = ({ onOpen, onClose, open, maxWidth, contentRef }) => {
             <Drawer open={open} maxWidth={maxWidth}>
                 <CloseButton onClick={onClose} title="Close navigation" />
 
-                {links.map(({ href, label }) => (
+                {pages.map(({ href, label }) => (
                     <Link key={href} href={`#${href}`} onClick={onClose} active={href === active}>
                         {label}
                     </Link>
@@ -115,5 +111,27 @@ const CloseButton = styled(CloseIcon)`
         fill: #8bc53f;
     }
 `;
+
+const usePagesInfo = () => {
+    return sortBy(
+        useStaticQuery(
+            graphql`
+                {
+                    allMarkdownRemark {
+                        nodes {
+                            frontmatter {
+                                pageName
+                                pageIndex
+                            }
+                        }
+                    }
+                }
+            `
+        )
+            .allMarkdownRemark.nodes.map(({ frontmatter }) => frontmatter)
+            .filter(({ pageName }) => !!pageName),
+        'pageIndex'
+    ).map(({ pageName }) => ({ href: kebabCase(pageName), label: startCase(pageName) }));
+};
 
 export default Navbar;

@@ -11,6 +11,7 @@ const useHomepage = () => {
             {
                 markdownRemark(frontmatter: { templateKey: { eq: "home-page" } }) {
                     frontmatter {
+                        pageName
                         heading
                         description
                         backgroundHome {

@@ -1,6 +1,8 @@
 ---
-path: /products
 templateKey: products-page
+pageName: Products
+pageIndex: 2
+path: /products
 heading: What we produce
 subheading: Our Products
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur

@@ -4,16 +4,17 @@ import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 import { v4 as uuidv4 } from 'uuid';
+import kebabCase from 'lodash/kebabCase';
 
 import { TextBlock } from '../components/TextBlock';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
 import { Map } from '../components/map/Map';
 import theme from '../components/theme';
 
-export const ServicesPageTemplate = ({ heading, subheading, description, bulletPoints }) => {
+export const ServicesPageTemplate = ({ pageName, heading, subheading, description, bulletPoints }) => {
     return (
         <ThemeProvider theme={theme}>
-            <MainParallaxGroup name="services-parallax-group" id="services">
+            <MainParallaxGroup name="services-parallax-group" id={kebabCase(pageName)}>
                 <BaseParallax variant="base" name="services-text">
                     <StyledTextBlock
                         heading={heading}
@@ -76,6 +77,7 @@ export const servicesPageQuery = graphql`
     query ServicesPage($id: String!) {
         markdownRemark(id: { eq: $id }) {
             frontmatter {
+                pageName
                 heading
                 subheading
                 description
@@ -96,6 +98,7 @@ ServicesPage.propTypes = {
 };
 
 ServicesPageTemplate.propTypes = {
+    pageName: PropTypes.string,
     heading: PropTypes.string,
     subheading: PropTypes.string,
     description: PropTypes.string,

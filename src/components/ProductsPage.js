@@ -11,6 +11,7 @@ const useProducts = () => {
             {
                 markdownRemark(frontmatter: { templateKey: { eq: "products-page" } }) {
                     frontmatter {
+                        pageName
                         heading
                         subheading
                         description

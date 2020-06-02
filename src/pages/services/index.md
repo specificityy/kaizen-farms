@@ -1,6 +1,8 @@
 ---
-path: /services
 templateKey: services-page
+pageName: Services
+pageIndex: 3
+path: /services
 heading: We ship anywhere in the world
 subheading: OUR SERVICES
 description: 'At Kaizen farms we put the effort to bring you the best quality.

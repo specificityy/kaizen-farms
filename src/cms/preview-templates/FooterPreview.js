@@ -8,6 +8,7 @@ const FooterPreview = ({ entry }) => {
 
     return (
         <FooterTemplate
+            pageName={entry.getIn(['data', 'pageName'])}
             description={entry.getIn(['data', 'description'])}
             socialMediaHeading={entry.getIn(['data', 'socialMediaHeading'])}
             instagramLink={entry.getIn(['data', 'instagramLink'])}

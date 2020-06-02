@@ -21,6 +21,7 @@ collections:
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'home-page' },
+                    { label: 'Page Name', name: pageName, widget: string },
                     { label: Heading, name: heading, widget: string },
                     { label: Description, name: description, widget: text },
                     { label: 'Background Home', name: backgroundHome, widget: image },
@@ -31,6 +32,7 @@ collections:
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'footer' },
+                    { label: 'Page Name', name: pageName, widget: string },
                     { label: Description, name: description, widget: text },
                     { label: 'Social Media Heading', name: socialMediaHeading, widget: string },
                     { label: 'Instagram Link', name: instagramLink, widget: string },
@@ -47,6 +49,7 @@ collections:
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'about-page' },
+                    { label: 'Page Name', name: pageName, widget: string },
                     { label: Heading, name: heading, widget: string },
                     { label: Subheading, name: subheading, widget: string },
                     { label: Description, name: description, widget: text },
@@ -58,6 +61,7 @@ collections:
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'products-page' },
+                    { label: 'Page Name', name: pageName, widget: string },
                     { label: Heading, name: heading, widget: string },
                     { label: Subheading, name: subheading, widget: string },
                     { label: Description, name: description, widget: text },
@@ -80,6 +84,7 @@ collections:
             fields:
                 [
                     { label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'services-page' },
+                    { label: 'Page Name', name: pageName, widget: string },
                     { label: Heading, name: heading, widget: string },
                     { label: Subheading, name: subheading, widget: string },
                     { label: Description, name: description, widget: text },

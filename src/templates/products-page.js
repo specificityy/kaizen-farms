@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
+import kebabCase from 'lodash/kebabCase';
 
 import { PreviewCompatibleBackgroundImage } from '../components/PreviewCompatibleBackgroundImage';
 import { ParallaxGroup, ParallaxLayer } from '../components/Parallax';
@@ -10,7 +11,7 @@ import { TextBlock } from '../components/TextBlock';
 import { Hexagon } from '../components/Hexagon';
 import theme from '../components/theme';
 
-export const ProductsPageTemplate = ({ heading, subheading, description, products, backgroundProducts }) => {
+export const ProductsPageTemplate = ({ pageName, heading, subheading, description, products, backgroundProducts }) => {
     const page = useRef(null);
     const [reveal, setReveal] = useState(false);
 
@@ -19,7 +20,7 @@ export const ProductsPageTemplate = ({ heading, subheading, description, product
 
         const options = {
             rootMargin: '0px',
-            threshold: 1,
+            threshold: 0.6,
         };
 
         const callback = (entries, observer) => {
@@ -38,7 +39,7 @@ export const ProductsPageTemplate = ({ heading, subheading, description, product
 
     return (
         <ThemeProvider theme={theme}>
-            <MainParallaxGroup name="prod-main-parallax-group" id="products">
+            <MainParallaxGroup name="prod-main-parallax-group" id={kebabCase(pageName)}>
                 <ProductsLayer variant="base" name="text-and-products-parallax-layer">
                     <TextBlock
                         name="text-wrapper"
@@ -145,6 +146,7 @@ export const productsPageQuery = graphql`
     query ProductsPage($id: String!) {
         markdownRemark(id: { eq: $id }) {
             frontmatter {
+                pageName
                 heading
                 subheading
                 description
@@ -179,6 +181,7 @@ ProductsPage.propTypes = {
 };
 
 ProductsPageTemplate.propTypes = {
+    pageName: PropTypes.string,
     heading: PropTypes.string,
     subheading: PropTypes.string,
     description: PropTypes.string,

@@ -11,6 +11,7 @@ const useAboutData = () => {
             {
                 markdownRemark(frontmatter: { templateKey: { eq: "about-page" } }) {
                     frontmatter {
+                        pageName
                         heading
                         subheading
                         description

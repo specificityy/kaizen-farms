@@ -1,6 +1,8 @@
 ---
-contactHeading: Contact us
 templateKey: footer
+pageName: Contact Us
+pageIndex: 4
+contactHeading: Contact us
 description: Dominican Producers and Exporters
 socialMediaHeading: Find us on
 instagramLink: https://www.instagram.com/kaizenfarmsrd

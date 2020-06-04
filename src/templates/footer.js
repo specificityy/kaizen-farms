@@ -45,10 +45,13 @@ export const FooterTemplate = ({
                             </a>
                         </Email>
                         <Telephones>
-                            {telephones.map(({ number }, index) => (
-                                <a href={'tel:' + number} key={number} className={index === 0 ? 'first-phone' : ''}>
-                                    {number}
-                                </a>
+                            {telephones.map(({ label, number }, index) => (
+                                <div key={number}>
+                                    {label}
+                                    <a href={'tel:' + number} className={index === 0 ? 'first-phone' : ''}>
+                                        {number}
+                                    </a>
+                                </div>
                             ))}
                         </Telephones>
                     </Heading>
@@ -185,19 +188,12 @@ const Subheading = styled(BaseSubheading)`
 
 const Telephones = styled(BaseSubheading)`
     color: #424242;
-    margin-top: 20px;
+    margin-top: 2rem;
     a {
         display: block;
-        text-indent: 2.5rem;
-        margin-bottom: 0.7rem;
+        margin-bottom: 1rem;
         &.first-phone {
             position: relative;
-            &::before {
-                content: 'T';
-                color: #424242;
-                position: absolute;
-                left: -2rem;
-            }
         }
     }
 `;
@@ -258,6 +254,7 @@ export const footerQuery = graphql`
                 contactHeading
                 email
                 telephones {
+                    label
                     number
                 }
             }

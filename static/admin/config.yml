@@ -41,7 +41,12 @@ collections:
                     { label: 'LinkedIn Link', name: linkedinLink, widget: string },
                     { label: 'Contact Heading', name: contactHeading, widget: string },
                     { label: Email, name: email, widget: string },
-                    { label: Telephones, name: telephones, widget: list, fields: [{ label: Number, name: number }] },
+                    {
+                        label: Telephones,
+                        name: telephones,
+                        widget: list,
+                        fields: [{ label: Label, name: label }, { label: Number, name: number }],
+                    },
                 ]
           - file: src/pages/about/index.md
             label: About

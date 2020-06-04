@@ -21,6 +21,7 @@ const useFooter = () => {
                         contactHeading
                         email
                         telephones {
+                            label
                             number
                         }
                     }

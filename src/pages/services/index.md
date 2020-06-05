@@ -6,17 +6,13 @@ path: /services
 heading: We ship anywhere in the world
 subheading: Our Services
 description: >-
-  At Kaizen farms we put the effort to bring you the best quality. This is our
-  promise to you:
+  At Kaizen farms we put the effort to bring you the best service. These are our
+  commitments with you:
 
 
-  * Sole use of agrochemicals approved by the FDA and the European guidelines.
-
-  * Phytosanitary registry.
+  * Sole use of approved agrochemicals regulated by EPA and European Guidelines.
 
   * Key location for commercialization: 45min from our farm to the airport/seaport.
 
-  * Sole use of certified seeds for the germination process.
-
-  * Customs management for exporting: guarantee of origin, commercial invoice, declaration of application form and shipment.
+  * Best shipment solutions to deliver the products efficiently.
 ---

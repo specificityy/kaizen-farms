@@ -11,5 +11,5 @@ description: Kaizen farms is an agricultural enterprise located in Hacienda
   compliance with  safety and quality regulations for exporting to USA, Canada
   and Europe, using Good Agricultural and Manufacturing practices during the
   entire production chain.
-backgroundAbout: /img/farmer.jpg
+backgroundAbout: /img/peppers-basket.jpg
 ---

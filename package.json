@@ -9,7 +9,7 @@
         "@rebass/forms": "4.0.6",
         "antd": "4.2.0",
         "emotion-theming": "10.0.27",
-        "gatsby": "2.21.21",
+        "gatsby": "2.23.12",
         "gatsby-background-image": "1.1.1",
         "gatsby-plugin-antd": "2.2.0",
         "gatsby-plugin-emotion": "4.3.2",

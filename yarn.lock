@@ -6797,10 +6797,10 @@ gatsby-plugin-emotion@4.3.2:
     "@babel/runtime" "^7.9.6"
     "@emotion/babel-preset-css-prop" "^10.0.27"
 
-gatsby-plugin-netlify-cms@4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify-cms/-/gatsby-plugin-netlify-cms-4.3.1.tgz#65ee9ffb1a38d499ce9d1ea75bbf339f6b63e8d9"
-  integrity sha512-XlMxiFnmEET9ZgRbKWPIKhg3mX4h+OHDREjEkDEiOMSnzKlRvem+ZjObYvcxznRSt5/AWQZ/aTd5jZJGZ1IqTw==
+gatsby-plugin-netlify-cms@4.3.11:
+  version "4.3.11"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify-cms/-/gatsby-plugin-netlify-cms-4.3.11.tgz#c576d9a293b83e6dccc17c0f1f55c99582be8aa8"
+  integrity sha512-RXObpig8ixXwqEDWux4zoEmNgtuo6c852IlwM9n5ai+ZApGSID+zpS2c+iK8LWQd0LhXxJM6Hyhk8psLuA9CDQ==
   dependencies:
     "@pieh/friendly-errors-webpack-plugin" "1.7.0-chalk-2"
     copy-webpack-plugin "^5.1.1"
@@ -6809,7 +6809,7 @@ gatsby-plugin-netlify-cms@4.3.1:
     html-webpack-tags-plugin "^2.0.17"
     lodash "^4.17.15"
     mini-css-extract-plugin "^0.8.2"
-    netlify-identity-widget "^1.5.6"
+    netlify-identity-widget "^1.6.0"
     webpack "^4.43.0"
 
 gatsby-plugin-netlify@2.3.2:
@@ -10817,10 +10817,10 @@ netlify-cms-widget-text@^2.3.0:
   dependencies:
     react-textarea-autosize "^7.1.0"
 
-netlify-identity-widget@^1.5.6:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/netlify-identity-widget/-/netlify-identity-widget-1.7.0.tgz#0a79ec28a3707f37a3cdd18f4b9a9ce40dc764ad"
-  integrity sha512-oOHQJvzkz5cC14Pzm1xV0oL2LSNE5V2B3K6nyMSGhIrpCGKQqvA12KPIZguP3HgMcEqq1G8qn+qSbdBnUKEoKg==
+netlify-identity-widget@^1.6.0:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/netlify-identity-widget/-/netlify-identity-widget-1.9.1.tgz#9e716c4b92b9f0cc041074eb86fc962f35295b46"
+  integrity sha512-9oIWjwUSdRk3SkREcZNjZaVuDDx9T/wSIXZNQsQeY4qoXic/FiXVEGgu2RU3IuA4OI3L2652xY1o+PpS03Ugaw==
 
 next-tick@^1.0.0:
   version "1.1.0"
